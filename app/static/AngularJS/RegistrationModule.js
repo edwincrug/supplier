@@ -10,17 +10,11 @@ var registrationModule = angular.module("registrationModule", ["ngRoute", "ngGri
         templateUrl: '/AngularJS/Templates/Login.html',
         controller: 'loginController'
     });*/
-	$routeProvider.when('/Registro', {
+	$routeProvider.when('/registro', {
         templateUrl: '/AngularJS/Templates/Registro.html',
         controller: 'loginController'
     });
-    $routeProvider.when('/AngularJS/Templates/Ordenes.html', {
-        templateUrl: '/AngularJS/Templates/Ordenes.html',
-        controller: 'loginController'
-    });
 
-            
-   
 
     $locationProvider.html5Mode(true);
 });

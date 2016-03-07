@@ -1,6 +1,6 @@
 {
 "CodeKitInfo": "This is a CodeKit 2.x project configuration file. It is designed to sync project settings across multiple machines. MODIFYING THE CONTENTS OF THIS FILE IS A POOR LIFE DECISION. If you do so, you will likely cause CodeKit to crash. This file is not useful unless accompanied by the project that created it in CodeKit 2. This file is not backwards-compatible with CodeKit 1.x. For more information, see: http:\/\/incident57.com\/codekit",
-"creatorBuild": "19102",
+"creatorBuild": "19115",
 "files": {
 	"\/AngularJS\/alertFactory.js": {
 		"fileType": 64,
@@ -24,89 +24,56 @@
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/AngularJS\/Mancomunado\/mancomunadoRepository.js": {
+	"\/AngularJS\/Login\/loginController.js": {
 		"fileType": 64,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/AngularJS\/Mancomunado\/mancomunadoRepository.js",
-		"outputAbbreviatedPath": "\/AngularJS\/Mancomunado\/min\/mancomunadoRepository-min.js",
+		"inputAbbreviatedPath": "\/AngularJS\/Login\/loginController.js",
+		"outputAbbreviatedPath": "\/AngularJS\/Login\/min\/loginController-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/AngularJS\/Parametro\/min\/notificacionController-min.js": {
+	"\/AngularJS\/Login\/loginRepository.js": {
 		"fileType": 64,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/AngularJS\/Parametro\/min\/notificacionController-min.js",
-		"outputAbbreviatedPath": "\/AngularJS\/Parametro\/min\/min\/notificacionController-min-min.js",
+		"inputAbbreviatedPath": "\/AngularJS\/Login\/loginRepository.js",
+		"outputAbbreviatedPath": "\/AngularJS\/Login\/min\/loginRepository-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/AngularJS\/Parametro\/min\/notificacionRepository-min.js": {
-		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/AngularJS\/Parametro\/min\/notificacionRepository-min.js",
-		"outputAbbreviatedPath": "\/AngularJS\/Parametro\/min\/min\/notificacionRepository-min-min.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
-		},
-	"\/AngularJS\/Parametro\/min\/parametroController-min.js": {
+	"\/AngularJS\/min\/RegistrationModule-min.js": {
 		"fileType": 64,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/AngularJS\/Parametro\/min\/parametroController-min.js",
-		"outputAbbreviatedPath": "\/AngularJS\/Parametro\/min\/min\/parametroController-min-min.js",
+		"inputAbbreviatedPath": "\/AngularJS\/min\/RegistrationModule-min.js",
+		"outputAbbreviatedPath": "\/AngularJS\/min\/min\/RegistrationModule-min-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/AngularJS\/Parametro\/min\/parametroRepository-min.js": {
-		"fileType": 64,
-		"ignore": 1,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/AngularJS\/Parametro\/min\/parametroRepository-min.js",
-		"outputAbbreviatedPath": "\/AngularJS\/Parametro\/min\/min\/parametroRepository-min-min.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
-		},
-	"\/AngularJS\/Parametro\/parametroController.js": {
+	"\/AngularJS\/Ordenes\/ordenController.js": {
 		"fileType": 64,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/AngularJS\/Parametro\/parametroController.js",
-		"outputAbbreviatedPath": "\/AngularJS\/Parametro\/min\/parametroController-min.js",
+		"inputAbbreviatedPath": "\/AngularJS\/Ordenes\/ordenController.js",
+		"outputAbbreviatedPath": "\/AngularJS\/Ordenes\/min\/ordenController-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/AngularJS\/Parametro\/parametroRepository-dist.js": {
+	"\/AngularJS\/Ordenes\/ordenRepository.js": {
 		"fileType": 64,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/AngularJS\/Parametro\/parametroRepository-dist.js",
-		"outputAbbreviatedPath": "\/AngularJS\/Parametro\/min\/parametroRepository-dist-min.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
-		},
-	"\/AngularJS\/Parametro\/parametroRepository.js": {
-		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/AngularJS\/Parametro\/parametroRepository.js",
-		"outputAbbreviatedPath": "\/AngularJS\/Parametro\/min\/parametroRepository-min.js",
+		"inputAbbreviatedPath": "\/AngularJS\/Ordenes\/ordenRepository.js",
+		"outputAbbreviatedPath": "\/AngularJS\/Ordenes\/min\/ordenRepository-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
@@ -123,11 +90,29 @@
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/AngularJS\/Templates\/Parametro.html": {
+	"\/AngularJS\/Templates\/Login.html": {
 		"fileType": 8192,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/AngularJS\/Templates\/Parametro.html",
+		"inputAbbreviatedPath": "\/AngularJS\/Templates\/Login.html",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/AngularJS\/Templates\/Ordenes.html": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/AngularJS\/Templates\/Ordenes.html",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/AngularJS\/Templates\/Registro.html": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/AngularJS\/Templates\/Registro.html",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
@@ -197,6 +182,15 @@
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
 		},
+	"\/css\/login.css": {
+		"fileType": 16,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/css\/login.css",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
 	"\/css\/main.css": {
 		"fileType": 16,
 		"ignore": 0,
@@ -220,6 +214,24 @@
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/css\/ng-grid.min.css",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/css\/orden.css": {
+		"fileType": 16,
+		"ignore": 1,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/css\/orden.css",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/css\/ordenes.css": {
+		"fileType": 16,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/css\/ordenes.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
@@ -9103,15 +9115,31 @@
 		"shouldRunBless": 0,
 		"useLibsass": false
 		},
-	"\/sass\/chat.sass": {
+	"\/sass\/login.sass": {
 		"createSourceMap": 0,
 		"debugStyle": 0,
 		"decimalPrecision": 10,
 		"fileType": 2,
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/sass\/chat.sass",
-		"outputAbbreviatedPath": "\/css\/chat.css",
+		"inputAbbreviatedPath": "\/sass\/login.sass",
+		"outputAbbreviatedPath": "\/css\/login.css",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 0,
+		"shouldRunAutoprefixer": 0,
+		"shouldRunBless": 0,
+		"useLibsass": false
+		},
+	"\/sass\/orden.sass": {
+		"createSourceMap": 0,
+		"debugStyle": 0,
+		"decimalPrecision": 10,
+		"fileType": 2,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/sass\/orden.sass",
+		"outputAbbreviatedPath": "\/css\/orden.css",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 0,
@@ -9127,7 +9155,7 @@
 	},
 "projectAttributes": {
 	"bowerAbbreviatedPath": "",
-	"displayValue": "parametro",
+	"displayValue": "supplier",
 	"displayValueWasSetByUser": 1,
 	"iconImageName": "compass_darkGray"
 	},
