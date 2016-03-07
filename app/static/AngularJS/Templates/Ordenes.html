@@ -1,0 +1,441 @@
+<link href="../../css/orden.css" rel="stylesheet" />
+<div id="InitingPage">
+
+<div cg-busy="myPromise" ng-init="init()">
+    <div id="contenedor" >
+        <h1>PORTAL PROVEEDORES</h1>
+        <tabset >  <!-- PRIMER PESTAÑA -->
+            <tab select="alertMe()" heading=" *Pendientes " >  
+                    <div >
+                        <table align="center"  >                         
+                         </br>
+                         <tr align="center">
+                            <td class="container">
+                                
+                                <div class="form-group">
+                                    <label for="Empresa">Orden de compra</label>
+                                    <div class="input">
+                                        <input CsClass="form-control" id="inputdefault" type="text">
+                                    </div>
+                                </div>  
+                            </td>
+                            <td  class="container">
+                                <div class="form-group">
+                                    <label for="Empresa">Empresa</label>
+                                    <div class="dropdown">
+                                        <button class="btn btn-default dropdown-toggle" type="button" id="DropdownEmpresas1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                        {{OpcionDefaultEmpresa}}{{ currentEmpresa.emp_nombre }}<span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu" aria-labelledby="DropdownEmpresa1">
+                                             <li ng-repeat="tipo in listaEmpresas"><a ng-click="getSucursal(tipo)">{{ tipo.emp_nombre }}</a></li>
+                                        </ul>
+                                    </div>
+                                </div>                            
+    
+                            </td>
+                            <td class="container">
+                                <div class="form-group">
+                                    <label for="Sucursal">Sucursal</label>
+                                    <div class="dropdown">
+                                        <button class="btn btn-default dropdown-toggle" type="button" id="DropdownSucursal1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                        {{OpcionDefaultSucursal}}{{ currentSucursal.suc_nombre }}<span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu" aria-labelledby="DropdownSucursal1">
+                                            <li ng-repeat="tipo in listaSucursales"><a ng-click="setSucursal(tipo)">{{ tipo.suc_nombre }}</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="container">
+                                <button type="button" class="btn btn-primary">Buscar Orden De Compra</button>
+                            </td>
+
+                         </tr>
+                     </table>  </br>
+
+                    </div>
+               <div >                                         
+                     <table  class="table table-striped table-bordered"  > 
+                        <thead> 
+                            <tr>                           
+                                 <th>Compra</th> 
+                                <th>Detalle</th> 
+                                <th>Importe</th> 
+                                 <th>Adjuntar Factura</th>                             
+                             </tr> 
+                       </thead> 
+                        <tbody id="myTable"> 
+                         <tr ng-repeat="Pendiente in listaPendiente.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage))"> 
+                            <td> <a href="/Registro" ng-click="resgistraUsuario()" >{{tituloGrid}} {{ Pendiente.oce_folioorden }}</a> </br>
+                                 {{ Pendiente.emp_nombre }} 
+                                 </br>{{ Pendiente.per_rfc }}
+                             </td> 
+                            <td>{{ Pendiente.suc_nombre }} </br>
+                                 {{ Pendiente.dep_nombre }} 
+                            </td>
+                            <td>{{ Pendiente.oce_importetotal }}</td>                                                       
+                            <td>
+                                <button class="btn btn-primary" type="button" id="btnAdjuntarPendiente">
+                                    <span class="glyphicon glyphicon-paperclip" aria-hidden="true" ng-click="AdjuntarPendiente(Pendiente)"></span>
+                                </button>
+                            </td>                             
+                        </tr> 
+                      </tbody> 
+                   </table>
+                   <table align="center">
+                       <tr align="center">
+                           <td align="center">
+                               Ver <select ng-model="viewby" ng-change="setItemsPerPage(viewby)"><option>5</option><option>10</option><option>20</option><option>30</option><option>40</option><option>50</option></select> registros de {{totalPendientes}}
+                           </td>
+                           
+                       </tr>
+                       <tr>
+                           <td>
+                               <pagination total-items="totalItems" ng-model="currentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" rotate="false" num-pages="numPages" items-per-page="itemsPerPage" align="center"></pagination>
+                               
+                           </td>
+                       </tr>
+                       <tr align="center">
+                           <td>
+                               Pagina: {{currentPage}} de {{numPages}}
+                           </td>
+                       </tr>
+                   </table>
+                  <!-- <pre align="center">Pagina: {{currentPage}} de {{numPages}}</pre>-->           
+                </div>
+              
+            </tab>
+            
+           <!-- SEGUNDA PESTAÑA-->
+             <tab select="alertMe()" heading=" *Validadas "> 
+                <div>
+                        <table align="center"  >                         
+                         </br>
+                         <tr align="center">
+                            <td >
+                                
+                                <div class="form-group">
+                                    <label for="Empresa">Orden de compra</label>
+                                    <div class="input">
+                                        <input CsClass="form-control" id="inputdefault" type="text">
+                                    </div>
+                                </div>  
+                            </td>
+                            <td align="center">
+                                <div class="form-group">
+                                    <label for="Empresa">Empresa</label>
+                                    <div class="dropdown">
+                                        <button class="btn btn-default dropdown-toggle" type="button" id="DropdownEmpresas2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                        {{OpcionDefaultEmpresaV}}{{ currentEmpresaV.emp_nombre }}<span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu" aria-labelledby="DropdownEmpresa2">
+                                             <li ng-repeat="tipo in listaEmpresasV"><a ng-click="getSucursalV(tipo)">{{ tipo.emp_nombre }}</a></li>
+                                        </ul>
+                                    </div>
+                                </div>                            
+    
+                            </td>
+                            <td >
+                                <div class="form-group">
+                                    <label for="Sucursal">Sucursal</label>
+                                    <div class="dropdown">
+                                        <button class="btn btn-default dropdown-toggle" type="button" id="DropdownSucursal2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                        {{OpcionDefaultSucursalV}}{{ currentSucursalV.suc_nombre }}<span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu" aria-labelledby="DropdownSucursal2">
+                                            <li ng-repeat="tipo in listaSucursalesV"><a ng-click="setSucursalV(tipo)">{{ tipo.suc_nombre }}</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </td>
+                            <td >
+                                <button type="button" class="btn btn-primary">Buscar Orden De Compra</button>
+                            </td>
+
+                         </tr> 
+                     </table>  </br>
+
+              </div>
+              <div>               
+                <table class="table table-striped table-bordered"> 
+                    <thead> 
+                        <tr> 
+                            <th>Orden De Compra</th> 
+                            <th>Detalle</th> 
+                            <th>Importe</th> 
+                            <th>Factura</th>    
+                            <th>Fecha Validacion</th>  
+                            <th>Fecha Factura</th>  
+                            <th>Recepción</th> 
+                            <th>Estatus</th>  
+                            <th>Consultar Factura</th>                        
+                        </tr> 
+                    </thead> 
+                    <tbody> 
+                        <tr ng-repeat="validada in listaValidadas.slice(((currentPageV-1)*itemsPerPageV), ((currentPageV)*itemsPerPageV))"> 
+                            <td >
+                                 <a href="/Registro" ng-click="resgistraUsuario()" > {{ validada.ppro_nombrearchivo }}</a> </br>             {{ validada.emp_nombre }} </br>
+                                 {{ validada.per_rfc }}
+                             </td> 
+                            <td >
+                                 {{ validada.suc_nombre }} </br>
+                                 {{ validada.dep_nombre }}
+                             </td> 
+                            <td >{{ validada.oce_importetotal }}</td> 
+                            <td >{{ validada.factura }}</td> 
+                            <td >{{ validada.fechaValidacion }}</td>    
+                            <td >{{ validada.fecha_factura }}</td> 
+                            <td >{{ validada.Recepcion }}</td>    
+                            <!--<td >{{ validada.Estatus }}</td> -->
+                            <td >{{ validada.Estado }}</td>                                                           
+                            <td >
+                               
+                               <button class="btn btn-primary" type="button" id="btnValidadas">
+                                    <span class="glyphicon glyphicon-level-up" aria-hidden="true" ng-click="MostrarValidadas(validada)"></span>
+                                </button>
+                            </td>                             
+                        </tr> 
+                    </tbody> 
+                </table>
+                <table align="center">
+                       <tr align="center">
+                           <td align="center">
+                               Ver <select ng-model="viewbyV" ng-change="setItemsPerPageV(viewbyV)"><option>5</option><option>10</option><option>20</option><option>30</option><option>40</option><option>50</option></select> registros de {{totalValidadas}}
+                           </td>
+                           
+                       </tr>
+                       <tr>
+                           <td>
+                               <pagination total-items="totalItemsV" ng-model="currentPageV" max-size="maxSize" class="pagination-sm" boundary-links="true" rotate="false" num-pages="numPagesV" items-per-page="itemsPerPageV" align="center"></pagination>
+                               
+                           </td>
+                       </tr>
+                       <tr align="center">
+                           <td>
+                               Pagina: {{currentPageV}} de {{numPagesV}}
+                           </td>
+                       </tr>
+                   </table>
+             </div>
+            </tab>
+            <!-- PESTAÑA NUMERO 3-->
+            <tab select="alertMe()" heading=" *Programadas Para Pago ">   
+                 <div>
+                        <table align="center"  >                         
+                         </br>
+                         <tr align="center">
+                            <td >
+                                
+                                <div class="form-group">
+                                    <label for="Empresa">Orden de compra</label>
+                                    <div class="input">
+                                        <input CsClass="form-control" id="inputdefault" type="text">
+                                    </div>
+                                </div>  
+                            </td>
+                            <td align="center">
+                                <div class="form-group">
+                                    <label for="Empresa">Empresa</label>
+                                    <div class="dropdown">
+                                        <button class="btn btn-default dropdown-toggle" type="button" id="DropdownEmpresas3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                        {{OpcionDefaultEmpresaPP}}{{ currentEmpresaPP.emp_nombre }}<span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu" aria-labelledby="DropdownEmpresa3">
+                                             <li ng-repeat="tipo in listaEmpresasPP"><a ng-click="getSucursalPP(tipo)">{{ tipo.emp_nombre }}</a></li>
+                                        </ul>
+                                    </div>
+                                </div>                            
+    
+                            </td>
+                            <td >
+                                <div class="form-group">
+                                    <label for="Sucursal">Sucursal</label>
+                                    <div class="dropdown">
+                                        <button class="btn btn-default dropdown-toggle" type="button" id="DropdownSucursal3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                        {{OpcionDefaultSucursalPP}}{{ currentSucursalPP.suc_nombre }}<span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu" aria-labelledby="DropdownSucursal3">
+                                            <li ng-repeat="tipo in listaSucursalesPP"><a ng-click="setSucursalPP(tipo)">{{ tipo.suc_nombre }}</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </td>
+                            <td >
+                                <button type="button" class="btn btn-primary">Buscar Orden De Compra</button>
+                            </td>
+
+                         </tr> 
+                     </table>  </br>
+
+              </div>            
+                <div>               
+                <table class="table table-striped table-bordered"> 
+                    <thead> 
+                        <tr> 
+                            <th>Orden De Compra</th> 
+                            <th>Detalle</th> 
+                            <th>Importe</th> 
+                            <th>Factura</th>    
+                            <th>Fecha Validacion</th>  
+                            <th>Fecha Factura</th>  
+                            <th>Recepción</th> 
+                            <th>Estatus</th>  
+                            <th>Consultar Factura</th>                        
+                        </tr> 
+                    </thead> 
+                    <tbody> 
+                        <tr ng-repeat="progPago in listaProgPago.slice(((currentPagePP-1)*itemsPerPagePP), ((currentPagePP)*itemsPerPagePP))"> 
+                            <td >
+                                 <a href="/Registro" ng-click="resgistraUsuario()" > {{ progPago.ppro_nombrearchivo }}</a> </br> Empresa  {{ progPago.emp_nombre }} </br>
+                                 RFC {{ progPago.per_rfc }}
+                             </td> 
+                            <td >
+                                 {{ progPago.suc_nombre }} </br>
+                                 {{ progPago.dep_nombre }}
+                             </td> 
+                            <td >{{ progPago.oce_importetotal }}</td> 
+                            <td >{{ progPago.factura }}</td> 
+                            <td >{{ progPago.fechaValidacion }}</td>    
+                            <td >{{ progPago.fecha_factura }}</td> 
+                            <td >{{ progPago.Recepcion }}</td>    
+                            <!--<td >{{ progPago.Estatus }}</td>--> 
+                            <td >{{ progPago.Estado }}</td>                                                           
+                            <td >
+                                <button class="btn btn-primary" type="button" id="btnValidadas" >
+                                    <span class="btn btn-primary view-pdf glyphicon glyphicon-level-up" aria-hidden="true" ng-click="MostrarValidadas(validada)"> Ver Factura</span>
+                                </button>
+                            </td>                             
+                        </tr> 
+                    </tbody> 
+                </table>
+                <table align="center">
+                       <tr align="center">
+                           <td align="center">
+                               Ver <select ng-model="viewbyPP" ng-change="setItemsPerPagePP(viewbyPP)"><option>5</option><option>10</option><option>20</option><option>30</option><option>40</option><option>50</option></select> registros de {{totalProgPago}}
+                           </td>
+                           
+                       </tr>
+                       <tr>
+                           <td>
+                               <pagination total-items="totalItemsPP" ng-model="currentPagePP" max-size="maxSize" class="pagination-sm" boundary-links="true" rotate="false" num-pages="numPagesPP" items-per-page="itemsPerPagePP" align="center"></pagination>
+                               
+                           </td>
+                       </tr>
+                       <tr align="center">
+                           <td>
+                               Pagina: {{currentPagePP}} de {{numPagesPP}}
+                           </td>
+                       </tr>
+                   </table>
+             </div>
+            </tab>
+            <!--     CUARTA PESTAÑA 4 -->
+            <tab select="alertMe()" heading=" *Pagadas " >
+                  <div>
+                        <table align="center"  >                         
+                         </br>
+                         <tr align="center">
+                            <td >
+                                
+                                <div class="form-group">
+                                    <label for="Empresa">Orden de compra</label>
+                                    <div class="input">
+                                        <input CsClass="form-control" id="inputdefault" type="text">
+                                    </div>
+                                </div>  
+                            </td>
+                            <td align="center">
+                                <div class="form-group">
+                                    <label for="Empresa">Empresa</label>
+                                    <div class="dropdown">
+                                        <button class="btn btn-default dropdown-toggle" type="button" id="DropdownEmpresas4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                        {{OpcionDefaultEmpresaP}}{{ currentEmpresaP.emp_nombre }}<span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu" aria-labelledby="DropdownEmpresa4">
+                                             <li ng-repeat="tipo in listaEmpresasP"><a ng-click="getSucursalP(tipo)">{{ tipo.emp_nombre }}</a></li>
+                                        </ul>
+                                    </div>
+                                </div>                            
+    
+                            </td>
+                            <td >
+                                <div class="form-group">
+                                    <label for="Sucursal">Sucursal</label>
+                                    <div class="dropdown">
+                                        <button class="btn btn-default dropdown-toggle" type="button" id="DropdownSucursal4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                        {{OpcionDefaultSucursalP}}{{ currentSucursalP.suc_nombre }}<span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu" aria-labelledby="DropdownSucursal4">
+                                            <li ng-repeat="tipo in listaSucursalesP"><a ng-click="setSucursalP(tipo)">{{ tipo.suc_nombre }}</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </td>
+                            <td >
+                                <button type="button" class="btn btn-primary">Buscar Orden De Compra</button>
+                            </td>
+
+                         </tr> 
+                     </table>  </br>
+
+              </div> 
+                 <div>                         
+                     <table  class="table table-striped table-bordered"  > 
+                        <thead> 
+                            <tr>                           
+                                 <th>Compra</th> 
+                                <th>Detalle</th> 
+                                <th>Importe</th> 
+                                 <th>Consultar Factura</th>                             
+                             </tr> 
+                       </thead> 
+                        <tbody id="myTable"> 
+                         <tr ng-repeat="Pagadas in listaPagadas.slice(((currentPageP-1)*itemsPerPageP), ((currentPageP)*itemsPerPageP))"> 
+                            <td> <a href="/Registro" ng-click="resgistraUsuario()" > {{ Pagadas.oce_folioorden }}</a> </br>
+                                 {{ Pagadas.emp_nombre }} 
+                                 </br>{{ Pagadas.per_rfc }}
+                             </td> 
+                            <td>{{ Pagadas.suc_nombre }} </br>
+                                 {{ Pagadas.dep_nombre }} 
+                            </td>
+                            <td>{{ Pagadas.oce_importetotal }}</td>                                                       
+                            <td>
+                                <button class="btn btn-primary" type="button" id="btnAdjuntarPendiente">
+                                    <span class="glyphicon glyphicon-level-up" aria-hidden="true" ng-click="AdjuntarPendiente(Pagadas)"></span>
+                                </button>
+                            </td>                             
+                        </tr> 
+                      </tbody> 
+                   </table>
+                   <table align="center">
+                       <tr align="center">
+                           <td align="center">
+                               Ver <select ng-model="viewbyP" ng-change="setItemsPerPageP(viewbyP)"><option>5</option><option>10</option><option>20</option><option>30</option><option>40</option><option>50</option></select> registros de {{totalPagadas}}
+                           </td>
+                           
+                       </tr>
+                       <tr>
+                           <td>
+                               <pagination total-items="totalItemsP" ng-model="currentPageP" max-size="maxSize" class="pagination-sm" boundary-links="true" rotate="false" num-pages="numPagesP" items-per-page="itemsPerPageP" align="center"></pagination>
+                               
+                           </td>
+                       </tr>
+                       <tr align="center">
+                           <td>
+                               Pagina: {{currentPageP}} de {{numPagesP}}
+                           </td>
+                       </tr>
+                   </table>
+                  <!-- <pre align="center">Pagina: {{currentPage}} de {{numPages}}</pre>-->
+                       
+                               
+                </div>
+            </tab>
+        </tabset>
+    </div>
+</div>
+
+</div>
+
+
+ 

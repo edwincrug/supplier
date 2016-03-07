@@ -1,0 +1,14 @@
+.btnEntrar {
+  width: 300px;
+}
+
+#container{
+width: 200px;
+text-align: center;
+}
+
+#divPrincipal{
+	width: 800px;
+	text-align: center;
+	vertical-align: center;
+}
