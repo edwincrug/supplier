@@ -3,7 +3,7 @@
 
 <div cg-busy="myPromise" ng-init="init()">
     <div id="contenedor" >
-        <h1>PORTAL PROVEED</h1>
+        <h1>PORTAL PROVEEDORES</h1>
         <tabset >  <!-- PRIMER PESTAÑA -->
             <tab select="alertMe()" heading=" *Pendientes " >  
                     <div >
@@ -14,8 +14,9 @@
                                 
                                 <div class="form-group">
                                     <label for="Empresa">Orden de compra</label>
+
                                     <div class="input">
-                                        <input CsClass="form-control" id="inputdefault" type="text">
+                                        <input CsClass="form-control" id="inputPendientes" type="text">
                                     </div>
                                 </div>  
                             </td>
@@ -47,7 +48,14 @@
                                 </div>
                             </td>
                             <td class="container">
-                                <button type="button" class="btn btn-primary">Buscar Orden De Compra</button>
+
+                                <div class="form-group">     
+                                      <div style="text-align:right">
+                                            <button class="btn btn-primary" type="button" id="btnAgregalevel" ng-click= "buscaPendientes()">Buscar Orden De Compra</button>
+                                  
+                                      </div>
+                               </div> 
+                               
                             </td>
 
                          </tr>

@@ -207,20 +207,24 @@ $scope.getSucursal= function(tip) {
     };
 
     $scope.setSucursal= function(tip) {
-		
-		$scope.valSucursal=tip.suc_idsucursal;     
+          $scope.OpcionDefaultSucursal=null;
+		      $scope.currentSucursal=tip;
+		      $scope.valSucursal=tip.suc_idsucursal;     
     };
     $scope.setSucursalV= function(tip) {
-		
+		      $scope.OpcionDefaultSucursalV=null;
+          $scope.currentSucursalV=tip;
 		$scope.valSucursal=tip.suc_idsucursal;     
     };
     $scope.setSucursalPP= function(tip) {
-		
-		$scope.valSucursal=tip.suc_idsucursal;     
+		      $scope.OpcionDefaultSucursalPP=null;
+          $scope.currentSucursalPP=tip;
+		      $scope.valSucursal=tip.suc_idsucursal;     
     };
     $scope.setSucursalP= function(tip) {
-		
-		$scope.valSucursal=tip.suc_idsucursal;     
+		      $scope.OpcionDefaultSucursalP=null;
+          $scope.currentSucursalP=tip;
+		      $scope.valSucursal=tip.suc_idsucursal;     
     };
 //Paginacion Pendientes
 
@@ -282,7 +286,16 @@ $scope.setItemsPerPageP = function(num) {
   $scope.currentPageP = 1; //reset to first paghe
 }
 
+//////////////////////////////////////////  BUSQUEDAS  ///////////////////////////////////////////////////////////
 
+$scope.buscaPendientes= function(buscaPendientes) {
+    $scope.OpcionDefaultEmpresa =null;
+    $scope.currentEmpresa =tip;
+    $scope.valEmpresa =tip.emp_idempresa;
+    ordenRepository.getSucursales(tip.emp_idempresa)
+             .success(getSucursalesSuccessCallback)
+             .error(errorCallBack);        
+    };
 
 }); 
 
