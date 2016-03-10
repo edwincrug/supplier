@@ -4,6 +4,9 @@ registrationModule.factory('loginRepository', function ($http) {
     return {
         getLogin: function ( usuario, password) {
             return $http.get(loginUrl + '1|' + usuario + '|' + password);
+        },
+        insertRegistro: function(razonSocial, rfc, correo, contrasena, confirmarContrasena){
+            return $http.post(loginUrl + '1|' + razonSocial + '|' + rfc + '|' + correo + '|' + contrasena + '|' + confirmarContrasena);
         }
         /*,
         update: function (id) {

@@ -1,4 +1,5 @@
 <link href="../../css/orden.css" rel="stylesheet" />
+<script src="../../js/Facturas/Facturas.js"></script>
 <div id="InitingPage">
 
 <div cg-busy="myPromise" ng-init="init()">
@@ -82,9 +83,10 @@
                                  {{ Pendiente.dep_nombre }} 
                             </td>
                             <td>{{ Pendiente.oce_importetotal }}</td>                                                       
-                            <td>
-                                <button class="btn btn-primary" type="button" id="btnAdjuntarPendiente">
-                                    <span class="glyphicon glyphicon-paperclip" aria-hidden="true" ng-click="AdjuntarPendiente(Pendiente)"></span>
+                            <td>                                                                                                    
+                                
+                               <button class="btn btn-primary" type="button" id="btnAdjuntarPendiente">
+                                    <span class="glyphicon glyphicon-paperclip" aria-hidden="true" ng-click="javascript:showModalUpLoad(this,\"{0}\",\"{1}\",\"{2}\",\"{3}\")", Eval("oce_folioorden"),Eval("per_rfc"),Eval("oce_importetotal"),"Link"></span>
                                 </button>
                             </td>                             
                         </tr> 
@@ -458,7 +460,39 @@
     </div>
 </div>
 
+<!-- Modal --><!--
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content--><!--
+    <div class="modal-content">
+      <div class="modal-header" align="center">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Cargando...</h4>
+      </div>
+      <div class="container">
+            <div class="row">
+                
+                <a href="javascript:showModalUpLoad(this,\"{0}\",\"{1}\",\"{2}\",\"{3}\")", Eval("oce_folioorden"),Eval("per_rfc"),Eval("oce_importetotal"),"Link")>View PDF</a>        
+            </div>
+      </div>
+      <!--<div class="progress progress-striped active">
+            <div class="progress-bar" role="progressbar"
+                aria-valuenow="45" aria-valuemin="0" aria-valuemax="100"
+                style="width: 100%">
+                <span class="sr-only">100% completado</span>
+            </div>
+      </div>-->
+   <!--   <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+      </div>
+    </div>
+
+  </div>
 </div>
 
+        
+</div>
+<%# string.Format("javascript:showModalUpLoad(this,\"{0}\",\"{1}\",\"{2}\",\"{3}\")", Eval("oce_folioorden"),Eval("per_rfc"),Eval("oce_importetotal"),"Link") %>
 
  

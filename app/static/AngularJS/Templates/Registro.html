@@ -1,4 +1,4 @@
-
+<link href="../../css/registro.css" rel="stylesheet" />
 <div id="InitingPage">
 
 <div cg-busy="myPromise" ng-init="init()">
@@ -7,7 +7,8 @@
                   <div align="center">
                             
                             <contenttemplate>
-                                <table class="tableRegister">
+                               <div>
+                                   <table class="tableRegister">
                                      <tbody><tr>
                                          <td class="td1"></td>
                                         <td class="td1">
@@ -43,6 +44,37 @@
                                         </td>
                                         <td class="td1"></td>
                                     </tr>
+                                 </tbody>
+                                </table>
+
+                               </div>
+                               <!--<div>
+                                   <div class="modal-body">
+                                        <form name="registerForm">
+                                              <div class="container" id="loginPage" align="center">                  
+                                                    <div id="ctl09" ng-controller="loginController">    </br></br>
+                                                            <input name="txtUser" id="Usuario" type="text"  placeholder="Razon social" ng-model="login.Usuario"  required="" autofocus="" class="txtRegistro" ></br>                                
+                                                            <input name="txtPass" id="Password" type="password" placeholder="Password" ng-model="login.Password" required="" class="txtRegistro"> </br></br>
+
+
+                                                                                
+                                                    </div>
+                                                    <div>
+                                                        <button  ng-click="navegar()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+                                                            Navegar a una ruta
+                                                        </button>    
+    
+                                                    </div>
+           
+                                              </div>
+
+                                        </form> 
+                                    </div>
+                               </div>-->
+                              
+                              <div>
+                                <table class="tableRegister">
+                                     <tbody>
                                     <tr>
                                         <td class="td1"></td>
                                         <td class="td1">
@@ -53,7 +85,7 @@
                                     <tr>
                                         <td class="td1"></td>
                                         <td class="td1">
-                                            <input name="txtRazonSocial" type="text" id="txtRazonSocial" class="txtRegistrer" placeholder="Razon social" required="" autofocus="" style="width:300px;">
+                                            <input name="txtRazonSocial" type="text" id="txtRazonSocial" class="form-control txtRegistrer" placeholder="Razon social" required="" autofocus="" style="width:300px;">
                                             <br>
                                             <br>
                                         </td>
@@ -119,7 +151,7 @@
                                     <tr>
                                         <td class="td1"></td>
                                         <td class="td1"><br><br>
-                                            <input type="submit" name="btnRegistrar" value="Crear Cuenta" id="btnRegistrar" class="buttonRegister" style="background-color: #2b669a; width:300px; height:44px; color: white; font-family:Verdana, Arial;font-size: 18px;border-radius: 10px / 10px;">
+                                            <input type="button" name="btnRegistrar" ng-click="Registro()" value="Crear Cuenta" id="btnRegistrar" class="buttonRegister" style="background-color: #2b669a; width:300px; height:44px; color: white; font-family:Verdana, Arial;font-size: 18px;border-radius: 10px / 10px;">
                                         </td>
                                         <td class="td1"></td>
                                     </tr>
@@ -134,7 +166,7 @@
                                     </tr>
                                    
                                 </tbody></table>
-
+                            </div>
                             </contenttemplate>
                                   
                         

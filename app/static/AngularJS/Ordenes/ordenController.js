@@ -149,7 +149,7 @@ var errorCallBack = function (data, status, headers, config) {
 };
 
    ///Llena combo Surcursal Pendientes
-<<<<<<< HEAD
+
 $scope.getSucursal= function(tip) {
 		$scope.OpcionDefaultEmpresa =null;
 		$scope.currentEmpresa =tip;
@@ -239,7 +239,7 @@ $scope.getSucursal= function(tip) {
 		      $scope.valSucursalP=tip.suc_idsucursal;     
     };
 //Paginacion Pendientes
-=======
+
    $scope.getSucursal= function(tip) {
     $scope.OpcionDefaultEmpresa =null;
     $scope.currentEmpresa =tip;
@@ -272,7 +272,7 @@ $scope.getSucursal= function(tip) {
   $scope.SetSucursal= function(tip) {
     $scope.OpcionDefaultSucursal =null;
     $scope.currentSucursal =tip;
->>>>>>> origin/master
+
 
     
   };
@@ -442,7 +442,26 @@ $scope.buscaPagadas= function() {
              .error(errorCallBack); 
         
     };
+//////////////////////////////////////////////////  PDF  ////////////////////////////////////////////////////////////////////////////77
 
+$scope.verFactura = function() {
+
+     
+       
+        var pdf_link = 'http://192.168.20.9/Documentos/factura.pdf';
+        //var iframe = '<div id="hideFullContent"><div id="hideFullMenu" onclick="nodisponible()" ng-controller="nodoController"> </div> <object id="ifDocument" data="' + pdf_link + '" type="application/pdf" width="100%" height="100%"></object></div>';
+       var html = '<html><head></head><body>'+ pdf_link +'</body></html>';
+var iframe = document.createElement('iframe');
+iframe.src = 'data:text/html;charset=utf-8,' + encodeURI(html);
+document.body.appendChild(iframe);
+
+
+       /* $.createModal({
+            message: iframe,
+            closeButton: false,
+            scrollable: false
+        });  */
+    }
 
 }); 
 
