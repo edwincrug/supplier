@@ -11,7 +11,7 @@
  $scope.Entrar = function(login){
 
    //var result = loginRepository.getLogin( login.Usuario, login.Password);  
-   $scope.resultado='saludo';
+   
    loginRepository.getLogin( login.Usuario, login.Password)
    .success(getLoginSuccessCallback)
    .error(errorCallBack);
@@ -34,8 +34,19 @@
     alertFactory.error('Ocurrio un problema: ' + data);
   };
 
-  $scope.Registro = function(){
-    alert('Saludo')
+  $scope.Registro = function(registro){
+    
+
+
+    loginRepository.insertRegistro( registro.txtRazon,registro.txtRfc,registro.txtCorreo,registro.txtContra,registro.txtcContra)
+   .success(getRegistroSuccessCallback)
+   .error(errorCallBack);
+  };
+
+  var getRegistroSuccessCallback = function(data, status, headers, config){
+    $scope.listaLogin = data;
+    alertFactory.success('Datos Guardados.');
+
   };
 
 });
