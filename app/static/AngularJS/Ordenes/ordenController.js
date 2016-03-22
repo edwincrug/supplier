@@ -447,13 +447,31 @@ $scope.buscaPagadas= function() {
 $scope.verFactura = function() {
 
      
-       
-        var pdf_link = 'http://192.168.20.9/Documentos/factura.pdf';
+        //var ruta = global_settings.downloadPath + localStorageService.get('currentVIN').vin + '/'+ idDoc + '.pdf';
+        var ruta ='C:/Proyectos/Comprobante.pdf';
+        var pdf_link = ruta;
+        var titulo = localStorageService.get('currentVIN').vin + ' :: ' + valor;
+        var iframe = '<div id="hideFullContent"><div id="hideFullMenu" onclick="nodisponible()" ng-controller="nodoController"> </div> <object id="ifDocument" data="' + pdf_link + '" type="application/pdf" width="100%" height="100%"></object></div>';
+        $.createModal({
+            title: titulo,
+            message: iframe,
+            closeButton: false,
+            scrollable: false
+        });        
+   
+
+
+
+
+
+
+       /*
+        var pdf_link ='C:/Proyectos/Comprobante.pdf';
         //var iframe = '<div id="hideFullContent"><div id="hideFullMenu" onclick="nodisponible()" ng-controller="nodoController"> </div> <object id="ifDocument" data="' + pdf_link + '" type="application/pdf" width="100%" height="100%"></object></div>';
        var html = '<html><head></head><body>'+ pdf_link +'</body></html>';
 var iframe = document.createElement('iframe');
 iframe.src = 'data:text/html;charset=utf-8,' + encodeURI(html);
-document.body.appendChild(iframe);
+document.body.appendChild(iframe);*/
 
 
        /* $.createModal({
