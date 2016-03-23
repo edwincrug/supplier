@@ -2,25 +2,25 @@ var registrationModule = angular.module("registrationModule", ["ngRoute", "ngGri
 .config(function ($routeProvider, $locationProvider) {
     
 
-    $routeProvider.when('/', {
+    $routeProvider
+    .when('/', {
         templateUrl: '/AngularJS/Templates/Ordenes.html',
         controller: 'ordenController'
-    })/*;
-    $routeProvider.when('/', {
+    })
+    .when('/registro', {
+
+        templateUrl: '/AngularJS/Templates/Registro.html',
+        controller: 'loginController'
+    })
+    .when('/login', {
+
         templateUrl: '/AngularJS/Templates/Login.html',
         controller: 'loginController'
-    });
-    $routeProvider.when('/', {
-        templateUrl: '/AngularJS/Templates/Registro.html',
+    })
+    .when('/cuenta', {
+        templateUrl: '/AngularJS/Templates/EditarRegistro.html',
         controller: 'loginController'
     });
-
-	$routeProvider.when('/registro2', {
-
-        templateUrl: '/AngularJS/Templates/Registro.html',
-        controller: 'loginController'
-    });*/
-
 
     $locationProvider.html5Mode(true);
 });

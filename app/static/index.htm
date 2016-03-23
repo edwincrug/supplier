@@ -16,7 +16,11 @@
     <link href="css/main.css" rel="stylesheet" />
 
     <link href="css/body.css" rel="stylesheet" />
-    
+
+    <!-- Estilos de menu -->
+    <link href="css/menu/icons.css" rel="stylesheet" />
+    <link href="css/menu/style5.css" rel="stylesheet" />
+
     <!--Loading-->
     <link href="css/toastr.css" rel="stylesheet" />
     <link href="css/angular-busy.css" rel="stylesheet" />
@@ -30,7 +34,32 @@
     <base href='/'>
 </head>
 <body ng-app="registrationModule">
-    <div ng-view></div>
+
+    <div class="container">
+                <nav id="bt-menu" class="bt-menu">
+                <a href="#" class="bt-menu-trigger"><span>Menu</span></a>
+                <ul>
+                    <li><a href="/#login">Login</a></li>
+                    <li><a href="/#registro">Registro</a></li>
+                    <li><a href="/#cuenta">Cuenta</a></li>
+                    <li><a href="/#">Ordenes</a></li>
+                    <li><a href="/#">Noticias</a></li>
+                </ul>
+                <ul>
+                    <li><a href="http://www.twitter.com/codrops" class="bt-icon icon-twitter">Twitter</a></li>
+                    <li><a href="https://plus.google.com/101095823814290637419" class="bt-icon icon-gplus">Google+</a></li>
+                    <li><a href="http://www.facebook.com/pages/Codrops/159107397912" class="bt-icon icon-facebook">Facebook</a></li>
+                    <li><a href="https://github.com/codrops" class="bt-icon icon-github">icon-github</a></li>
+                </ul>
+            </nav>
+            
+            <div ng-view></div>
+          
+        </div>
+
+        <!-- /container -->
+    
+
 
     <!--Interface de usuario-->
     <script src="js/toastr.min.js"></script>
@@ -48,9 +77,12 @@
     <script src="confront.js"></script>
     <script src="helpers.js"></script>
 
-    <!--<script src="~/AngularJS/common.js"></script>-->
     <!--Angular NG-Grid-->
     <script src="js/ng-grid.js"></script>
+
+    <!--Angular NG-Grid-->
+    <script src="js/menu/classie.js"></script>
+    <script src="js/menu/borderMenu.js"></script>
 
     <!--Angular Busy-->
     <script src="js/angular-busy.js"></script>
