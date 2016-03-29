@@ -442,25 +442,28 @@ $scope.buscaPagadas= function() {
              .error(errorCallBack); 
         
     };
-//////////////////////////////////////////////////  PDF  ////////////////////////////////////////////////////////////////////////////
 
-$scope.verFactura = function() {
 
-     
-        //var ruta = global_settings.downloadPath + localStorageService.get('currentVIN').vin + '/'+ idDoc + '.pdf';
-        var ruta ='C:/Proyectos/Comprobante.pdf';
-        var pdf_link = ruta;
-        var titulo = 'Ejemplo'
-        //var titulo = localStorageService.get('currentVIN').vin + ' :: ' + valor;
-        var iframe = '<div id="hideFullContent"><div id="hideFullMenu" onclick="nodisponible()" ng-controller="nodoController"> </div> <object id="ifDocument" data="' + pdf_link + '" type="application/pdf" width="100%" height="100%"></object></div>';
-        $.createModal({
-            title: titulo,
-            message: iframe,
-            closeButton: false,
-            scrollable: false
-        });    
-        }    
+      ///////////////////////////////////////EJEMPLO MARIO //////////////////////////////////////7
+//Método para mostrar documento PDF, JPG o PNG
+      $scope.verFactura = function() {
       
+      var type = '';
+      
+      type = "application/pdf";
+      
+      var ruta ="http://192.168.20.9/Documentos/factura.pdf"; //global_settings.downloadPath + localStorageService.get('currentVIN').vin + '/'+ idDoc + ext;
+      var pdf_link = ruta;
+      var titulo ="Factura" ;  
+      var iframe = '<div id="hideFullContent" style="width:500px; height:600px;"><div id="hideFullMenu" onclick="nodisponible()" ng-controller="ordenController"> </div> <object id="ifDocument" data="' + pdf_link + '" type="' + type + '" width="100%" height="100%"></object></div>';
+      $.createModal({      
+      title: titulo,
+      message: iframe,
+      closeButton: false,
+      scrollable: false
+      });        
+      };
+
 
 ///////////////////EJEMPLO MANUEL DE PDF  //////////////////////////////////
 
@@ -529,24 +532,6 @@ $scope.verFactura = function() {
         $("#divDocumento").append($scope.documentoIni);
     };
 
-       /*
-        var pdf_link ='C:/Proyectos/Comprobante.pdf';
-        //var iframe = '<div id="hideFullContent"><div id="hideFullMenu" onclick="nodisponible()" ng-controller="nodoController"> </div> <object id="ifDocument" data="' + pdf_link + '" type="application/pdf" width="100%" height="100%"></object></div>';
-       var html = '<html><head></head><body>'+ pdf_link +'</body></html>';
-var iframe = document.createElement('iframe');
-iframe.src = 'data:text/html;charset=utf-8,' + encodeURI(html);
-document.body.appendChild(iframe);*/
-
-
-       /* $.createModal({
-            message: iframe,
-            closeButton: false,
-            scrollable: false
-        });  */
- ///////////////////////////// EJEMPLO EDWIN GUARDAR /////////////////////////77
-
- 
-   
  
 }); 
 

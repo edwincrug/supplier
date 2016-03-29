@@ -14,11 +14,11 @@
                             <td class="container">
                                 
                                 <div class="form-group">
-                                    <label for="Empresa">Orden de compra</label>
-
-                                    <div class="input">
+                                    <!--<label for="Empresa">Orden de compra</label>-->
+                                    <label>Orden de compra: <input ng-model="buscarText" ></label>
+                                    <!--<div class="input">
                                         <input CsClass="form-control" id="inputPendientes" type="text" >
-                                    </div>
+                                    </div>-->
                                 </div>  
                             </td>
                             <td  class="container">
@@ -56,19 +56,15 @@
                                   
                                       </div>
                                </div> 
-                               <div class="form-group">     
-                                      <div style="text-align:right">
-                                            <button class="btn btn-primary" ng-controller="uploadController" type="button" id="btnShow" ng-click= "ShowCargar()">SHOW</button>
-                                  
-                                      </div>
-                               </div> 
+                               
                             </td>
 
                          </tr>
                      </table>  </br>
 
                     </div>
-               <div >                                         
+               <div >   
+
                      <table  class="table table-striped table-bordered"  > 
                         <thead> 
                             <tr>                           
@@ -79,7 +75,7 @@
                              </tr> 
                        </thead> 
                         <tbody id="myTable"> 
-                         <tr ng-repeat="Pendiente in listaPendiente.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage))"> 
+                         <tr ng-repeat="Pendiente in listaPendiente.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage)) | filter:buscarText"> 
                             <td> <a href="" ng-click="verFactura()" >{{tituloGrid}} {{ Pendiente.oce_folioorden }}</a> </br>
                                  {{ Pendiente.emp_nombre }} 
                                  </br>{{ Pendiente.per_rfc }}
@@ -91,7 +87,7 @@
                             <td>                                                                                                    
                                 
                                <button class="btn btn-primary" type="button" id="btnAdjuntarPendiente">
-                                    <span class="glyphicon glyphicon-paperclip" aria-hidden="true" ng-click="ShowCargar()"></span>
+                                    <span class="glyphicon glyphicon-paperclip" ng-controller="uploadController" aria-hidden="true" ng-click="ShowCargar()"></span>
                                 </button>
                             </td>                             
                         </tr> 
@@ -130,10 +126,11 @@
                             <td >
                                 
                                 <div class="form-group">
-                                    <label for="Empresa">Orden de compra</label>
+                                   <label>Orden de compra: <input ng-model="buscarTextV" ></label>
+                                   <!-- <label for="Empresa">Orden de compra</label>
                                     <div class="input">
                                         <input CsClass="form-control" id="inputValidadas" type="text">
-                                    </div>
+                                    </div>-->
                                 </div>  
                             </td>
                             <td align="center">
@@ -192,9 +189,9 @@
                         </tr> 
                     </thead> 
                     <tbody> 
-                        <tr ng-repeat="validada in listaValidadas.slice(((currentPageV-1)*itemsPerPageV), ((currentPageV)*itemsPerPageV))"> 
+                        <tr ng-repeat="validada in listaValidadas.slice(((currentPageV-1)*itemsPerPageV), ((currentPageV)*itemsPerPageV)) | filter:buscarTextV"> 
                             <td >
-                                 <a href="/Registro" ng-click="resgistraUsuario()" > {{ validada.ppro_nombrearchivo }}</a> </br>             {{ validada.emp_nombre }} </br>
+                                 <a href="" ng-click="verFactura()" > {{ validada.ppro_nombrearchivo }}</a> </br>             {{ validada.emp_nombre }} </br>
                                  {{ validada.per_rfc }}
                              </td> 
                             <td >
@@ -211,7 +208,7 @@
                             <td >
                                
                                <button class="btn btn-primary" type="button" id="btnValidadas">
-                                    <span class="glyphicon glyphicon-level-up" aria-hidden="true" ng-click="MostrarValidadas(validada)"></span>
+                                    <span class="glyphicon glyphicon-level-up" aria-hidden="true" ng-click="verFactura()"></span>
                                 </button>
                             </td>                             
                         </tr> 
@@ -247,10 +244,11 @@
                             <td >
                                 
                                 <div class="form-group">
-                                    <label for="Empresa">Orden de compra</label>
+                                   <label>Orden de compra: <input ng-model="buscarTextPP" ></label>
+                                   <!-- <label for="Empresa">Orden de compra</label>
                                     <div class="input">
                                         <input CsClass="form-control" id="inputProgPago" type="text">
-                                    </div>
+                                    </div>-->
                                 </div>  
                             </td>
                             <td align="center">
@@ -309,9 +307,9 @@
                         </tr> 
                     </thead> 
                     <tbody> 
-                        <tr ng-repeat="progPago in listaProgPago.slice(((currentPagePP-1)*itemsPerPagePP), ((currentPagePP)*itemsPerPagePP))"> 
+                        <tr ng-repeat="progPago in listaProgPago.slice(((currentPagePP-1)*itemsPerPagePP), ((currentPagePP)*itemsPerPagePP)) | filter:buscarTextPP"> 
                             <td >
-                                 <a href="/Registro" ng-click="resgistraUsuario()" > {{ progPago.ppro_nombrearchivo }}</a> </br> Empresa  {{ progPago.emp_nombre }} </br>
+                                 <a href="" ng-click="verFactura()" > {{ progPago.ppro_nombrearchivo }}</a> </br> Empresa  {{ progPago.emp_nombre }} </br>
                                  RFC {{ progPago.per_rfc }}
                              </td> 
                             <td >
@@ -326,8 +324,8 @@
                             <!--<td >{{ progPago.Estatus }}</td>--> 
                             <td >{{ progPago.Estado }}</td>                                                           
                             <td >
-                                <button class="btn btn-primary" type="button" id="btnValidadas" >
-                                    <span class="btn btn-primary view-pdf glyphicon glyphicon-level-up" aria-hidden="true" ng-click="MostrarValidadas(validada)"> Ver Factura</span>
+                                <button class="btn btn-primary" type="button" id="btnValidadas">
+                                    <span class="glyphicon glyphicon-level-up" aria-hidden="true" ng-click="verFactura()"></span>
                                 </button>
                             </td>                             
                         </tr> 
@@ -363,10 +361,11 @@
                             <td >
                                 
                                 <div class="form-group">
-                                    <label for="Empresa">Orden de compra</label>
+                                      <label>Orden de compra: <input ng-model="buscarTextP" ></label>
+                                    <!--<label for="Empresa">Orden de compra</label>
                                     <div class="input">
                                         <input CsClass="form-control" id="inputPagadas" type="text">
-                                    </div>
+                                    </div>-->
                                 </div>  
                             </td>
                             <td align="center">
@@ -399,7 +398,7 @@
                             <td >
                                 <div class="form-group">     
                                       <div style="text-align:right">
-                                            <button class="btn btn-primary" type="button" id="btnAgregalevel" ng-click= "buscaPagadas()">Buscar Orden De Compra</button>
+                                            <button class="btn btn-primary" type="button" id="btnAgregalevel" ng-click="verFactura()">Buscar Orden De Compra</button>
                                   
                                       </div>
                                </div> 
@@ -420,8 +419,8 @@
                              </tr> 
                        </thead> 
                         <tbody id="myTable"> 
-                         <tr ng-repeat="Pagadas in listaPagadas.slice(((currentPageP-1)*itemsPerPageP), ((currentPageP)*itemsPerPageP))"> 
-                            <td> <a href="/Registro" ng-click="resgistraUsuario()" > {{ Pagadas.oce_folioorden }}</a> </br>
+                         <tr ng-repeat="Pagadas in listaPagadas.slice(((currentPageP-1)*itemsPerPageP), ((currentPageP)*itemsPerPageP)) | filter:buscarTextP"> 
+                            <td> <a href="" ng-click="verFactura()" > {{ Pagadas.oce_folioorden }}</a> </br>
                                  {{ Pagadas.emp_nombre }} 
                                  </br>{{ Pagadas.per_rfc }}
                              </td> 
@@ -430,8 +429,8 @@
                             </td>
                             <td>{{ Pagadas.oce_importetotal }}</td>                                                       
                             <td>
-                                <button class="btn btn-primary" type="button" id="btnAdjuntarPendiente">
-                                    <span class="glyphicon glyphicon-level-up" aria-hidden="true" ng-click="AdjuntarPendiente(Pagadas)"></span>
+                                <button class="btn btn-primary" type="button" id="btnValidadas">
+                                    <span class="glyphicon glyphicon-level-up" aria-hidden="true" ng-click="verFactura()"></span>
                                 </button>
                             </td>                             
                         </tr> 
@@ -465,39 +464,9 @@
     </div>
 </div>
 
-<!-- Modal --><!--
-<div id="myModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-
-    <!-- Modal content--><!--
-    <div class="modal-content">
-      <div class="modal-header" align="center">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Cargando...</h4>
-      </div>
-      <div class="container">
-            <div class="row">
-                
-                <a href="javascript:showModalUpLoad(this,\"{0}\",\"{1}\",\"{2}\",\"{3}\")", Eval("oce_folioorden"),Eval("per_rfc"),Eval("oce_importetotal"),"Link")>View PDF</a>        
-            </div>
-      </div>
-      <!--<div class="progress progress-striped active">
-            <div class="progress-bar" role="progressbar"
-                aria-valuenow="45" aria-valuemin="0" aria-valuemax="100"
-                style="width: 100%">
-                <span class="sr-only">100% completado</span>
-            </div>
-      </div>-->
-   <!--   <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-        
-</div>
-<%# string.Format("javascript:showModalUpLoad(this,\"{0}\",\"{1}\",\"{2}\",\"{3}\")", Eval("oce_folioorden"),Eval("per_rfc"),Eval("oce_importetotal"),"Link") %>
+<!--<div id="hideFullContent" style="width:800px; height:600px;">
+    <div id="hideFullMenu" onclick="nodisponible()" ng-controller="ordenController"> </div> 
+          <object id="ifDocument" data="' + pdf_link + '" type="' + type + '" width="100%" height="100%"></object>
+    </div>-->
 
  
