@@ -1,4 +1,4 @@
-registrationModule.controller("ordenController", function ($scope, $filter, $rootScope, localStorageService, alertFactory, ordenRepository, consultaRepository) {
+registrationModule.controller("ordenController", function ($scope, $filter, $rootScope, localStorageService, alertFactory, ordenRepository, consultaRepository, facturaRepository) {
 
  $scope.proveedorId=4;
 
@@ -442,7 +442,7 @@ $scope.buscaPagadas= function() {
              .error(errorCallBack); 
         
     };
-//////////////////////////////////////////////////  PDF  ////////////////////////////////////////////////////////////////////////////77
+//////////////////////////////////////////////////  PDF  ////////////////////////////////////////////////////////////////////////////
 
 $scope.verFactura = function() {
 
@@ -450,20 +450,84 @@ $scope.verFactura = function() {
         //var ruta = global_settings.downloadPath + localStorageService.get('currentVIN').vin + '/'+ idDoc + '.pdf';
         var ruta ='C:/Proyectos/Comprobante.pdf';
         var pdf_link = ruta;
-        var titulo = localStorageService.get('currentVIN').vin + ' :: ' + valor;
+        var titulo = 'Ejemplo'
+        //var titulo = localStorageService.get('currentVIN').vin + ' :: ' + valor;
         var iframe = '<div id="hideFullContent"><div id="hideFullMenu" onclick="nodisponible()" ng-controller="nodoController"> </div> <object id="ifDocument" data="' + pdf_link + '" type="application/pdf" width="100%" height="100%"></object></div>';
         $.createModal({
             title: titulo,
             message: iframe,
             closeButton: false,
             scrollable: false
-        });        
-   
+        });    
+        }    
+      
+
+///////////////////EJEMPLO MANUEL DE PDF  //////////////////////////////////
+
+  $scope.getEmpleado = function(){
+       /* if(getParameterByName('employee') != ''){
+            $rootScope.currentEmployee = getParameterByName('employee');
+        }
+
+        if ($rootScope.currentEmployee == null){
+            var idEmpleado = prompt("Ingrese un número de empleado", 1);
+            $rootScope.currentEmployee = idEmpleado;
+        }*/
 
 
+        //setTimeout(function(){ 
+        facturaRepository.getDoc(1,1,20) //se busca que exista la factura (id = 20) para mostrar
+            .success(getDocSuccessCallback)
+            .error(errorCallBack);
+            //},2000);
+    };
 
 
+    $scope.getDocSuccessCallback = function (data, status, headers, config) {        
+        if(data != null){
+                if(data != '')
+                {
+                    //$scope.documento = data;
+                    $scope.documentoIni = '<div><object id="ifDocument" data="' + data + '" type="application/pdf" width="100%"><p>Alternative text - include a link <a href="' + data + '">to the PDF!</a></p></object> </div>';
+                                     // '<div class="izquierda"><object id="ifDocument" data="' + data + '" type="application/pdf" width="100%"><p>Alternative text - include a link <a href="' + data + '">to the PDF!</a></p></object> </div>';
+                                     //+ '<div class="derecha"><object id="ifDocument2" data="http://es.tldp.org/COMO-INSFLUG/es/pdf/Linuxdoc-Ejemplo.pdf" type="application/pdf" width="100%"><p>Alternative text - include a link <a href="http://es.tldp.org/COMO-INSFLUG/es/pdf/Linuxdoc-Ejemplo.pdf">to the PDF!</a></p></object></div>';
 
+                    facturaRepository.getDoc($rootScope.currentFolioFactura,$rootScope.currentEmployee,15) //se busca que exista la factura (id = 15) para mostrar
+                        .success(getDocRecepcionIniSuccessCallback)
+                        .error(errorCallBack);
+                    //$("#divDocumento").append(documento);
+                    $('#btnSalir').hide();
+                }
+                else{
+                    alertFactory.warning('Aun no se ha subido la Factura de este folio.');
+                    var documento = '<div class="noExiste"><b> El documento aun no esta disponible </b> </div>';
+                    $("#divDocumento").append(documento);
+                    $("#divControles").hide();
+
+                    //alertFactory.success('Que tenga buen día');
+                    //setTimeout(function(){window.close();},3000);
+                }
+        }
+        else
+            alertFactory.warning('No existe informacion para este folio.');        
+    };
+
+ $scope.getDocRecepcionIniSuccessCallback = function(data, status, headers, config) {
+      if(data != null){
+                if(data != '')
+                {
+                    var typeAplication = $rootScope.obtieneTypeAplication(data);
+
+                    $scope.documentoIni = $scope.documentoIni.replace('<div>','<div class="izquierda">') + ' ' +
+                                            '<div class="derecha"><object id="ifDocument2" data="' + data + '" type="' + typeAplication + '" width="100%"><p>Error al cargar el documento. Intente de nuevo.</a></p></object></div>';
+
+                    if($scope.consultaInicial == 1)
+                        $("#divControles").hide();
+                }
+            }
+
+        $("#divDocumento").append($scope.documentoIni);
+    };
 
        /*
         var pdf_link ='C:/Proyectos/Comprobante.pdf';
@@ -479,8 +543,11 @@ document.body.appendChild(iframe);*/
             closeButton: false,
             scrollable: false
         });  */
-    }
+ ///////////////////////////// EJEMPLO EDWIN GUARDAR /////////////////////////77
 
+ 
+   
+ 
 }); 
 
 

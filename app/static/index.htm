@@ -59,7 +59,41 @@
 
         <!-- /container -->
     
+    <script type="text/javascript">
+    var nameDocument = '';
+    function refresh() {
+      var scope = angular.element($("#modalUpload")).scope();
+      scope.$apply(function(){
+        scope.FinishUpload(nameDocument);
+      })
+    }
+    function setName(name){
+      nameDocument = name; 
+    }
+    function getName(){
+      return nameDocument;
+    }
+    </script>
 
+    <!-- Ventana modal de carga -->
+    <!-- Modal -->
+    <div class="modal fade" id="modalUpload" ng-controller="uploadController">
+      <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">Cargar Documento</h4>
+          </div>
+          <div class="modal-body">
+            <iframe id="frameUpload" frameborder="0"></iframe>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!--Interface de usuario-->
     <script src="js/toastr.min.js"></script>
@@ -101,6 +135,8 @@
     <script src="AngularJS/Login/loginRepository.js"></script>
      <script src="AngularJS/Login/loginController.js"></script>
      
+     <script src="AngularJS/Ordenes/facturaRepository.js"></script>
+     <script src="AngularJS/Ordenes/uploadController.js"></script>
      <script src="AngularJS/Ordenes/ordenController.js"></script>
      <script src="AngularJS/Ordenes/ordenRepository.js"></script>
      <script src="AngularJS/Ordenes/consultaRepository.js"></script>

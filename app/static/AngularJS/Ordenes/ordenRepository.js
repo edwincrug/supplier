@@ -20,7 +20,7 @@ registrationModule.factory('ordenRepository', function ($http) {
         },
         getSucursales: function(empresa){
             return $http.get(ordenesUrl + '6|' + empresa );
-        }  
+        }
     };
 });
 
