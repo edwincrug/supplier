@@ -4,21 +4,27 @@ var registrationModule = angular.module("registrationModule", ["ngRoute", "ngGri
 
     $routeProvider
     .when('/', {
-        //templateUrl: '/AngularJS/Templates/Login.html',
-        //controller: 'loginController'
-        templateUrl: '/AngularJS/Templates/Ordenes.html',
-        controller: 'ordenController'
+        templateUrl: '/AngularJS/Templates/Login.html',
+        controller: 'loginController'
+       // templateUrl: '/AngularJS/Templates/Ordenes.html',
+        //controller: 'ordenController'
+    })
+    .when('/login', {
+        templateUrl: '/AngularJS/Templates/Login.html',
+        controller: 'loginController'
+       // templateUrl: '/AngularJS/Templates/Ordenes.html',
+        //controller: 'ordenController'
     })
     .when('/registro', {
 
         templateUrl: '/AngularJS/Templates/Registro.html',
         controller: 'loginController'
     })
-    .when('/login', {
-       // templateUrl: '/AngularJS/Templates/Ordenes.html',
-       // controller: 'ordenController'
-       templateUrl: '/AngularJS/Templates/Login.html',
-      controller: 'loginController'
+    .when('/ordenes', {
+        templateUrl: '/AngularJS/Templates/Ordenes.html',
+        controller: 'ordenController'
+       //templateUrl: '/AngularJS/Templates/Login.html',
+      //controller: 'loginController'
     })
     .when('/cuenta', {
         templateUrl: '/AngularJS/Templates/EditarRegistro.html',

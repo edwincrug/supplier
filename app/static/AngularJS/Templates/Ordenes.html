@@ -7,13 +7,8 @@
         <h1>PORTAL PROVEEDORES</h1>
         <tabset >  <!-- PRIMER PESTAÑA -->
             <tab select="alertMe()" heading=" *Pendientes " >  
-                    <div >
-                    <div class="form-group">     
-                                      <div style="text-align:right">
-                                            <button class="btn btn-primary" type="button" id="btnAgregalevel" ng-click= "buscaDocumento()">Documento</button>
-                                  
-                                      </div>
-                               </div> 
+                    <div >                    
+                               
                         <table align="center"  >                         
                          </br>
                          <tr align="center">
@@ -25,13 +20,26 @@
                                     <!--<div class="input">
                                         <input CsClass="form-control" id="inputPendientes" type="text" >
                                     </div>-->
+                                    
+                                   
                                 </div>  
                             </td>
                             <td  class="container">
                                 <div class="form-group">
+                                    <label for="Empresas">Empresas</label>
+                                    <div class="dropdown">
+                                        <button class="btn btn-default dropdown-toggle" type="button" id="DropdownEmpresass1" data-toggle="dropdown" aria-haspopup="true"  aria-expanded="true">
+                                        {{OpcionDefaultEmpresa}}{{ Pendiente.emp_nombre }}<span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu" aria-labelledby="DropdownEmpresa1">
+                                             <li ng-repeat="Pendiente in listaPendiente"><a ng-model="buscarText">{{ Pendiente.emp_nombre }}</a></li>
+                                        </ul>
+                                    </div>
+                                </div>  
+                                <div class="form-group">
                                     <label for="Empresa">Empresa</label>
                                     <div class="dropdown">
-                                        <button class="btn btn-default dropdown-toggle" type="button" id="DropdownEmpresas1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                        <button class="btn btn-default dropdown-toggle" type="button" id="DropdownEmpresas1" data-toggle="dropdown" aria-haspopup="true"  aria-expanded="true">
                                         {{OpcionDefaultEmpresa}}{{ currentEmpresa.emp_nombre }}<span class="caret"></span>
                                         </button>
                                         <ul class="dropdown-menu" aria-labelledby="DropdownEmpresa1">

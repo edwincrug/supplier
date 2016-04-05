@@ -1,8 +1,41 @@
 
 <link href="../../css/login.css" rel="stylesheet" />
-<div id="InitingPage">
 
-    <div cg-busy="myPromise" >
+        <div class="container">
+            <h1 class="text-center textMensajes">Recepción de Facturas de proveedores</h1>
+                <div align="center">
+                    <img src="http://192.168.20.9/GA_Centralizacion/CuentasXPagar/Imagenes/Logos/LogoAndrade.jpg" alt="" width="300" height="100">
+                </div>
+         </div>
+<div >
+                            <div>
+                                <div>
+                                    </br>
+                                    </br>
+                                </div>
+                            </div>
+                            <div align="center">
+                                            <div class="form-group">
+                                                <label for="usuario" class="control-label">Usuario</label>
+                                                 <input type="text" id="txtUsuario" class="form-control" ng-model="registro.txtUsuario"  style="width:300px;"  placeholder="Usuario" required>
+                                           </div>
+
+                                            <div class="form-group">
+                                                    <label for="inputPassword" class="control-label">Contraseña</label> </br>
+                                                         <!--<div class="form-group">-->
+                                                          <input type="password" class="form-control" style="width:300px"  id="txtContra" data-match="#inputPassword"  placeholder="Contraseña" ng-model="registro.txtContra" required>
+                                                                
+                                                                
+                                            </div>
+
+                                     <div class="form-group">
+                                                <button type="summit" class="btn btn-primary" ng-click="Entrar(registro)">Crear Cuenta</button>
+                                     </div>        
+                        </div>
+
+
+</div>
+    <!--<div cg-busy="myPromise" >
 	
 	
         <div class="container">
@@ -27,7 +60,7 @@
                     </div>
               </form> 
            </div>
-    </div>
+    </div>-->
 
 
-</div>
+
