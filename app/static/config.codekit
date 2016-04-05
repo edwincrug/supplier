@@ -68,12 +68,34 @@
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
+	"\/AngularJS\/Ordenes\/facturaRepository.js": {
+		"fileType": 64,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/AngularJS\/Ordenes\/facturaRepository.js",
+		"outputAbbreviatedPath": "\/AngularJS\/Ordenes\/min\/facturaRepository-min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
 	"\/AngularJS\/Ordenes\/min\/ordenController-min.js": {
 		"fileType": 64,
 		"ignore": 1,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/AngularJS\/Ordenes\/min\/ordenController-min.js",
 		"outputAbbreviatedPath": "\/AngularJS\/Ordenes\/min\/min\/ordenController-min-min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/AngularJS\/Ordenes\/nodoController.js": {
+		"fileType": 64,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/AngularJS\/Ordenes\/nodoController.js",
+		"outputAbbreviatedPath": "\/AngularJS\/Ordenes\/min\/nodoController-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
@@ -96,6 +118,17 @@
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/AngularJS\/Ordenes\/ordenRepository.js",
 		"outputAbbreviatedPath": "\/AngularJS\/Ordenes\/min\/ordenRepository-min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/AngularJS\/Ordenes\/uploadController.js": {
+		"fileType": 64,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/AngularJS\/Ordenes\/uploadController.js",
+		"outputAbbreviatedPath": "\/AngularJS\/Ordenes\/min\/uploadController-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
@@ -9237,6 +9270,24 @@
 		"shouldRunAutoprefixer": 0,
 		"shouldRunBless": 0,
 		"useLibsass": false
+		},
+	"\/success.htm": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/success.htm",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/uploader.htm": {
+		"fileType": 8192,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/uploader.htm",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
 		}
 	},
 "hooks": [
