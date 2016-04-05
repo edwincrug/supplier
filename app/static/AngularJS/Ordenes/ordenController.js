@@ -70,6 +70,7 @@ registrationModule.controller("ordenController", function ($scope, $filter, $roo
   $scope.valEmpresaP=null;
   $scope.valSucursalP=null;
 //carga los tabs al entrar a la pagina
+$scope.rutaDocumento=null;
 $scope.init = function () {
 
         getData();
@@ -446,13 +447,19 @@ $scope.buscaPagadas= function() {
 
       ///////////////////////////////////////EJEMPLO MARIO //////////////////////////////////////7
 //Método para mostrar documento PDF, JPG o PNG
-      $scope.verFactura = function() {
-      
+      $scope.verFactura = function(Pendiente) {
+      $scope.rutaDocumento = Pendiente.oce_folioorden;
       var type = '';
       
       type = "application/pdf";
+
+      ordenRepository.getDocumentos(Pendiente.oce_folioorden)
+      .success(getDocumentosSuccessCallback)
+      .error(errorCallBack);
+
       
-      var ruta ="http://192.168.20.9/Documentos/factura.pdf"; //global_settings.downloadPath + localStorageService.get('currentVIN').vin + '/'+ idDoc + ext;
+      //var ruta = "http://192.168.20.9/GA_Centralizacion/CuentasXPagar/TempPdf/OrdenCompra/" + Pendiente.oce_folioorden +".pdf";// "http://192.168.20.9/Documentos/factura.pdf"; //global_settings.downloadPath + localStorageService.get('currentVIN').vin + '/'+ idDoc + ext;
+      var ruta = "http://192.168.20.9/GA_Centralizacion/CuentasXPagar/TempPdf/OrdenCompra/Orden_AU-AUA-VIG-OT-PE-22.pdf";
       var pdf_link = ruta;
       var titulo ="Factura" ;  
       var iframe = '<div id="hideFullContent" style="width:500px; height:600px;"><div id="hideFullMenu" onclick="nodisponible()" ng-controller="ordenController"> </div> <object id="ifDocument" data="' + pdf_link + '" type="' + type + '" width="100%" height="100%"></object></div>';
@@ -465,8 +472,34 @@ $scope.buscaPagadas= function() {
       };
 
 
+ $scope.buscaDocumento = function(){
+    //Descomentar esto
+  /*ordenRepository.getDocumentos(oce_folioorden)
+  .success(getDocumentosSuccessCallback)
+  .error(errorCallBack);*/
+
+  ordenRepository.saveDocumentos('CFE0316','AU-ZM-ZAR-OT-PS-1',4)
+  .success(saveDocumentosSuccessCallback)
+  .error(errorCallBack);
+
+       
+    };
+
+  var getDocumentosSuccessCallback = function(data, status, headers, config){
+        $scope.rutaDocumento = data;        
+        alertFactory.success('Documento Obtenidos.');
+        
+      };
+ var saveDocumentosSuccessCallback = function(data, status, headers, config){
+        $scope.rutaDocumento = data;        
+        alertFactory.success('Documento Guardados.');
+        
+      };
+
 ///////////////////EJEMPLO MANUEL DE PDF  //////////////////////////////////
 
+
+  
   $scope.getEmpleado = function(){
        /* if(getParameterByName('employee') != ''){
             $rootScope.currentEmployee = getParameterByName('employee');

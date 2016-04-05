@@ -4,6 +4,8 @@ var registrationModule = angular.module("registrationModule", ["ngRoute", "ngGri
 
     $routeProvider
     .when('/', {
+        //templateUrl: '/AngularJS/Templates/Login.html',
+        //controller: 'loginController'
         templateUrl: '/AngularJS/Templates/Ordenes.html',
         controller: 'ordenController'
     })
@@ -13,9 +15,10 @@ var registrationModule = angular.module("registrationModule", ["ngRoute", "ngGri
         controller: 'loginController'
     })
     .when('/login', {
-
-        templateUrl: '/AngularJS/Templates/Login.html',
-        controller: 'loginController'
+       // templateUrl: '/AngularJS/Templates/Ordenes.html',
+       // controller: 'ordenController'
+       templateUrl: '/AngularJS/Templates/Login.html',
+      controller: 'loginController'
     })
     .when('/cuenta', {
         templateUrl: '/AngularJS/Templates/EditarRegistro.html',

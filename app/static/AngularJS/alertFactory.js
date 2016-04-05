@@ -23,6 +23,10 @@
         warning: function (text) {
             toastr.options = { "positionClass": "toast-top-right", "closeButton": true}
             toastr.warning(text, 'Atención');
+        },
+        warningTopFull: function (text) {
+            toastr.options = { "positionClass": "toast-top-full-width", "closeButton": true}
+            toastr.warning(text, 'Atención');
         }
     };
 });

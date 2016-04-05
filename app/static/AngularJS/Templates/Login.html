@@ -15,23 +15,15 @@
              <form name="loginForm">     
                     <div class="container" id="loginPage" align="center">                  
                         <div id="ctl09" ng-controller="loginController">	</br></br>
-                                <input name="txtUser" id="Usuario" type="text"  placeholder="Usuario" ng-model="login.Usuario"  required="" autofocus="" style="text-transform: uppercase;width:300px; height:38px;" ></br>                                
-                                <input name="txtPass" id="Password" type="password" placeholder="Password" ng-model="login.Password" required="" class="form-control"> </br></br>
+                                <input name="txtUser" id="Usuario" type="text"  placeholder="Usuario" ng-model="login.Usuario"  required="" autofocus="" style="text-transform: uppercase;width:300px; height:38px;" ></br>  </br>                              
+                                <input name="txtPass" id="Password" type="password" placeholder="Password" ng-model="login.Password" required="" class="form-control" style="text-transform: uppercase;width:300px; height:38px;"> </br></br>
 
-
-                                <input type="submit" name="btnEntrar"  href="/Ordenes" ng-click="entrar(login)" id="btnEntrar" class="btn btn-primary btnEntrar">
-                               <!-- <button ng-click="entrar()"></button >-->
-                                <span id="lblMsg" style="color:Red;"></span> </br></br>
-                                     ¿No dispones de una cuenta? </br>
-                            <a href="/Registro" ng-click="resgistraUsuario()" > Registrate ahora</a>                    
+                                
+                                <button class="btn btn-primary" type="button" id="btnAgregalevel" ng-click= "entrar(login)">Entrar</button>
+                                
+                                              
 						</div>
-                        <div>
-                            <button  ng-click="navegar()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
-                                Navegar a una ruta
-                            </button>    
-    
-                        </div>
-           
+                                 
                     </div>
               </form> 
            </div>

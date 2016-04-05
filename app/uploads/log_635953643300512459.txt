@@ -1,0 +1,1 @@
+Log:  04/04/2016 10:58:50 a. m. : UUID ya esta registrado en base de datos

@@ -8,6 +8,12 @@
         <tabset >  <!-- PRIMER PESTAÑA -->
             <tab select="alertMe()" heading=" *Pendientes " >  
                     <div >
+                    <div class="form-group">     
+                                      <div style="text-align:right">
+                                            <button class="btn btn-primary" type="button" id="btnAgregalevel" ng-click= "buscaDocumento()">Documento</button>
+                                  
+                                      </div>
+                               </div> 
                         <table align="center"  >                         
                          </br>
                          <tr align="center">
@@ -76,7 +82,7 @@
                        </thead> 
                         <tbody id="myTable"> 
                          <tr ng-repeat="Pendiente in listaPendiente.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage)) | filter:buscarText"> 
-                            <td> <a href="" ng-click="verFactura()" >{{tituloGrid}} {{ Pendiente.oce_folioorden }}</a> </br>
+                            <td> <a href="" ng-click="verFactura(Pendiente)" >{{tituloGrid}} {{ Pendiente.oce_folioorden }}</a> </br>
                                  {{ Pendiente.emp_nombre }} 
                                  </br>{{ Pendiente.per_rfc }}
                              </td> 
@@ -87,7 +93,10 @@
                             <td>                                                                                                    
                                 
                                <button class="btn btn-primary" type="button" id="btnAdjuntarPendiente">
-                                    <span class="glyphicon glyphicon-paperclip" ng-controller="uploadController" aria-hidden="true" ng-click="ShowCargar()"></span>
+                                    <span class="glyphicon glyphicon-paperclip" ng-controller="uploadController" aria-hidden="true" ng-click="ShowCargar(Pendiente)">SubirXML</span>
+                                </button>
+                                <button class="btn btn-primary" type="button" id="btnAdjuntarPendiente">
+                                    <span class="glyphicon glyphicon-paperclip" ng-controller="uploadController" aria-hidden="true" ng-click="ShowCargar(Pendiente)">SubirPDF</span>
                                 </button>
                             </td>                             
                         </tr> 
@@ -191,7 +200,7 @@
                     <tbody> 
                         <tr ng-repeat="validada in listaValidadas.slice(((currentPageV-1)*itemsPerPageV), ((currentPageV)*itemsPerPageV)) | filter:buscarTextV"> 
                             <td >
-                                 <a href="" ng-click="verFactura()" > {{ validada.ppro_nombrearchivo }}</a> </br>             {{ validada.emp_nombre }} </br>
+                                 <a href="" ng-click="verFactura(validada)" > {{ validada.ppro_nombrearchivo }}</a> </br>             {{ validada.emp_nombre }} </br>
                                  {{ validada.per_rfc }}
                              </td> 
                             <td >
@@ -207,8 +216,8 @@
                             <td >{{ validada.Estado }}</td>                                                           
                             <td >
                                
-                               <button class="btn btn-primary" type="button" id="btnValidadas">
-                                    <span class="glyphicon glyphicon-level-up" aria-hidden="true" ng-click="verFactura()"></span>
+                            <button class="btn btn-primary" type="button" id="btnValidadas">
+                              <span class="glyphicon glyphicon-level-up" aria-hidden="true" ng-click="verFactura(validada)">Consultar</span>
                                 </button>
                             </td>                             
                         </tr> 
@@ -309,7 +318,7 @@
                     <tbody> 
                         <tr ng-repeat="progPago in listaProgPago.slice(((currentPagePP-1)*itemsPerPagePP), ((currentPagePP)*itemsPerPagePP)) | filter:buscarTextPP"> 
                             <td >
-                                 <a href="" ng-click="verFactura()" > {{ progPago.ppro_nombrearchivo }}</a> </br> Empresa  {{ progPago.emp_nombre }} </br>
+                                 <a href="" ng-click="verFactura(progPago)" > {{ progPago.ppro_nombrearchivo }}</a> </br> Empresa  {{ progPago.emp_nombre }} </br>
                                  RFC {{ progPago.per_rfc }}
                              </td> 
                             <td >
@@ -324,8 +333,8 @@
                             <!--<td >{{ progPago.Estatus }}</td>--> 
                             <td >{{ progPago.Estado }}</td>                                                           
                             <td >
-                                <button class="btn btn-primary" type="button" id="btnValidadas">
-                                    <span class="glyphicon glyphicon-level-up" aria-hidden="true" ng-click="verFactura()"></span>
+                            <button class="btn btn-primary" type="button" id="btnValidadas">
+                               <span class="glyphicon glyphicon-level-up" aria-hidden="true" ng-click="verFactura(progPago)">Consultar</span>
                                 </button>
                             </td>                             
                         </tr> 
@@ -420,7 +429,7 @@
                        </thead> 
                         <tbody id="myTable"> 
                          <tr ng-repeat="Pagadas in listaPagadas.slice(((currentPageP-1)*itemsPerPageP), ((currentPageP)*itemsPerPageP)) | filter:buscarTextP"> 
-                            <td> <a href="" ng-click="verFactura()" > {{ Pagadas.oce_folioorden }}</a> </br>
+                            <td> <a href="" ng-click="verFactura(Pagadas)" > {{ Pagadas.oce_folioorden }}</a> </br>
                                  {{ Pagadas.emp_nombre }} 
                                  </br>{{ Pagadas.per_rfc }}
                              </td> 
@@ -429,8 +438,8 @@
                             </td>
                             <td>{{ Pagadas.oce_importetotal }}</td>                                                       
                             <td>
-                                <button class="btn btn-primary" type="button" id="btnValidadas">
-                                    <span class="glyphicon glyphicon-level-up" aria-hidden="true" ng-click="verFactura()"></span>
+                             <button class="btn btn-primary" type="button" id="btnValidadas">
+                                <span class="glyphicon glyphicon-level-up" aria-hidden="true" ng-click="verFactura(Pagadas)">Consultar</span>
                                 </button>
                             </td>                             
                         </tr> 

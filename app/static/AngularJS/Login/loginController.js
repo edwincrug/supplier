@@ -8,20 +8,17 @@
  //$scope.init = function () {
      //alert('hola dije');
  //  };
- $scope.Entrar = function(login){
-
-   //var result = loginRepository.getLogin( login.Usuario, login.Password);  
+ $scope.Entrar = function(login){  
    
    loginRepository.getLogin( login.Usuario, login.Password)
    .success(getLoginSuccessCallback)
    .error(errorCallBack);
       //alert('hola we');
 
-      $location.path( '/AngularJS/Templates/Ordenes.html');
-     //$state.go('/AngularJS/Templates/Ordenes.html',{"experience":experience_id,"context":'Ordenes'});
-
+      $location.path( '/AngularJS/Templates/Ordenes.html');     
    };
 
+//Respuesta del servicio
    var getLoginSuccessCallback = function(data, status, headers, config){
     $scope.listaLogin = data;
     alertFactory.success('Datos Obtenidos.');

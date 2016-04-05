@@ -20,6 +20,12 @@ registrationModule.factory('ordenRepository', function ($http) {
         },
         getSucursales: function(empresa){
             return $http.get(ordenesUrl + '6|' + empresa );
+        },
+        getDocumentos: function(oce_folioorden){
+            return $http.get(ordenesUrl + '7|'+ oce_folioorden);
+        },
+         saveDocumentos: function(nomArchivo, oce_folioorden, idProveedor, tipoDocumento, nomXml){
+            return $http.post(ordenesUrl + '1|'+ nomArchivo +'|'+ oce_folioorden + '|' + idProveedor + '|' + tipoDocumento + '|' + nomXml);
         }
     };
 });
