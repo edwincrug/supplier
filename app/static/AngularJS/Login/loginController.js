@@ -8,7 +8,16 @@
    $rootScope.razonSocial=null;
    $rootScope.rfc=null;   
    $rootScope.correo=null;
- 
+   $rootScope.razonScialEdit='DATOS';
+   //$rootScope.rfcEdit=null;
+   
+//////////////////////////////////////LLENA PAGINA DE EDITAR /////////////////////////////////////////////////
+$scope.init = function () {
+
+    
+    };
+
+
  /////////////////////////////////////////////METODOS PARA EL LOGUIN///////////////////////////////////////////////////
  $scope.Entrar = function(login){  
    
@@ -28,11 +37,12 @@
       return;
     }
     $rootScope.rfc=login.txtUsuario;  
-   
+
    loginRepository.getLogin( login.txtUsuario, login.txtContra)
    .success(getLoginSuccessCallback)
    .error(errorCallBack);
       
+    $rootScope.rfcEdit = login.txtUsuario;
 
       $location.path( '/AngularJS/Templates/Ordenes.html');     
    };
@@ -41,7 +51,8 @@
    var getLoginSuccessCallback = function(data, status, headers, config){
       if(data !=null)
       {
-        $rootScope.razonSocial=data[0].nombre;                 
+        $rootScope.razonSocial=data[0].nombre;    
+        $rootScope.idProveedor= data[0].per_idpersona; 
       }
       else
       {
@@ -107,6 +118,52 @@
     alertFactory.success('Datos Guardados.');
 
   };
+//////////////////////////////////////////////// EDITAR DATOS DE USUARIO ///////////////////////////////////////////////
+  $scope.RegistroE = function(registroE){
+    if(registroE == undefined)
+    {
+       alertFactory.warning('Falta ingresar los datos de registro');
+      return;
+    }
+    if(registroE.txtRazon=='' || registroE.txtRazon == undefined){
+      alertFactory.warning('Falta ingresar la razón social');
+      return;
+    }
+    if($rootScope.rfcEdit==''|| $rootScope.rfcEdit == undefined){
+      alertFactory.warning('Falta ingresar el RFC');
+      return;
+    }
+    if(registroE.txtCorreo=='' || registroE.txtCorreo == undefined){
+      alertFactory.warning('Falta ingresar el correo');
+      return;
+    }
+    if(registroE.txtContra==''|| registroE.txtContra == undefined){
+      alertFactory.warning('Falta ingresar la contraseña');
+      return;
+    }
+    if(registroE.txtContra!= registroE.txtcContra){
+      alertFactory.warning('Las contraseñas no coinciden');
+      return;
+    }
+    
+    
+    loginRepository.editaRegistro( registroE.txtRazon,$rootScope.rfcEdit,registroE.txtCorreo,registroE.txtContra)
+   .success(getRegistroESuccessCallback)
+   .error(errorCallBack);
+
+   registroE.txtRazon='';   
+   registroE.txtCorreo='';
+   registroE.txtContra='';
+   registroE.txtcContra='';
+  };
+
+  var getRegistroESuccessCallback = function(data, status, headers, config){
+    $scope.listaLogin = data;
+    alertFactory.success('Datos Guardados.');
+
+  };
+
+
 
 });
 

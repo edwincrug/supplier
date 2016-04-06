@@ -1,6 +1,6 @@
 registrationModule.controller("ordenController", function ($scope, $filter, $rootScope, localStorageService, alertFactory, ordenRepository, consultaRepository, facturaRepository) {
 
- $scope.proveedorId=4;
+ $scope.proveedorId=$rootScope.idProveedor;
 
    //Begin Datos paginado Pendientes
    $scope.viewby = 5;
