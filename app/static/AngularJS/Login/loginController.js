@@ -95,6 +95,11 @@ $scope.init = function () {
       alertFactory.warning('Falta ingresar el correo');
       return;
     }
+    else
+    {
+      registro.txtCorreo =registro.txtCorreo.replace("@", "-64-");
+      
+    }
     if(registro.txtContra==''|| registro.txtContra == undefined){
       alertFactory.warning('Falta ingresar la contraseña');
       return;
@@ -140,6 +145,12 @@ $scope.init = function () {
       alertFactory.warning('Falta ingresar el correo');
       return;
     }
+    else
+    {
+      registroE.txtCorreo =registroE.txtCorreo.replace("@", "-64-");
+      
+    }
+    
     if(registroE.txtContra==''|| registroE.txtContra == undefined){
       alertFactory.warning('Falta ingresar la contraseña');
       return;

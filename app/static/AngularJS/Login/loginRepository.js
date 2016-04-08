@@ -22,6 +22,7 @@ registrationModule.factory('loginRepository', function ($http) {
                     id: '1|' + razonSocial + '|' + rfc + '|' + correo+ '|' + contrasena
                 }
             });
+           
         },
         editaRegistro: function(razonSocial, rfc, correo, contrasena){
             return $http({
