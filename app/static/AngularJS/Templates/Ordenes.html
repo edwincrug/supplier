@@ -16,26 +16,11 @@
                                 
                                 <div class="form-group">
                                     <!--<label for="Empresa">Orden de compra</label>-->
-                                    <label>Orden de compra: <input ng-model="buscarText" ></label>
-                                    <!--<div class="input">
-                                        <input CsClass="form-control" id="inputPendientes" type="text" >
-                                    </div>-->
-                                    
-                                   
+                                    <label>Orden de compra: <input ng-model="listaPendiente.oce_folioorden" ></label>                                                                                                           
                                 </div>  
                             </td>
-                            <td  class="container">
-                                <div class="form-group">
-                                    <label for="Empresas">Empresas</label>
-                                    <div class="dropdown">
-                                        <button class="btn btn-default dropdown-toggle" type="button" id="DropdownEmpresass1" data-toggle="dropdown" aria-haspopup="true"  aria-expanded="true">
-                                        {{OpcionDefaultEmpresa}}{{ Pendiente.emp_nombre }}<span class="caret"></span>
-                                        </button>
-                                        <ul class="dropdown-menu" aria-labelledby="DropdownEmpresa1">
-                                             <li ng-repeat="Pendiente in listaPendiente"><a ng-model="buscarText">{{ Pendiente.emp_nombre }}</a></li>
-                                        </ul>
-                                    </div>
-                                </div>  
+                            <td  class="container">  
+                                                                 
                                 <div class="form-group">
                                     <label for="Empresa">Empresa</label>
                                     <div class="dropdown">
@@ -46,7 +31,7 @@
                                              <li ng-repeat="tipo in listaEmpresas"><a ng-click="getSucursal(tipo)">{{ tipo.emp_nombre }}</a></li>
                                         </ul>
                                     </div>
-                                </div>                            
+                                </div>                           
     
                             </td>
                             <td class="container">
@@ -64,12 +49,7 @@
                             </td>
                             <td class="container">
 
-                                <div class="form-group">     
-                                      <div style="text-align:right">
-                                            <button class="btn btn-primary" type="button" id="btnAgregalevel" ng-click= "buscaPendientes()">Buscar Orden De Compra</button>
-                                  
-                                      </div>
-                               </div> 
+                                
                                
                             </td>
 
@@ -89,7 +69,7 @@
                              </tr> 
                        </thead> 
                         <tbody id="myTable"> 
-                         <tr ng-repeat="Pendiente in listaPendiente.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage)) | filter:buscarText"> 
+                         <tr ng-repeat="Pendiente in listaPendiente.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage)) | filter:listaPendiente.oce_folioorden"> 
                             <td> <a href="" ng-click="verFactura(Pendiente)" >{{tituloGrid}} {{ Pendiente.oce_folioorden }}</a> </br>
                                  {{ Pendiente.emp_nombre }} 
                                  </br>{{ Pendiente.per_rfc }}
@@ -178,12 +158,7 @@
                                 </div>
                             </td>
                             <td >
-                                <div class="form-group">     
-                                      <div style="text-align:right">
-                                            <button class="btn btn-primary" type="button" id="btnAgregalevel" ng-click= "buscaValidadas()">Buscar Orden De Compra</button>
-                                  
-                                      </div>
-                               </div> 
+                               
                             </td>
 
                          </tr> 
@@ -202,7 +177,7 @@
                             <th>Fecha Factura</th>  
                             <th>Recepción</th> 
                             <th>Estatus</th>  
-                            <th>Consultar Factura</th>                        
+                           <!-- <th>Consultar Factura</th> -->                       
                         </tr> 
                     </thead> 
                     <tbody> 
@@ -222,12 +197,7 @@
                             <td >{{ validada.Recepcion }}</td>    
                             <!--<td >{{ validada.Estatus }}</td> -->
                             <td >{{ validada.Estado }}</td>                                                           
-                            <td >
-                               
-                            <button class="btn btn-primary" type="button" id="btnValidadas">
-                              <span class="glyphicon glyphicon-level-up" aria-hidden="true" ng-click="verFactura(validada)">Consultar</span>
-                                </button>
-                            </td>                             
+                                                        
                         </tr> 
                     </tbody> 
                 </table>
@@ -296,12 +266,7 @@
                                 </div>
                             </td>
                             <td >
-                                <div class="form-group">     
-                                      <div style="text-align:right">
-                                            <button class="btn btn-primary" type="button" id="btnAgregalevel" ng-click= "buscaProgPago()">Buscar Orden De Compra</button>
-                                  
-                                      </div>
-                               </div> 
+                                
                             </td>
 
                          </tr> 
@@ -320,7 +285,7 @@
                             <th>Fecha Factura</th>  
                             <th>Recepción</th> 
                             <th>Estatus</th>  
-                            <th>Consultar Factura</th>                        
+                                                 
                         </tr> 
                     </thead> 
                     <tbody> 
@@ -340,11 +305,7 @@
                             <td >{{ progPago.Recepcion }}</td>    
                             <!--<td >{{ progPago.Estatus }}</td>--> 
                             <td >{{ progPago.Estado }}</td>                                                           
-                            <td >
-                            <button class="btn btn-primary" type="button" id="btnValidadas">
-                               <span class="glyphicon glyphicon-level-up" aria-hidden="true" ng-click="verFactura(progPago)">Consultar</span>
-                                </button>
-                            </td>                             
+                                                      
                         </tr> 
                     </tbody> 
                 </table>
@@ -413,12 +374,7 @@
                                 </div>
                             </td>
                             <td >
-                                <div class="form-group">     
-                                      <div style="text-align:right">
-                                            <button class="btn btn-primary" type="button" id="btnAgregalevel" ng-click="verFactura()">Buscar Orden De Compra</button>
-                                  
-                                      </div>
-                               </div> 
+                                
                             </td>
 
                          </tr> 
@@ -432,7 +388,7 @@
                                  <th>Compra</th> 
                                 <th>Detalle</th> 
                                 <th>Importe</th> 
-                                 <th>Consultar Factura</th>                             
+                                                           
                              </tr> 
                        </thead> 
                         <tbody id="myTable"> 
@@ -445,11 +401,7 @@
                                  {{ Pagadas.dep_nombre }} 
                             </td>
                             <td>{{ Pagadas.oce_importetotal }}</td>                                                       
-                            <td>
-                             <button class="btn btn-primary" type="button" id="btnValidadas">
-                                <span class="glyphicon glyphicon-level-up" aria-hidden="true" ng-click="verFactura(Pagadas)">Consultar</span>
-                                </button>
-                            </td>                             
+                                                         
                         </tr> 
                       </tbody> 
                    </table>

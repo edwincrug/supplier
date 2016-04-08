@@ -13,8 +13,8 @@
    
 //////////////////////////////////////LLENA PAGINA DE EDITAR /////////////////////////////////////////////////
 $scope.init = function () {
-
-    
+      //document.getElementById('saludo').style.display="none";
+      document.getElementById('saludo').style.visibility="hidden";
     };
 
 
@@ -43,6 +43,9 @@ $scope.init = function () {
    .error(errorCallBack);
       
     $rootScope.rfcEdit = login.txtUsuario;
+
+    document.getElementById('saludo').style.visibility="visible";
+      document.getElementById('login').style.visibility="hidden";
 
       $location.path( '/AngularJS/Templates/Ordenes.html');     
    };

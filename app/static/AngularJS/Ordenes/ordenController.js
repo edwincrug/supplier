@@ -78,7 +78,7 @@ $scope.init = function () {
     };
 
 
-
+/////////////////////////////////////LLENA  LOS GRID Y EL COMBO DE EMPRESAS  AL CARGAR LA PAGINA /////////////////////////
 var getData = function(){
 
   ordenRepository.getOrdenPendiente( $scope.proveedorId)
@@ -97,7 +97,7 @@ var getData = function(){
   .success(getPagadasSuccessCallback)
   .error(errorCallBack);
 
-         ordenRepository.getEmpresa($scope.proveedorId) //ID de tipo proceso   <<<<-------
+         ordenRepository.getEmpresa($scope.proveedorId) 
          .success(getEmpresasSuccessCallback)
          .error(errorCallBack); 
 
@@ -106,6 +106,7 @@ var getData = function(){
        }
 
        var getOrdenPendienteSuccessCallback = function(data, status, headers, config){
+        $rootScope.PendientesUno=data;
         $scope.listaPendiente = data;   
         $scope.totalItems = data.length;
         $scope.totalPendientes  =data.length;   
@@ -149,58 +150,154 @@ var errorCallBack = function (data, status, headers, config) {
   alertFactory.error('Ocurrio un problema: ' + data);
 };
 
-   ///Llena combo Surcursal Pendientes
+ /////////////////////LLENA COMBO SURCURSALES Y REALIZA PRIMER FILTRO DE PENDIENTES CON EMPRESAS///////////////////////
 
-$scope.getSucursal= function(tip) {
-		$scope.OpcionDefaultEmpresa =null;
-		$scope.currentEmpresa =tip;
-		$scope.valEmpresa =tip.emp_idempresa;
-		ordenRepository.getSucursales(tip.emp_idempresa)
-             .success(getSucursalesSuccessCallback)
-             .error(errorCallBack);        
+   $scope.getSucursal= function(tip) {
+    $scope.OpcionDefaultEmpresa =null;
+    $scope.currentEmpresa =tip;
+    $scope.valEmpresa =tip.emp_idempresa;
+    ordenRepository.getSucursales(tip.emp_idempresa)
+    .success(getSucursalesSuccessCallback)
+    .error(errorCallBack);    
+
+      /////////////Filtra combo con Empresas////////////
+      var dato1 = $scope.proveedorId;  
+       var dato2 = null;//document.getElementById('inputPendientes').value;       
+       var dato3 =  $scope.valEmpresa;
+       if(dato3=='0' || dato3=="0"){dato3=null;}
+       var dato4 = null;// $scope.valSucursal;
+       if(dato4=='0' || dato4=="0"){dato4=null;}
+
+       consultaRepository.getOrdenPendiente(dato1,dato2,dato3,dato4)
+             .success(getOrdenPendienteSuccessCallback)
+             .error(errorCallBack);   
+  };
+
+  var getSucursalesSuccessCallback = function(data, status, headers, config){
+    $scope.listaSucursales = data;        
+    alertFactory.success('Datos de Sucursales cargados.');
+  };
+
+   $scope.setSucursal= function(tip) {
+          $scope.OpcionDefaultSucursal=null;
+          $scope.currentSucursal=tip;
+          $scope.valSucursal=tip.suc_idsucursal; 
+
+           /////////////Filtra combo con Empresas y Sucursales////////////
+      var dato1 = $scope.proveedorId;  
+       var dato2 = null;//document.getElementById('inputPendientes').value;       
+       var dato3 =  $scope.valEmpresa;
+       if(dato3=='0' || dato3=="0"){dato3=null;}
+       var dato4 = $scope.valSucursal;
+       if(dato4=='0' || dato4=="0"){dato4=null;}
+
+       consultaRepository.getOrdenPendiente(dato1,dato2,dato3,dato4)
+             .success(getOrdenPendienteSuccessCallback)
+             .error(errorCallBack);     
+         // alert('SALUDOS');
     };
 
- var getSucursalesSuccessCallback = function(data, status, headers, config){
-        $scope.listaSucursales = data;        
-        alertFactory.success('Datos de Sucursales cargados.');
+
+/////////////////////////////////FILTROS CON ORDENES VALIDADAS Y EMPRESAS////////////////////////////////////////////////
+
+$scope.getSucursalV= function(tip) {
+    $scope.OpcionDefaultEmpresaV =null;
+    $scope.currentEmpresaV =tip;
+    $scope.valEmpresa =tip.emp_idempresa;
+    ordenRepository.getSucursales(tip.emp_idempresa)
+    .success(getSucursalesSuccesVCallback)
+    .error(errorCallBack);   
+    
+       var dato1 = $scope.proveedorId;  
+       var dato2 = null;      
+       var dato3 = tip.emp_idempresa;
+       if(dato3=='0' || dato3=="0"){dato3=null;}
+       var dato4 = null;// $scope.valSucursalV;
+       if(dato4=='0' || dato4=="0"){dato4=null;}
+
+       consultaRepository.getOrdenValidadas(dato1,dato2,dato3,dato4)
+             .success(getOrdenValidadasSuccessCallback)
+             .error(errorCallBack);    
+  };
+
+
+  var getSucursalesSuccesVCallback = function(data, status, headers, config){
+    $scope.listaSucursalesV = data;        
+    alertFactory.success('Datos de Sucursales cargados.');
+  };
+ 
+          ////////Filtra validadas  con empresas y sucursales //////
+    $scope.setSucursalV= function(tip) {
+          $scope.OpcionDefaultSucursalV=null;
+          $scope.currentSucursalV=tip;
+          $scope.valSucursalV=tip.suc_idsucursal; 
+
+
+          var dato1 = $scope.proveedorId;  
+          var dato2 = null;      
+          var dato3 = tip.emp_idempresa;
+          if(dato3=='0' || dato3=="0"){dato3=null;}
+          var dato4 = tip.suc_idsucursal;// $scope.valSucursalV;
+          if(dato4=='0' || dato4=="0"){dato4=null;}
+
+        consultaRepository.getOrdenValidadas(dato1,dato2,dato3,dato4)
+             .success(getOrdenValidadasSuccessCallback)
+             .error(errorCallBack); 
     };
 
- $scope.getSucursalV= function(tip) {
-		$scope.OpcionDefaultEmpresaV =null;
-		$scope.currentEmpresaV =tip;
-        $scope.valEmpresaV =tip.emp_idempresa;
-		ordenRepository.getSucursales(tip.emp_idempresa)
-             .success(getSucursalesSuccesVCallback)
-             .error(errorCallBack);        
+//////////////////////////FILTRO CON ORDENES PROGRAMADOS PARA PAGO /////////////////////////////////////////////////
+
+  $scope.getSucursalPP= function(tip) {
+    $scope.OpcionDefaultEmpresaPP =null;
+    $scope.currentEmpresaPP =tip;
+    $scope.valEmpresa =tip.emp_idempresa;
+    ordenRepository.getSucursales(tip.emp_idempresa)
+    .success(getSucursalesSuccesPPCallback)
+    .error(errorCallBack);    
+
+        //////////Filtra solo con empresas /////////////////
+       var dato1 = $scope.proveedorId;  
+       var dato2 = null;//document.getElementById('inputProgPago').value;       
+       var dato3 = tip.emp_idempresa;// $scope.valEmpresaPP;
+       if(dato3=='0' || dato3=="0"){dato3=null;}
+       var dato4 = null;// $scope.valSucursalPP;
+       if(dato4=='0' || dato4=="0"){dato4=null;}
+
+       consultaRepository.getOrdenProgPago(dato1,dato2,dato3,dato4)
+             .success(getProgPagoSuccessCallback)
+             .error(errorCallBack);
+  };
+
+
+  var getSucursalesSuccesPPCallback = function(data, status, headers, config){
+    $scope.listaSucursalesPP = data;        
+    alertFactory.success('Datos de Sucursales cargados.');
+  };
+
+    $scope.setSucursalPP= function(tip) {
+          $scope.OpcionDefaultSucursalPP=null;
+          $scope.currentSucursalPP=tip;
+          $scope.valSucursalPP=tip.suc_idsucursal; 
+
+
+          //////////Filtra  con empresas y sucursal/////////////////
+       var dato1 = $scope.proveedorId;  
+       var dato2 = null;//document.getElementById('inputProgPago').value;       
+       var dato3 = tip.emp_idempresa;// $scope.valEmpresaPP;
+       if(dato3=='0' || dato3=="0"){dato3=null;}
+       var dato4 = tip.suc_idsucursal;// $scope.valSucursalPP;
+       if(dato4=='0' || dato4=="0"){dato4=null;}
+
+       consultaRepository.getOrdenProgPago(dato1,dato2,dato3,dato4)
+             .success(getProgPagoSuccessCallback)
+             .error(errorCallBack);
+
     };
 
 
-    var getSucursalesSuccesVCallback = function(data, status, headers, config){
-        $scope.listaSucursalesV = data;        
-        alertFactory.success('Datos de Sucursales cargados.');
-    };
+//////////////////////////FILTRO CON ORDENES PAGADAS  ////////////////////////////////////////////////////////
 
-    $scope.SetSucursal= function(tip) {
-		$scope.OpcionDefaultSucursal =null;
-		$scope.currentSucursal =tip;
-
-		  
-    };
-
-    $scope.getSucursalPP= function(tip) {
-		$scope.OpcionDefaultEmpresaPP =null;
-		$scope.currentEmpresaPP =tip;
-		$scope.valEmpresaPP =tip.emp_idempresa;
-		ordenRepository.getSucursales(tip.emp_idempresa)
-             .success(getSucursalesSuccesPPCallback)
-             .error(errorCallBack);        
-    };
-
-
-    var getSucursalesSuccesPPCallback = function(data, status, headers, config){
-        $scope.listaSucursalesPP = data;        
-        alertFactory.success('Datos de Sucursales cargados.');
-    };
+  
 
     $scope.getSucursalP= function(tip) {
      
@@ -210,6 +307,19 @@ $scope.getSucursal= function(tip) {
 		ordenRepository.getSucursales(tip.emp_idempresa)
              .success(getSucursalesSuccesPCallback)
              .error(errorCallBack);  
+
+
+            ///////Filtra con empresas///////
+    var dato1 = $scope.proveedorId;  
+       var dato2 = null;
+       var dato3 =  tip.emp_idempresa;
+       if(dato3=='0' || dato3=="0"){dato3=null;}
+       var dato4 = null;
+       if(dato4=='0' || dato4=="0"){dato4=null;}
+
+       consultaRepository.getOrdenPagadas(dato1,dato2,dato3,dato4)
+             .success(getPagadasSuccessCallback)
+             .error(errorCallBack); 
     
    };
 
@@ -219,111 +329,29 @@ $scope.getSucursal= function(tip) {
         alertFactory.success('Datos de Sucursales cargados.');
     };
 
-    $scope.setSucursal= function(tip) {
-          $scope.OpcionDefaultSucursal=null;
-		      $scope.currentSucursal=tip;
-		      $scope.valSucursal=tip.suc_idsucursal;     
-    };
-    $scope.setSucursalV= function(tip) {
-		      $scope.OpcionDefaultSucursalV=null;
-          $scope.currentSucursalV=tip;
-		      $scope.valSucursalV=tip.suc_idsucursal;     
-    };
-    $scope.setSucursalPP= function(tip) {
-		      $scope.OpcionDefaultSucursalPP=null;
-          $scope.currentSucursalPP=tip;
-		      $scope.valSucursalPP=tip.suc_idsucursal;     
-    };
+ 
+
+
     $scope.setSucursalP= function(tip) {
 		      $scope.OpcionDefaultSucursalP=null;
           $scope.currentSucursalP=tip;
-		      $scope.valSucursalP=tip.suc_idsucursal;     
+		      $scope.valSucursalP=tip.suc_idsucursal;  
+
+
+            ///////Filtra con empresas  y sucursales///////
+       var dato1 = $scope.proveedorId;  
+       var dato2 = null;
+       var dato3 =  tip.emp_idempresa;
+       if(dato3=='0' || dato3=="0"){dato3=null;}
+       var dato4 = tip.suc_idsucursal; 
+       if(dato4=='0' || dato4=="0"){dato4=null;}
+
+       consultaRepository.getOrdenPagadas(dato1,dato2,dato3,dato4)
+             .success(getPagadasSuccessCallback)
+             .error(errorCallBack);  
     };
-//Paginacion Pendientes
-
-   $scope.getSucursal= function(tip) {
-    $scope.OpcionDefaultEmpresa =null;
-    $scope.currentEmpresa =tip;
-    $scope.valEmpresa =tip.emp_idempresa;
-    ordenRepository.getSucursales(tip.emp_idempresa)
-    .success(getSucursalesSuccessCallback)
-    .error(errorCallBack);        
-  };
-
-  var getSucursalesSuccessCallback = function(data, status, headers, config){
-    $scope.listaSucursales = data;        
-    alertFactory.success('Datos de Sucursales cargados.');
-  };
-
-  $scope.getSucursalV= function(tip) {
-    $scope.OpcionDefaultEmpresaV =null;
-    $scope.currentEmpresaV =tip;
-    $scope.valEmpresa =tip.emp_idempresa;
-    ordenRepository.getSucursales(tip.emp_idempresa)
-    .success(getSucursalesSuccesVCallback)
-    .error(errorCallBack);        
-  };
 
 
-  var getSucursalesSuccesVCallback = function(data, status, headers, config){
-    $scope.listaSucursalesV = data;        
-    alertFactory.success('Datos de Sucursales cargados.');
-  };
-
-  $scope.SetSucursal= function(tip) {
-    $scope.OpcionDefaultSucursal =null;
-    $scope.currentSucursal =tip;
-
-
-    
-  };
-
-  $scope.getSucursalPP= function(tip) {
-    $scope.OpcionDefaultEmpresaPP =null;
-    $scope.currentEmpresaPP =tip;
-    $scope.valEmpresa =tip.emp_idempresa;
-    ordenRepository.getSucursales(tip.emp_idempresa)
-    .success(getSucursalesSuccesPPCallback)
-    .error(errorCallBack);        
-  };
-
-
-  var getSucursalesSuccesPPCallback = function(data, status, headers, config){
-    $scope.listaSucursalesPP = data;        
-    alertFactory.success('Datos de Sucursales cargados.');
-  };
-
-  $scope.getSucursalP= function(tip) {
-    $scope.OpcionDefaultEmpresaP =null;
-    $scope.currentEmpresaP =tip;
-    $scope.valEmpresa =tip.emp_idempresa;
-    ordenRepository.getSucursales(tip.emp_idempresa)
-    .success(getSucursalesSuccesPCallback)
-    .error(errorCallBack);        
-  };
-
-
-  var getSucursalesSuccesPCallback = function(data, status, headers, config){
-    $scope.listaSucursalesP = data;        
-    alertFactory.success('Datos de Sucursales cargados.');
-  };
-
-  $scope.setSucursal= function(tip) {
-    
-    $scope.valSucursal=tip.suc_idsucursal;     
-  };
-  $scope.setSucursalV= function(tip) {
-    
-    $scope.valSucursal=tip.suc_idsucursal;     
-  };
-  $scope.setSucursalPP= function(tip) {
-    
-    $scope.valSucursal=tip.suc_idsucursal;     
-  };
-  $scope.setSucursalP= function(tip) {
-    
-    $scope.valSucursal=tip.suc_idsucursal;     
-  };
 
     ////////////////////////////////
 //Paginacion Pendientes
@@ -388,47 +416,7 @@ $scope.setItemsPerPageP = function(num) {
 
 //////////////////////////////////////////  BUSQUEDAS  ///////////////////////////////////////////////////////////
 
-$scope.buscaPendientes= function() {    
-       var dato1 = $scope.proveedorId;  
-       var dato2 = document.getElementById('inputPendientes').value;       
-       var dato3 =  $scope.valEmpresa;
-       if(dato3=='0' || dato3=="0"){dato3=null;}
-       var dato4 =  $scope.valSucursal;
-       if(dato4=='0' || dato4=="0"){dato4=null;}
 
-       consultaRepository.getOrdenPendiente(dato1,dato2,dato3,dato4)
-             .success(getOrdenPendienteSuccessCallback)
-             .error(errorCallBack); 
-        
-    };
-
-$scope.buscaValidadas= function() {    
-       var dato1 = $scope.proveedorId;  
-       var dato2 = document.getElementById('inputValidadas').value;       
-       var dato3 =  $scope.valEmpresaV;
-       if(dato3=='0' || dato3=="0"){dato3=null;}
-       var dato4 =  $scope.valSucursalV;
-       if(dato4=='0' || dato4=="0"){dato4=null;}
-
-       consultaRepository.getOrdenValidadas(dato1,dato2,dato3,dato4)
-             .success(getOrdenValidadasSuccessCallback)
-             .error(errorCallBack); 
-        
-    };
-
-$scope.buscaProgPago= function() {    
-       var dato1 = $scope.proveedorId;  
-       var dato2 = document.getElementById('inputProgPago').value;       
-       var dato3 =  $scope.valEmpresaPP;
-       if(dato3=='0' || dato3=="0"){dato3=null;}
-       var dato4 =  $scope.valSucursalPP;
-       if(dato4=='0' || dato4=="0"){dato4=null;}
-
-       consultaRepository.getOrdenProgPago(dato1,dato2,dato3,dato4)
-             .success(getProgPagoSuccessCallback)
-             .error(errorCallBack); 
-        
-    };
 
 $scope.buscaPagadas= function() {    
        var dato1 = $scope.proveedorId;  
@@ -495,6 +483,8 @@ $scope.buscaPagadas= function() {
         alertFactory.success('Documento Guardados.');
         
       };
+
+
 
 ///////////////////EJEMPLO MANUEL DE PDF  //////////////////////////////////
 
