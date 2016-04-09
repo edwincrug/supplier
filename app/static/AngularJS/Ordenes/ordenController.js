@@ -1,7 +1,7 @@
 registrationModule.controller("ordenController", function ($scope, $filter, $rootScope, localStorageService, alertFactory, ordenRepository, consultaRepository, facturaRepository) {
 
  $scope.proveedorId=$rootScope.idProveedor;
-
+ 
    //Begin Datos paginado Pendientes
    $scope.viewby = 5;
    $scope.totalItems; 
@@ -73,6 +73,14 @@ registrationModule.controller("ordenController", function ($scope, $filter, $roo
 $scope.rutaDocumento=null;
 $scope.init = function () {
 
+        if($rootScope.idProveedor==''||$rootScope.idProveedor==null||$rootScope.idProveedor==undefined)
+        {
+          
+          alertFactory.warning('Por favor inicie sesión .');
+          return;
+        }
+
+        
         getData();
         
     };
@@ -459,6 +467,34 @@ $scope.buscaPagadas= function() {
       });        
       };
 
+     $scope.verFactura2 = function(Pendiente) {
+      $scope.rutaDocumento = Pendiente.oce_folioorden;
+      var type = '';
+      
+      type = "application/pdf";
+
+      ordenRepository.getDocumentos(Pendiente.oce_folioorden)
+      .success(getDocumentosSuccessCallback)
+      .error(errorCallBack);
+
+      
+      //var ruta = "http://192.168.20.9/GA_Centralizacion/CuentasXPagar/TempPdf/OrdenCompra/" + Pendiente.oce_folioorden +".pdf";// "http://192.168.20.9/Documentos/factura.pdf"; //global_settings.downloadPath + localStorageService.get('currentVIN').vin + '/'+ idDoc + ext;
+      var ruta = "http://192.168.20.9:3700";
+      var pdf_link = ruta;
+      var titulo ="Subir Documentos" ;  
+     var  iframe='<iframe frameborder="1" height="600px" width="550px" src="http://192.168.20.9:8085/" width="100%">Tu Navegador no soporta esta característica</iframe>'
+      //var iframe = '<div id="hideFullContent" style="width:500px; height:600px;"><div id="hideFullMenu" onclick="nodisponible()" ng-controller="ordenController"> </div> <object id="ifDocument" data="' + pdf_link + '" type="' + type + '" width="100%" height="100%"></object></div>';
+      $.createModal({      
+      title: titulo,
+      message: iframe,
+      closeButton: false,
+      scrollable: false
+      });        
+      };
+
+
+
+
 
  $scope.buscaDocumento = function(){
     //Descomentar esto
@@ -485,7 +521,90 @@ $scope.buscaPagadas= function() {
       };
 
 
+//////////////////////////////////////    UPLODAD   ///////////////////////////////////////////////////////////7777777
 
+
+
+$scope.toggleModal = function(){
+        $('#viewNewEscalamiento').modal('show');
+    };
+
+$scope.upSubeDocumento = function(){
+        //var file = documentos;
+        var fd = new FormData();
+        fd.append('file', file);
+        $http.post('post.php', fd, {
+            transformRequest: angular.identity, 
+            headers: {'Content-Type': undefined}
+            })
+            .success(function(response){
+                //Guardamos la url de la imagen y hacemos que la muestre.
+                $scope.imagen=response;
+                $scope.img=true;
+            })
+            .error(function(response){
+ 
+        });
+    };
+
+
+
+
+$scope.uploadFile = function() {
+      
+                    
+      var formData = new FormData();
+              
+        for (var i in scope.files) {
+            formData.append("uploadedFile", scope.files[i]);
+        }
+        var xhr = new XMLHttpRequest();
+        xhr.upload.addEventListener("progress", uploadProgress, false);
+        xhr.addEventListener("load", uploadComplete, false);
+        xhr.addEventListener("error", uploadFailed, false);
+        xhr.addEventListener("abort", uploadCanceled, false);
+        xhr.open("POST", "/fileupload");
+        scope.progressVisible = true;
+        xhr.send(fd);
+    };
+
+    function uploadProgress(evt) {
+        scope.$apply(function(){
+            if (evt.lengthComputable) {
+                scope.progress = Math.round(evt.loaded * 100 / evt.total);
+            } else {
+                scope.progress = 'unable to compute';
+            }
+        });
+    };
+
+    function uploadComplete(evt) {
+        /* This event is raised when the server send back a response */
+        alert(evt.target.responseText);
+    };
+
+    function uploadFailed(evt) {
+        alert("There was an error attempting to upload the file.");
+    };
+
+    function uploadCanceled(evt) {
+        scope.$apply(function(){
+            scope.progressVisible = false;
+        });
+        alert("The upload has been canceled by the user or the browser dropped the connection.");
+    };
+
+    $scope.setFiles = function(element) {
+        $scope.$apply(function(scope) {
+            console.log('files:', element.files);
+      // Turn the FileList object into an Array
+            $scope.files = []
+            for (var i = 0; i < element.files.length; i++) {
+                $scope.files.push(element.files[i]);
+            }
+          $scope.progressVisible = false;
+      });
+    };
 ///////////////////EJEMPLO MANUEL DE PDF  //////////////////////////////////
 
 

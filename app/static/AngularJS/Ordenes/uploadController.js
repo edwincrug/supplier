@@ -3,7 +3,8 @@ registrationModule.controller("uploadController", function ($scope, $filter, $ro
    $rootScope.nombreXML=null;
  
     $scope.ShowCargar = function(doc) {
-        $('#frameUpload').attr('src', '/uploader.htm');
+        //$('#frameUpload').attr('src', '/uploader.htm');
+        $('#frameUpload').attr('src', 'https://www.google.com.mx/');
         $('#modalUpload').modal('show');
         $rootScope.currentUpload = doc;
 
@@ -11,7 +12,9 @@ registrationModule.controller("uploadController", function ($scope, $filter, $ro
      
     };
    
- $scope.FinishUpload = function(name){
+ $scope.FinishUpload = function(name,name2){
+        alert(name + name2);
+        return;
         if(name=='')
             
         {
@@ -19,6 +22,8 @@ registrationModule.controller("uploadController", function ($scope, $filter, $ro
             $('#modalUpload').modal('hide');
             return
         }
+
+
         var cadena = name,
         separador = ".", // un espacio en blanco
         limite    = 2,
