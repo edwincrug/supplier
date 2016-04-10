@@ -2,14 +2,14 @@ registrationModule.controller("ordenController", function ($scope, $filter, $roo
 
  $scope.proveedorId=$rootScope.idProveedor;
  
-   //Begin Datos paginado Pendientes
+   /*//Begin Datos paginado Pendientes
    $scope.viewby = 5;
    $scope.totalItems; 
    $scope.currentPage = 4;
    $scope.itemsPerPage = $scope.viewby;
    $scope.maxSize = 5; 
    $scope.totalPendientes;
-
+*/
   //End Datos paginado Pendientes
 
   //Begin Datos paginado Pendientes
@@ -361,9 +361,9 @@ $scope.getSucursalV= function(tip) {
 
 
 
-    ////////////////////////////////
+    ////////////////////////////////  PAGINACION DE LAS PESTAÑAS ///////////////////////////////////////////7
 //Paginacion Pendientes
-
+/*
 $scope.setPage = function (pageNo) {
   $scope.currentPage = pageNo;
 };
@@ -376,6 +376,7 @@ $scope.setItemsPerPage = function(num) {
   $scope.itemsPerPage = num;
   $scope.currentPage = 1; //reset to first paghe
 }
+*/
 
 //Paginacion Validadas
 

@@ -74,7 +74,8 @@
                              </tr> 
                        </thead> 
                         <tbody id="myTable"> 
-                         <tr ng-repeat="Pendiente in listaPendiente.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage)) | filter:listaPendiente.oce_folioorden"> 
+                        <tr ng-repeat="Pendiente in listaPendiente | filter:listaPendiente.oce_folioorden"> 
+                         <!--Paginacion <tr ng-repeat="Pendiente in listaPendiente.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage)) | filter:listaPendiente.oce_folioorden"> -->
                             <td> <a href="" ng-click="verFactura(Pendiente)" >{{tituloGrid}} {{ Pendiente.oce_folioorden }}</a> </br>
                                  {{ Pendiente.emp_nombre }} 
                                  </br>{{ Pendiente.per_rfc }}
@@ -102,7 +103,7 @@
                         </tr> 
                       </tbody> 
                    </table>
-                   <table align="center">
+                   <!--<table align="center">
                        <tr align="center">
                            <td align="center">
                                Ver <select ng-model="viewby" ng-change="setItemsPerPage(viewby)"><option>5</option><option>10</option><option>20</option><option>30</option><option>40</option><option>50</option></select> registros de {{totalPendientes}}
@@ -120,7 +121,7 @@
                                Pagina: {{currentPage}} de {{numPages}}
                            </td>
                        </tr>
-                   </table>
+                   </table>-->
                   <!-- <pre align="center">Pagina: {{currentPage}} de {{numPages}}</pre>-->           
                 </div>
               
@@ -193,7 +194,9 @@
                         </tr> 
                     </thead> 
                     <tbody> 
-                        <tr ng-repeat="validada in listaValidadas.slice(((currentPageV-1)*itemsPerPageV), ((currentPageV)*itemsPerPageV)) | filter:buscarTextV"> 
+                        <tr ng-repeat="validada in listaValidadas | filter:buscarTextV"> 
+
+                        <!--PAGINACION <tr ng-repeat="validada in listaValidadas.slice(((currentPageV-1)*itemsPerPageV), ((currentPageV)*itemsPerPageV)) | filter:buscarTextV"> -->
                             <td >
                                  <a href="" ng-click="verFactura(validada)" > {{ validada.ppro_nombrearchivo }}</a> </br>             {{ validada.emp_nombre }} </br>
                                  {{ validada.per_rfc }}
@@ -213,7 +216,7 @@
                         </tr> 
                     </tbody> 
                 </table>
-                <table align="center">
+               <!-- <table align="center">
                        <tr align="center">
                            <td align="center">
                                Ver <select ng-model="viewbyV" ng-change="setItemsPerPageV(viewbyV)"><option>5</option><option>10</option><option>20</option><option>30</option><option>40</option><option>50</option></select> registros de {{totalValidadas}}
@@ -231,7 +234,7 @@
                                Pagina: {{currentPageV}} de {{numPagesV}}
                            </td>
                        </tr>
-                   </table>
+                   </table>-->
              </div>
             </tab>
             <!-- PESTAÑA NUMERO 3-->
@@ -301,7 +304,8 @@
                         </tr> 
                     </thead> 
                     <tbody> 
-                        <tr ng-repeat="progPago in listaProgPago.slice(((currentPagePP-1)*itemsPerPagePP), ((currentPagePP)*itemsPerPagePP)) | filter:buscarTextPP"> 
+                        <tr ng-repeat="progPago in listaProgPago | filter:buscarTextPP"> 
+                        <!--<tr ng-repeat="progPago in listaProgPago.slice(((currentPagePP-1)*itemsPerPagePP), ((currentPagePP)*itemsPerPagePP)) | filter:buscarTextPP"> -->
                             <td >
                                  <a href="" ng-click="verFactura(progPago)" > {{ progPago.ppro_nombrearchivo }}</a> </br> Empresa  {{ progPago.emp_nombre }} </br>
                                  RFC {{ progPago.per_rfc }}
@@ -321,7 +325,7 @@
                         </tr> 
                     </tbody> 
                 </table>
-                <table align="center">
+                <!--<table align="center">
                        <tr align="center">
                            <td align="center">
                                Ver <select ng-model="viewbyPP" ng-change="setItemsPerPagePP(viewbyPP)"><option>5</option><option>10</option><option>20</option><option>30</option><option>40</option><option>50</option></select> registros de {{totalProgPago}}
@@ -339,7 +343,7 @@
                                Pagina: {{currentPagePP}} de {{numPagesPP}}
                            </td>
                        </tr>
-                   </table>
+                   </table>-->
              </div>
             </tab>
             <!--     CUARTA PESTAÑA 4 -->
@@ -404,7 +408,8 @@
                              </tr> 
                        </thead> 
                         <tbody id="myTable"> 
-                         <tr ng-repeat="Pagadas in listaPagadas.slice(((currentPageP-1)*itemsPerPageP), ((currentPageP)*itemsPerPageP)) | filter:buscarTextP"> 
+                         <tr ng-repeat="Pagadas in listaPagadas| filter:buscarTextP"> 
+                        <!-- <tr ng-repeat="Pagadas in listaPagadas.slice(((currentPageP-1)*itemsPerPageP), ((currentPageP)*itemsPerPageP)) | filter:buscarTextP"> -->
                             <td> <a href="" ng-click="verFactura(Pagadas)" > {{ Pagadas.oce_folioorden }}</a> </br>
                                  {{ Pagadas.emp_nombre }} 
                                  </br>{{ Pagadas.per_rfc }}
@@ -417,7 +422,7 @@
                         </tr> 
                       </tbody> 
                    </table>
-                   <table align="center">
+                   <!--<table align="center">
                        <tr align="center">
                            <td align="center">
                                Ver <select ng-model="viewbyP" ng-change="setItemsPerPageP(viewbyP)"><option>5</option><option>10</option><option>20</option><option>30</option><option>40</option><option>50</option></select> registros de {{totalPagadas}}
@@ -435,7 +440,7 @@
                                Pagina: {{currentPageP}} de {{numPagesP}}
                            </td>
                        </tr>
-                   </table>
+                   </table>-->
                   <!-- <pre align="center">Pagina: {{currentPage}} de {{numPages}}</pre>-->
                        
                                
