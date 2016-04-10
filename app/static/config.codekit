@@ -24,17 +24,6 @@
 		"outputStyle": 1,
 		"syntaxCheckerStyle": 1
 		},
-	"\/AngularJS\/Login\/loginController.js": {
-		"fileType": 64,
-		"ignore": 0,
-		"ignoreWasSetByUser": 0,
-		"inputAbbreviatedPath": "\/AngularJS\/Login\/loginController.js",
-		"outputAbbreviatedPath": "\/AngularJS\/Login\/min\/loginController-min.js",
-		"outputPathIsOutsideProject": 0,
-		"outputPathIsSetByUser": 0,
-		"outputStyle": 1,
-		"syntaxCheckerStyle": 1
-		},
 	"\/AngularJS\/Login\/loginRepository.js": {
 		"fileType": 64,
 		"ignore": 0,
@@ -74,6 +63,17 @@
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/AngularJS\/Ordenes\/facturaRepository.js",
 		"outputAbbreviatedPath": "\/AngularJS\/Ordenes\/min\/facturaRepository-min.js",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"outputStyle": 1,
+		"syntaxCheckerStyle": 1
+		},
+	"\/AngularJS\/Ordenes\/fileUploadController.js": {
+		"fileType": 64,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/AngularJS\/Ordenes\/fileUploadController.js",
+		"outputAbbreviatedPath": "\/AngularJS\/Ordenes\/min\/fileUploadController-min.js",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0,
 		"outputStyle": 1,
@@ -296,6 +296,15 @@
 		"ignore": 0,
 		"ignoreWasSetByUser": 0,
 		"inputAbbreviatedPath": "\/css\/ng-grid.min.css",
+		"outputAbbreviatedPath": "No Output Path",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0
+		},
+	"\/css\/nodo.css": {
+		"fileType": 16,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"inputAbbreviatedPath": "\/css\/nodo.css",
 		"outputAbbreviatedPath": "No Output Path",
 		"outputPathIsOutsideProject": 0,
 		"outputPathIsSetByUser": 0
