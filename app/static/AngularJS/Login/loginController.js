@@ -36,7 +36,9 @@ $scope.init = function () {
        alertFactory.warning('Por favor ingrese su contraseña');
       return;
     }
-    $rootScope.rfc=login.txtUsuario;  
+    $rootScope.rfc=login.txtUsuario; 
+    $rootScope.user=login.txtUsuario; 
+    $rootScope.pass=login.txtContra;
 
    loginRepository.getLogin( login.txtUsuario, login.txtContra)
    .success(getLoginSuccessCallback)

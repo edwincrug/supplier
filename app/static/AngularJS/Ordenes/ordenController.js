@@ -483,7 +483,12 @@ $scope.buscaPagadas= function() {
       var ruta = "http://192.168.20.9:3700";
       var pdf_link = ruta;
       var titulo ="Subir Documentos" ;  
-     var  iframe='<iframe frameborder="1" height="600px" width="550px" src="http://192.168.20.9:8085/" width="100%">Tu Navegador no soporta esta característica</iframe>'
+      var user = $rootScope.user; 
+      var pass =$rootScope.pass;
+      var folio = Pendiente.oce_folioorden;
+      //var  iframe='<iframe frameborder="1" height="600px" width="550px" src="http://localhost:49990/Login.aspx?user=' + user + '&pass=' + pass + '&folio=' + folio + '" width="100%">Tu Navegador no soporta esta característica</iframe>'
+      var  iframe='<iframe frameborder="1" height="600px" width="550px" src="http://192.168.20.9:8085/Login.aspx?user=' + user + '&pass=' + pass + '&folio=' + folio + '" width="100%">Tu Navegador no soporta esta característica</iframe>'
+      //var  iframe='<iframe frameborder="1" height="600px" width="550px" src="http://192.168.20.9:8085/" width="100%">Tu Navegador no soporta esta característica</iframe>'
       //var iframe = '<div id="hideFullContent" style="width:500px; height:600px;"><div id="hideFullMenu" onclick="nodisponible()" ng-controller="ordenController"> </div> <object id="ifDocument" data="' + pdf_link + '" type="' + type + '" width="100%" height="100%"></object></div>';
       $.createModal({      
       title: titulo,
