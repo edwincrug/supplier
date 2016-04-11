@@ -2,7 +2,7 @@
 //registrationModule.controller("loginController", function ($scope,  $rootScope, localStorageService, alertFactory, parametroRepository,mancomunadoRepository, filtroRepository) {
   registrationModule.controller('loginController', function($scope, $rootScope,alertFactory, loginRepository){
    
-   $scope.listaLogin =null;   
+   $rootScope.listaLogin =null;   
    $scope.post = {url: 'http://', title: ''};
 
    $rootScope.razonSocial=null;
@@ -46,14 +46,25 @@ $scope.init = function () {
       
     $rootScope.rfcEdit = login.txtUsuario;
 
+    if( $rootScope.listaLogin[0]== undefined || $rootScope.listaLogin[0]== null || $rootScope.listaLogin[0]== ''){
+      alertFactory.warning('No se encontró ningún usuario.');
+        return;
+    }
+    else{
     document.getElementById('saludo').style.visibility="visible";
       document.getElementById('login').style.visibility="hidden";
 
-      $location.path( '/AngularJS/Templates/Ordenes.html');     
+      $location.path( '/AngularJS/Templates/Ordenes.html'); 
+      }    
    };
 
 //Respuesta del servicio
    var getLoginSuccessCallback = function(data, status, headers, config){
+      if(data[0] == undefined || data[0]==null ||data[0]=='')
+      {
+        $rootScope.listaLogin = data;
+      }
+
       if(data !=null)
       {
         $rootScope.razonSocial=data[0].nombre;    
@@ -67,7 +78,7 @@ $scope.init = function () {
         alertFactory.warning('No se encontró ningún usuario.');
       }
 
-    $scope.listaLogin = data;
+    $rootScope.listaLogin = data;
     alertFactory.success('Datos Obtenidos.');
     $location.path( '/AngularJS/Templates/Ordenes.html');
   };
