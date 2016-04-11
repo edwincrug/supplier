@@ -501,45 +501,46 @@ $scope.buscaPagadas= function() {
       };
 
 
-     $scope.verFacturaValidada = function(Pendiente) {
+     $scope.verFacturaValidada = function(validada) {
 
-      consultaRepository.getBuscaEstatus(Pendiente.oce_folioorden)
-      .success(getBuscaEstatusSuccessCallback)
-      .error(errorCallBack);
+            consultaRepository.getBuscaEstatus(validada.oce_folioorden)
+            .success(getBuscaEstatusSuccessCallback)
+            .error(errorCallBack);
 
 
-     if($rootScope.validaEstatus[0].estatus=='2')
-      {
-        alertFactory.warning('la factura ya fue procesada, no es posible actualizar.');
-        return;
-      }
+          if($rootScope.validaEstatus[0].estatus=='2')
+            {
+                 alertFactory.warning('la factura ya fue procesada, no es posible actualizar.');
+                return;
+            }
 
-      $scope.rutaDocumento = Pendiente.oce_folioorden;
-      var type = '';
+            $scope.rutaDocumento = validada.oce_folioorden;
+            var type = '';
       
-      type = "application/pdf";
+            type = "application/pdf";
 
-      ordenRepository.getDocumentos(Pendiente.oce_folioorden)
-      .success(getDocumentosSuccessCallback)
-      .error(errorCallBack);
+            ordenRepository.getDocumentos(validada.oce_folioorden)
+            .success(getDocumentosSuccessCallback)
+            .error(errorCallBack);
 
      
-      //var ruta = "http://192.168.20.9/GA_Centralizacion/CuentasXPagar/TempPdf/OrdenCompra/" + Pendiente.oce_folioorden +".pdf";// "http://192.168.20.9/Documentos/factura.pdf"; //global_settings.downloadPath + localStorageService.get('currentVIN').vin + '/'+ idDoc + ext;
-      var ruta = "http://192.168.20.9:3700";
-      var pdf_link = ruta;
-      var titulo ="Subir Documentos" ;  
-      var user = $rootScope.user; 
-      var pass =$rootScope.pass;
-      var folio = Pendiente.oce_folioorden;
-      var editar ='1';
-      //var  iframe='<iframe frameborder="1" height="600px" width="550px" src="http://localhost:49990/Login.aspx?user=' + user + '&pass=' + pass + '&folio=' + folio + '&editar=' + editar + '" width="100%">Tu Navegador no soporta esta característica</iframe>'
-      var  iframe='<iframe frameborder="1" height="600px" width="550px" src="http://192.168.20.9:8085/Login.aspx?user=' + user + '&pass=' + pass + '&folio=' + folio + '&editar=' + editar + '" width="100%">Tu Navegador no soporta esta característica</iframe>'
-      $.createModal({      
-      title: titulo,
-      message: iframe,
-      closeButton: false,
-      scrollable: false
-      });        
+              //var ruta = "http://192.168.20.9/GA_Centralizacion/CuentasXPagar/TempPdf/OrdenCompra/" + Pendiente.oce_folioorden +".pdf";// "http://192.168.20.9/Documentos/factura.pdf"; //global_settings.downloadPath + localStorageService.get('currentVIN').vin + '/'+ idDoc + ext;
+              var ruta = "http://192.168.20.9:3700";
+              var pdf_link = ruta;
+              var titulo ="Subir Documentos" ;  
+              var user = $rootScope.user; 
+              var pass =$rootScope.pass;
+              var folio = validada.oce_folioorden;
+              var editar ='1';
+              var  iframe='<iframe frameborder="1" height="600px" width="550px" src="http://192.168.20.9:8085/Login.aspx?user=' + user + '&pass=' + pass + '&folio=' + folio + '&editar=' + editar + '" width="100%">Tu Navegador no soporta esta característica</iframe>'
+             //var  iframe='<iframe frameborder="1" height="600px" width="550px" src="http://localhost:49990/Login.aspx?user=' + user + '&pass=' + pass + '&folio=' + folio + '&editar=' + editar + '" width="100%">Tu Navegador no soporta esta característica</iframe>'
+              //var  iframe='<iframe frameborder="1" height="600px" width="550px" src="http://192.168.20.9:8085/Login.aspx?user=' + user + '&pass=' + pass + '&folio=' + folio + '&editar=' + editar + '" width="100%">Tu Navegador no soporta esta característica</iframe>'
+              $.createModal({      
+              title: titulo,
+              message: iframe,
+              closeButton: false,
+              scrollable: false
+            });        
       };
 
 

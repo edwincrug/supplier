@@ -50,18 +50,20 @@ $scope.init = function () {
       alertFactory.warning('Usuario o contraseña incorrectos.');
         return;
     }
-    else{
+    //else{*/
     document.getElementById('saludo').style.visibility="visible";
       document.getElementById('login').style.visibility="hidden";
 
       $location.path( '/AngularJS/Templates/Ordenes.html'); 
-      }    
+     //}    
    };
 
 //Respuesta del servicio
    var getLoginSuccessCallback = function(data, status, headers, config){
       if(data[0] == undefined || data[0]==null ||data[0]=='')
       {
+        //alertFactory.warning('Usuario o contraseña incorrectos.');
+        //return;
         $rootScope.listaLogin = data;
       }
 

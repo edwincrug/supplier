@@ -91,7 +91,7 @@
                             <td>{{ Pendiente.suc_nombre }} </br>
                                  {{ Pendiente.dep_nombre }} 
                             </td>
-                            <td>{{ Pendiente.oce_importetotal }}</td>                                                       
+                            <td>{{ Pendiente.oce_importetotal | currency:"$" }}</td>                                                       
                             <td>                                                                                                    
                                 
                               <!-- <button class="btn btn-primary" type="button" id="btnAdjuntarPendiente">
@@ -213,15 +213,15 @@
                                  {{ validada.suc_nombre }} </br>
                                  {{ validada.dep_nombre }}
                              </td> 
-                            <td >{{ validada.oce_importetotal }}</td> 
+                            <td >{{ validada.oce_importetotal | currency:"$"}}</td> 
                             <td >{{ validada.factura }}</td> 
-                            <td >{{ validada.fechaValidacion }}</td>    
-                            <td >{{ validada.fecha_factura }}</td> 
+                            <td >{{ validada.fechaValidacion  | date:'MM/dd/yyyy'}}</td>    
+                            <td >{{ validada.fecha_factura | date:'MM/dd/yyyy'}}</td> 
                             <td >{{ validada.Recepcion }}</td>    
                             <!--<td >{{ validada.Estatus }}</td> -->
                             <td >{{ validada.Estado }}</td>                                                           
                             <td>
-                              <button class="btn btn-primary" type="button" id="btnAdjuntarPendiente">
+                              <button class="btn btn-primary" type="button" id="btnAdjuntarValidada">
                                     <span class="glyphicon glyphicon-paperclip" aria-hidden="true" ng-click="verFacturaValidada(validada)">SubirArchivos</span>
                                 </button>
                             </td>                            
@@ -326,10 +326,10 @@
                                  {{ progPago.suc_nombre }} </br>
                                  {{ progPago.dep_nombre }}
                              </td> 
-                            <td >{{ progPago.oce_importetotal }}</td> 
+                            <td >{{ progPago.oce_importetotal | currency:"$"}}</td> 
                             <td >{{ progPago.factura }}</td> 
-                            <td >{{ progPago.fechaValidacion }}</td>    
-                            <td >{{ progPago.fecha_factura }}</td> 
+                            <td >{{ progPago.fechaValidacion | date:'MM/dd/yyyy'}}</td>    
+                            <td >{{ progPago.fecha_factura | date:'MM/dd/yyyy'}}</td> 
                             <td >{{ progPago.Recepcion }}</td>    
                             <!--<td >{{ progPago.Estatus }}</td>--> 
                             <td >{{ progPago.Estado }}</td>                                                           
@@ -429,7 +429,7 @@
                             <td>{{ Pagadas.suc_nombre }} </br>
                                  {{ Pagadas.dep_nombre }} 
                             </td>
-                            <td>{{ Pagadas.oce_importetotal }}</td>                                                       
+                            <td>{{ Pagadas.oce_importetotal | currency:"$"}}</td>                                                       
                                                          
                         </tr> 
                       </tbody> 
