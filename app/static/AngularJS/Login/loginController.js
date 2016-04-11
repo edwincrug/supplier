@@ -47,7 +47,7 @@ $scope.init = function () {
     $rootScope.rfcEdit = login.txtUsuario;
 
     if( $rootScope.listaLogin[0]== undefined || $rootScope.listaLogin[0]== null || $rootScope.listaLogin[0]== ''){
-      alertFactory.warning('No se encontró ningún usuario.');
+      alertFactory.warning('Usuario o contraseña incorrectos.');
         return;
     }
     else{
