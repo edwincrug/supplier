@@ -105,7 +105,7 @@
                                     <span class="glyphicon glyphicon-paperclip" ng-controller="uploadController" aria-hidden="true" ng-click="toggleModal()">SubirArchivos</span>
                                 </button>-->
                                 <button class="btn btn-primary" type="button" id="btnAdjuntarPendiente">
-                                    <span class="glyphicon glyphicon-paperclip" ng-controller="uploadController" aria-hidden="true" ng-click="verFactura2(Pendiente)">SubirArchivos</span>
+                                    <span class="glyphicon glyphicon-paperclip" aria-hidden="true" ng-click="verFactura2(Pendiente)">SubirArchivos</span>
                                 </button>
                                 
                             </td>                             
@@ -199,7 +199,7 @@
                             <th>Fecha Factura</th>  
                             <th>Recepción</th> 
                             <th>Estatus</th>  
-                           <!-- <th>Consultar Factura</th> -->                       
+                            <th>Sustituir Factura</th>                      
                         </tr> 
                     </thead> 
                     <tbody> 
@@ -221,7 +221,11 @@
                             <td >{{ validada.Recepcion }}</td>    
                             <!--<td >{{ validada.Estatus }}</td> -->
                             <td >{{ validada.Estado }}</td>                                                           
-                                                        
+                            <td>
+                              <button class="btn btn-primary" type="button" id="btnAdjuntarPendiente">
+                                    <span class="glyphicon glyphicon-paperclip" aria-hidden="true" ng-click="verFactura2(validada)">SubirArchivos</span>
+                                </button>
+                            </td>                            
                         </tr> 
                     </tbody> 
                 </table>
