@@ -70,7 +70,9 @@ registrationModule.controller("ordenController", function ($scope, $filter, $roo
   $scope.valEmpresaP=null;
   $scope.valSucursalP=null;
 //carga los tabs al entrar a la pagina
+
 $scope.rutaDocumento=null;
+$rootScope.validaEstatus =null;
 $scope.init = function () {
 
         if($rootScope.idProveedor==''||$rootScope.idProveedor==null||$rootScope.idProveedor==undefined)
@@ -486,10 +488,10 @@ $scope.buscaPagadas= function() {
       var user = $rootScope.user; 
       var pass =$rootScope.pass;
       var folio = Pendiente.oce_folioorden;
-      //var  iframe='<iframe frameborder="1" height="600px" width="550px" src="http://localhost:49990/Login.aspx?user=' + user + '&pass=' + pass + '&folio=' + folio + '" width="100%">Tu Navegador no soporta esta característica</iframe>'
-      var  iframe='<iframe frameborder="1" height="600px" width="550px" src="http://192.168.20.9:8085/Login.aspx?user=' + user + '&pass=' + pass + '&folio=' + folio + '" width="100%">Tu Navegador no soporta esta característica</iframe>'
-      //var  iframe='<iframe frameborder="1" height="600px" width="550px" src="http://192.168.20.9:8085/" width="100%">Tu Navegador no soporta esta característica</iframe>'
-      //var iframe = '<div id="hideFullContent" style="width:500px; height:600px;"><div id="hideFullMenu" onclick="nodisponible()" ng-controller="ordenController"> </div> <object id="ifDocument" data="' + pdf_link + '" type="' + type + '" width="100%" height="100%"></object></div>';
+      var editar ='0';
+      //var  iframe='<iframe frameborder="1" height="600px" width="550px" src="http://localhost:49990/Login.aspx?user=' + user + '&pass=' + pass + '&folio=' + folio + '&editar=' + editar + '" width="100%">Tu Navegador no soporta esta característica</iframe>'
+      var  iframe='<iframe frameborder="1" height="600px" width="550px" src="http://192.168.20.9:8085/Login.aspx?user=' + user + '&pass=' + pass + '&folio=' + folio + '&editar=' + editar + '" width="100%">Tu Navegador no soporta esta característica</iframe>'
+
       $.createModal({      
       title: titulo,
       message: iframe,
@@ -499,6 +501,46 @@ $scope.buscaPagadas= function() {
       };
 
 
+     $scope.verFacturaValidada = function(Pendiente) {
+
+      consultaRepository.getBuscaEstatus(Pendiente.oce_folioorden)
+      .success(getBuscaEstatusSuccessCallback)
+      .error(errorCallBack);
+
+
+     if($rootScope.validaEstatus[0].estatus=='2')
+      {
+        alertFactory.warning('la factura ya fue procesada, no es posible actualizar.');
+        return;
+      }
+
+      $scope.rutaDocumento = Pendiente.oce_folioorden;
+      var type = '';
+      
+      type = "application/pdf";
+
+      ordenRepository.getDocumentos(Pendiente.oce_folioorden)
+      .success(getDocumentosSuccessCallback)
+      .error(errorCallBack);
+
+     
+      //var ruta = "http://192.168.20.9/GA_Centralizacion/CuentasXPagar/TempPdf/OrdenCompra/" + Pendiente.oce_folioorden +".pdf";// "http://192.168.20.9/Documentos/factura.pdf"; //global_settings.downloadPath + localStorageService.get('currentVIN').vin + '/'+ idDoc + ext;
+      var ruta = "http://192.168.20.9:3700";
+      var pdf_link = ruta;
+      var titulo ="Subir Documentos" ;  
+      var user = $rootScope.user; 
+      var pass =$rootScope.pass;
+      var folio = Pendiente.oce_folioorden;
+      var editar ='1';
+      //var  iframe='<iframe frameborder="1" height="600px" width="550px" src="http://localhost:49990/Login.aspx?user=' + user + '&pass=' + pass + '&folio=' + folio + '&editar=' + editar + '" width="100%">Tu Navegador no soporta esta característica</iframe>'
+      var  iframe='<iframe frameborder="1" height="600px" width="550px" src="http://192.168.20.9:8085/Login.aspx?user=' + user + '&pass=' + pass + '&folio=' + folio + '&editar=' + editar + '" width="100%">Tu Navegador no soporta esta característica</iframe>'
+      $.createModal({      
+      title: titulo,
+      message: iframe,
+      closeButton: false,
+      scrollable: false
+      });        
+      };
 
 
 
@@ -515,6 +557,10 @@ $scope.buscaPagadas= function() {
        
     };
 
+var getBuscaEstatusSuccessCallback = function(data, status, headers, config){
+       
+        $rootScope.validaEstatus = data;              
+      };
   var getDocumentosSuccessCallback = function(data, status, headers, config){
         $scope.rutaDocumento = data;        
         alertFactory.success('Documento Obtenidos.');

@@ -14,6 +14,9 @@ registrationModule.factory('consultaRepository', function ($http) {
         },
         getOrdenPagadas: function(idProveedor,orden,empresa,sucursal) {
             return $http.get(consultaUrl + '4|' + idProveedor + '|'+ orden + '|'+ empresa + '|' +  sucursal);
+        },
+        getBuscaEstatus: function(folioorden) {
+            return $http.get(consultaUrl + '5|' + folioorden );
         }
     };
 });
