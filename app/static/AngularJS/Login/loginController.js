@@ -40,21 +40,44 @@ $scope.init = function () {
     $rootScope.user=login.txtUsuario; 
     $rootScope.pass=login.txtContra;
 
-   loginRepository.getLogin( login.txtUsuario, login.txtContra)
-   .success(getLoginSuccessCallback)
-   .error(errorCallBack);
+
+        loginRepository.getLogin( login.txtUsuario, login.txtContra)
+        .then(function successCallback(response) 
+        {
+
+              $rootScope.listaLogin = response.data;
+              $rootScope.rfcEdit = login.txtUsuario;
+
+              if( $rootScope.listaLogin[0]== undefined || $rootScope.listaLogin[0]== null || $rootScope.listaLogin[0]== ''){
+                     alertFactory.warning('Usuario o contraseña incorrectos.');
+                      return;
+                }
+            else{
+                    $rootScope.razonSocial=response.data[0].nombre;    
+                    $rootScope.idProveedor= response.data[0].per_idpersona; 
+                    $rootScope.listaLogin = response.data;
+    
+                    document.getElementById('saludo').style.visibility="visible";
+                    document.getElementById('login').style.visibility="hidden";
+                    alertFactory.success('Acceso correcto.');
+                }
       
-    $rootScope.rfcEdit = login.txtUsuario;
 
-    if( $rootScope.listaLogin[0]== undefined || $rootScope.listaLogin[0]== null || $rootScope.listaLogin[0]== ''){
-      alertFactory.warning('Usuario o contraseña incorrectos.');
-        return;
-    }
-    //else{*/
-    document.getElementById('saludo').style.visibility="visible";
-      document.getElementById('login').style.visibility="hidden";
+        }, function errorCallback(response) {
+              //Seccion para atrapar el error;
+               alertFactory.error('Usuario o contraseña incorrectos');
+        });
 
-      $location.path( '/AngularJS/Templates/Ordenes.html'); 
+
+
+
+
+
+   /*loginRepository.getLogin( login.txtUsuario, login.txtContra)
+   .success(getLoginSuccessCallback)
+   .error(errorCallBack);*/
+      
+    
      //}    
    };
 
