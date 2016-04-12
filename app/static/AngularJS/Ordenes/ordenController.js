@@ -448,58 +448,108 @@ $scope.buscaPagadas= function() {
 //Método para mostrar documento PDF, JPG o PNG
       $scope.verFactura = function(Pendiente) {
               $scope.rutaDocumento = Pendiente.oce_folioorden;
-              var type = '';
-      
-              type = "application/pdf";
+              
+
+
 
               ordenRepository.getDocumentos(Pendiente.oce_folioorden)
-              .success(getDocumentosSuccessCallback)
-              .error(errorCallBack);
-
+              .then(function successCallback(response) 
+              {
+                  var type = '';
       
-              //var ruta = "http://192.168.20.9/GA_Centralizacion/CuentasXPagar/TempPdf/OrdenCompra/" + Pendiente.oce_folioorden +".pdf";// "http://192.168.20.9/Documentos/factura.pdf"; //global_settings.downloadPath + localStorageService.get('currentVIN').vin + '/'+ idDoc + ext;
-              var ruta = "http://192.168.20.9/GA_Centralizacion/CuentasXPagar/TempPdf/OrdenCompra/Orden_AU-AUA-VIG-OT-PE-22.pdf";
-              var pdf_link = ruta;
-              var titulo ="Factura" ;  
-              var iframe = '<div id="hideFullContent" style="width:500px; height:600px;"><div id="hideFullMenu" onclick="nodisponible()" ng-controller="ordenController"> </div> <object id="ifDocument" data="' + pdf_link + '" type="' + type + '" width="100%" height="100%"></object></div>';
-              $.createModal({      
-                  title: titulo,
-                  message: iframe,
-                  closeButton: false,
-                  scrollable: false
-              });        
+                  type = "application/pdf";
+                  $scope.rutaDocumento = response.data;  
+
+                  if(response.data =='0')
+                  {
+                    alertFactory.warning('No hay ningun documento para mostrar');
+                    return;
+                  
+                    //var ruta = "http://192.168.20.9/GA_Centralizacion/CuentasXPagar/TempPdf/OrdenCompra/" + Pendiente.oce_folioorden +".pdf";// "http://192.168.20.9/Documentos/factura.pdf"; //global_settings.downloadPath + localStorageService.get('currentVIN').vin + '/'+ idDoc + ext;
+                  }
+                  var ruta = 'http://192.168.20.9/GA_Centralizacion/CuentasXPagar/TempPdf/OrdenCompra/Orden_' + Pendiente.oce_folioorden + '.pdf';
+                  var pdf_link = ruta;
+                  var titulo ="Factura" ;  
+                  var iframe = '<div id="hideFullContent" style="width:500px; height:600px;"><div id="hideFullMenu" onclick="nodisponible()" ng-controller="ordenController"> </div> <object id="ifDocument" data="' + pdf_link + '" type="' + type + '" width="100%" height="100%"></object></div>';
+                  $.createModal({      
+                      title: titulo,
+                      message: iframe,
+                      closeButton: false,
+                      scrollable: false
+                });      
+
+
+              }, function errorCallback(response) {
+              //Seccion para atrapar el error;
+               alertFactory.error('Ocurrio un problema al validar estatus : ' + response.data);
+              });
+
+  
       };
 
 
 
      $scope.verFactura2 = function(Pendiente) {
             $scope.rutaDocumento = Pendiente.oce_folioorden;
-            var type = '';
-      
-            type = "application/pdf";
+            
 
-            ordenRepository.getDocumentos(Pendiente.oce_folioorden)
+            /*ordenRepository.getDocumentos(Pendiente.oce_folioorden)
             .success(getDocumentosSuccessCallback)
-            .error(errorCallBack);
+            .error(errorCallBack);*/
 
       
-            //var ruta = "http://192.168.20.9/GA_Centralizacion/CuentasXPagar/TempPdf/OrdenCompra/" + Pendiente.oce_folioorden +".pdf";// "http://192.168.20.9/Documentos/factura.pdf"; //global_settings.downloadPath + localStorageService.get('currentVIN').vin + '/'+ idDoc + ext;
-            var ruta = "http://192.168.20.9:3700";
-            var pdf_link = ruta;
-            var titulo ="Subir Documentos" ;  
-            var user = $rootScope.user; 
-            var pass =$rootScope.pass;
-            var folio = Pendiente.oce_folioorden;
-            var editar ='0';
-            //var  iframe='<iframe frameborder="1" height="600px" width="550px" src="http://localhost:49990/Login.aspx?user=' + user + '&pass=' + pass + '&folio=' + folio + '&editar=' + editar + '" width="100%">Tu Navegador no soporta esta característica</iframe>'
-            var  iframe='<iframe frameborder="1" height="600px" width="550px" src="http://192.168.20.9:8085/Login.aspx?user=' + user + '&pass=' + pass + '&folio=' + folio + '&editar=' + editar + '" width="100%">Tu Navegador no soporta esta característica</iframe>'
+              ordenRepository.getDocumentos(Pendiente.oce_folioorden)
+            .then(function successCallback(response) 
+              {
+                $scope.rutaDocumento = response.data; 
 
-            $.createModal({      
-                title: titulo,
-                message: iframe,
-                closeButton: false,
-                scrollable: false
-            });        
+                  
+                  var rutaPDF;
+                  var type = '';
+      
+                  type = "application/pdf";
+                  //var ruta = "http://192.168.20.9/GA_Centralizacion/CuentasXPagar/TempPdf/OrdenCompra/" + Pendiente.oce_folioorden +".pdf";// "http://192.168.20.9/Documentos/factura.pdf"; //global_settings.downloadPath + localStorageService.get('currentVIN').vin + '/'+ idDoc + ext;
+                  var ruta = "http://192.168.20.9:3700";
+                  var pdf_link = ruta;
+                  var titulo ="Subir Documentos" ;  
+                  var user = $rootScope.user; 
+                  var pass =$rootScope.pass;
+                  var folio = Pendiente.oce_folioorden;
+                  var editar ='0';
+                  if(response.data=='0')
+                  {
+                    rutaPDF = 'http://192.168.20.9/GA_Centralizacion/CuentasXPagar/TempPdf/OrdenCompra/Orden_AU-AUA-VIG-UN-PS-26.pdf';
+                  }
+                    else
+                    {
+                   rutaPDF ='http://192.168.20.9/GA_Centralizacion/CuentasXPagar/TempPdf/OrdenCompra/Orden_' + Pendiente.oce_folioorden +'.pdf';
+                 }
+                  //var  iframe='<iframe frameborder="1" height="600px" width="550px" src="http://localhost:49990/Login.aspx?user=' + user + '&pass=' + pass + '&folio=' + folio + '&editar=' + editar + '&rutaPDF=' + rutaPDF +'" width="100%">Tu Navegador no soporta esta característica</iframe>'
+                  var  iframe='<iframe frameborder="1" height="600px" width="550px" src="http://192.168.20.9:8085/Login.aspx?user=' + user + '&pass=' + pass + '&folio=' + folio + '&editar=' + editar +  '&rutaPDF=' + rutaPDF + '" width="100%">Tu Navegador no soporta esta característica</iframe>'
+                  //var  iframe='<iframe frameborder="1" height="600px" width="550px" src="http://192.168.20.9/facturas/Login.aspx?user=' + user + '&pass=' + pass + '&folio=' + folio + '&editar=' + editar +  '&rutaPDF=' + rutaPDF + '" width="100%">Tu Navegador no soporta esta característica</iframe>'
+
+                  $.createModal({      
+                    title: titulo,
+                    message: iframe,
+                    closeButton: false,
+                    scrollable: false
+                  }); 
+
+
+              }, function errorCallback(response) {
+              //Seccion para atrapar el error;
+               alertFactory.error('Ocurrio un problema al generar la factura');
+              });
+
+
+
+
+
+
+
+
+
+                   
       };
 
 
@@ -507,6 +557,7 @@ $scope.buscaPagadas= function() {
             consultaRepository.getBuscaEstatus(validada.oce_folioorden)
             .then(function successCallback(response) {
               // Contenido de la funcionalidad
+                  //////////////////////////////////////////////////////////////////////////
                    $rootScope.validaEstatus = response.data;  
                     if($rootScope.validaEstatus[0].estatus=='2')
                     {
@@ -515,32 +566,50 @@ $scope.buscaPagadas= function() {
                     }
 
                       $scope.rutaDocumento = validada.oce_folioorden;
-                    var type = '';
-      
-                    type = "application/pdf";
 
-                    ordenRepository.getDocumentos(validada.oce_folioorden)
-                    .success(getDocumentosSuccessCallback)
-                      .error(errorCallBack);
+                      ordenRepository.getDocumentos(validada.oce_folioorden)
+                      .then(function successCallback(response) 
+                      {
+                              var rutaPDF;
+                              $scope.rutaDocumento = response.data; 
+                              //var ruta = "http://192.168.20.9/GA_Centralizacion/CuentasXPagar/TempPdf/OrdenCompra/" + Pendiente.oce_folioorden +".pdf";// "http://192.168.20.9/Documentos/factura.pdf"; //global_settings.downloadPath + localStorageService.get('currentVIN').vin + '/'+ idDoc + ext;
+                              var type = '';      
+                              type = "application/pdf";
+                              var ruta = "http://192.168.20.9:3700";
+                              var pdf_link = ruta;
+                              var titulo ="Subir Documentos" ;  
+                              var user = $rootScope.user; 
+                              var pass =$rootScope.pass;
+                              var folio = validada.oce_folioorden;
+                              var editar ='1';
+                              if(response.data=='0')
+                              {
+                                 rutaPDF = 'http://192.168.20.9/GA_Centralizacion/CuentasXPagar/TempPdf/OrdenCompra/Orden_AU-AUA-VIG-UN-PS-26.pdf';
+                              }
+                              else
+                               {
+                                 var rutaPDF ='http://192.168.20.9/GA_Centralizacion/CuentasXPagar/TempPdf/OrdenCompra/Orden_' + validada.oce_folioorden +'.pdf';
+                                }
 
+                              
+                              var  iframe='<iframe frameborder="1" height="600px" width="550px" src="http://192.168.20.9:8085/Login.aspx?user=' + user + '&pass=' + pass + '&folio=' + folio + '&editar=' + editar + '&rutaPDF=' + rutaPDF +'" width="100%">Tu Navegador no soporta esta característica</iframe>'
+                              //var  iframe='<iframe frameborder="1" height="600px" width="550px" src="http://localhost:49990/Login.aspx?user=' + user + '&pass=' + pass + '&folio=' + folio + '&editar=' + editar + '&rutaPDF=' + rutaPDF +'" width="100%">Tu Navegador no soporta esta característica</iframe>'
+                              //var  iframe='<iframe frameborder="1" height="600px" width="550px" src="http://localhost:49990/Login.aspx?user=' + user + '&pass=' + pass + '&folio=' + folio + '&editar=' + editar + '" width="100%">Tu Navegador no soporta esta característica</iframe>'
+                              //var  iframe='<iframe frameborder="1" height="600px" width="550px" src="http://192.168.20.9:8085/Login.aspx?user=' + user + '&pass=' + pass + '&folio=' + folio + '&editar=' + editar + '" width="100%">Tu Navegador no soporta esta característica</iframe>'
+                              $.createModal({      
+                                  title: titulo,
+                                  message: iframe,
+                                  closeButton: false,
+                                  scrollable: false
+                              }); 
+
+                      }, function errorCallback(response) {
+                      //Seccion para atrapar el error;
+                      alertFactory.error('Ocurrio un problema al generar la factura');
+                      });
      
-                      //var ruta = "http://192.168.20.9/GA_Centralizacion/CuentasXPagar/TempPdf/OrdenCompra/" + Pendiente.oce_folioorden +".pdf";// "http://192.168.20.9/Documentos/factura.pdf"; //global_settings.downloadPath + localStorageService.get('currentVIN').vin + '/'+ idDoc + ext;
-                      var ruta = "http://192.168.20.9:3700";
-                      var pdf_link = ruta;
-                      var titulo ="Subir Documentos" ;  
-                      var user = $rootScope.user; 
-                      var pass =$rootScope.pass;
-                      var folio = validada.oce_folioorden;
-                      var editar ='1';
-                      var  iframe='<iframe frameborder="1" height="600px" width="550px" src="http://192.168.20.9:8085/Login.aspx?user=' + user + '&pass=' + pass + '&folio=' + folio + '&editar=' + editar + '" width="100%">Tu Navegador no soporta esta característica</iframe>'
-                      //var  iframe='<iframe frameborder="1" height="600px" width="550px" src="http://localhost:49990/Login.aspx?user=' + user + '&pass=' + pass + '&folio=' + folio + '&editar=' + editar + '" width="100%">Tu Navegador no soporta esta característica</iframe>'
-                      //var  iframe='<iframe frameborder="1" height="600px" width="550px" src="http://192.168.20.9:8085/Login.aspx?user=' + user + '&pass=' + pass + '&folio=' + folio + '&editar=' + editar + '" width="100%">Tu Navegador no soporta esta característica</iframe>'
-                      $.createModal({      
-                          title: titulo,
-                          message: iframe,
-                          closeButton: false,
-                          scrollable: false
-                      });                    
+                      
+              ///////////////////////////////////////////////////////////////////////////                   
 
             }, function errorCallback(response) {
               //Seccion para atrapar el error;
