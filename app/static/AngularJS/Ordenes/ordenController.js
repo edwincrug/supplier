@@ -74,7 +74,7 @@ registrationModule.controller("ordenController", function ($scope, $filter, $roo
 $scope.rutaDocumento=null;
 $rootScope.validaEstatus =null;
 $scope.init = function () {
-
+ 
         if($rootScope.idProveedor==''||$rootScope.idProveedor==null||$rootScope.idProveedor==undefined)
         {
           
@@ -82,7 +82,7 @@ $scope.init = function () {
           return;
         }
 
-        
+        $rootScope.idProveedorMenu=false;
         getData();
         
     };
@@ -796,7 +796,7 @@ $scope.uploadFile = function() {
         $("#divDocumento").append($scope.documentoIni);
     };
 
- 
+  
 }); 
 
 

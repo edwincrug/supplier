@@ -24,6 +24,22 @@
     <!--Loading-->
     <link href="css/toastr.css" rel="stylesheet" />
     <link href="css/angular-busy.css" rel="stylesheet" />
+
+
+    <!-- Bootstrap stylesheet-------------------------------------------------------------------- -->
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<!-- bootstrap widget theme -->
+<link rel="stylesheet" href="css/theme.bootstrap.css">
+
+<!-- tablesorter plugin -->
+<script src="js/jquery.tablesorter.js"></script>
+<!-- tablesorter widget file - loaded after the plugin -->
+<script src="js/jquery.tablesorter.widgets.js"></script>
+
+<!-- pager plugin -->
+<link rel="stylesheet" href="css/jquery.tablesorter.pager.css">
+<script src="js/jquery.tablesorter.pager.js"></script>
+<!------------------------------------------------------------------------------------------------- -->
  
     <!--Librearias JQuery y Bootstrap-->
     <script src="js/jquery-2.1.4.min.js"></script>
@@ -31,13 +47,15 @@
 
     <script src="js/socket.io.js"></script>
 
+
+
     <base href='/'>
 </head>
 <body ng-app="registrationModule">
 
-    <div class="container">
+    <div class="container" ng-hide="ocultaMenu">
                 <nav id="bt-menu" class="bt-menu">
-                <a href="#" class="bt-menu-trigger"><span>Menu</span></a>
+                <a href="#" class="bt-menu-trigger" ng-hide="idProveedorMenu"><span>Menu</span></a>
                 <ul>
                     <li><a href="/#login">Login</a></li>
                     <li><a href="/#registro">Registro</a></li>

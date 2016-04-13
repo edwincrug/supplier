@@ -1,14 +1,11 @@
-.btnEntrar {
-  width: 300px;
-}
+.btnEntrar { width: 300px; }
 
-#container{
-width: 200px;
-text-align: center;
-}
+#container { width: 200px; text-align: center; }
 
-#divPrincipal{
-	width: 800px;
-	text-align: center;
-	vertical-align: center;
-}
+#divPrincipal { width: 800px; text-align: center; vertical-align: center; }
+
+.body { padding-top: 15px; font-family: 'Open Sans', sans-serif; font-size: 13px; }
+
+#tablesorter-header { cursor: pointer; }
+
+#tablesorter-header-inner { position: relative; }

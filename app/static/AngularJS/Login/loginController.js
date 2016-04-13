@@ -9,10 +9,13 @@
    $rootScope.rfc=null;   
    $rootScope.correo=null;
    $rootScope.razonScialEdit='DATOS';
+   $rootScope.idProveedorMenu= true;
    //$rootScope.rfcEdit=null;
    
 //////////////////////////////////////LLENA PAGINA DE EDITAR /////////////////////////////////////////////////
 $scope.init = function () {
+      
+      
       //document.getElementById('saludo').style.display="none";
       document.getElementById('saludo').style.visibility="hidden";
     };
@@ -56,6 +59,7 @@ $scope.init = function () {
                     $rootScope.razonSocial=response.data[0].nombre;    
                     $rootScope.idProveedor= response.data[0].per_idpersona; 
                     $rootScope.listaLogin = response.data;
+                    $rootScope.idProveedorMenu=false;
     
                     document.getElementById('saludo').style.visibility="visible";
                     document.getElementById('login').style.visibility="hidden";
