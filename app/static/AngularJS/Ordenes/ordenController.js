@@ -13,12 +13,13 @@ registrationModule.controller("ordenController", function ($scope, $filter, $roo
   //End Datos paginado Pendientes
 
   //Begin Datos paginado Pendientes
-  $scope.viewbyV = 5;
+  $scope.viewbyV = 4;
   $scope.totalItemsV; 
   $scope.currentPageV = 4;
   $scope.itemsPerPageV = $scope.viewbyV;
   $scope.maxSizeV = 5; 
   $scope.totalValidadas;
+  $scope.var = 1;
 
   //End Datos paginado Pendientes
   //Begin Datos paginado Programadas para Pago
