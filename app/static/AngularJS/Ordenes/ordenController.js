@@ -99,9 +99,9 @@ var getData = function(){
   .success(getOrdenValidadasSuccessCallback)
   .error(errorCallBack);
 
-  ordenRepository.getOrdenProgPago( $scope.proveedorId)
+  /*ordenRepository.getOrdenProgPago( $scope.proveedorId)
   .success(getProgPagoSuccessCallback)
-  .error(errorCallBack);
+  .error(errorCallBack);*/
 
   ordenRepository.getOrdenPagadas( $scope.proveedorId)
   .success(getPagadasSuccessCallback)
@@ -132,13 +132,13 @@ var getData = function(){
         
       };
 
-      var getProgPagoSuccessCallback = function(data, status, headers, config){
+     /* var getProgPagoSuccessCallback = function(data, status, headers, config){
         $scope.listaProgPago = data;   
         $scope.totalItemsPP = data.length;
         $scope.totalProgPago  =data.length;   
         alertFactory.success('Datos Obtenidos.');
         
-      };
+      };*/
 
       var getPagadasSuccessCallback = function(data, status, headers, config){
         $scope.listaPagadas = data;   
@@ -593,8 +593,7 @@ $scope.buscaPagadas= function() {
 
                               
                               var  iframe='<iframe frameborder="1" height="600px" width="550px" src="http://192.168.20.9:8085/Login.aspx?user=' + user + '&pass=' + pass + '&folio=' + folio + '&editar=' + editar + '&rutaPDF=' + rutaPDF +'" width="100%">Tu Navegador no soporta esta característica</iframe>'
-                              //var  iframe='<iframe frameborder="1" height="600px" width="550px" src="http://localhost:49990/Login.aspx?user=' + user + '&pass=' + pass + '&folio=' + folio + '&editar=' + editar + '&rutaPDF=' + rutaPDF +'" width="100%">Tu Navegador no soporta esta característica</iframe>'
-                              //var  iframe='<iframe frameborder="1" height="600px" width="550px" src="http://localhost:49990/Login.aspx?user=' + user + '&pass=' + pass + '&folio=' + folio + '&editar=' + editar + '" width="100%">Tu Navegador no soporta esta característica</iframe>'
+                              //var  iframe='<iframe frameborder="1" height="600px" width="550px" src="http://localhost:49990/Login.aspx?user=' + user + '&pass=' + pass + '&folio=' + folio + '&editar=' + editar + '&rutaPDF=' + rutaPDF +'" width="100%">Tu Navegador no soporta esta característica</iframe>'                              
                               //var  iframe='<iframe frameborder="1" height="600px" width="550px" src="http://192.168.20.9:8085/Login.aspx?user=' + user + '&pass=' + pass + '&folio=' + folio + '&editar=' + editar + '" width="100%">Tu Navegador no soporta esta característica</iframe>'
                               $.createModal({      
                                   title: titulo,

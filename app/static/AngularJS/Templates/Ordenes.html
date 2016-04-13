@@ -21,13 +21,7 @@
                             <td class="container">
                                 
 
-                                <div class="form-group">
-                                    <!--<label for="Empresa">Orden de compra</label>-->
-                              <!--    DESCOMENTAR  <label>Orden de compra: <input class="form-control" ng-model="buscarText" ></label>-->
-                                    <!--<div class="input">
-                                        <input CsClass="form-control" id="inputPendientes" type="text" >
-                                    </div>-->
-
+                                <div class="form-group">                                    
                                     
                                     <label>Orden de compra: <input ng-model="listaPendiente.oce_folioorden" ></label>                                                                                                           
                                 </div>  
@@ -138,34 +132,34 @@
            <!-- SEGUNDA PESTAÑA-->
              <tab select="alertMe()" heading=" *Validadas "> 
                 <div>
-                        <table align="center"  >                         
+                       
+                     <table align="center"  >                         
                          </br>
                          <tr align="center">
-                            <td >
+                            <td class="container">
                                 
-                                <div class="form-group">
-                                   <label>Orden de compra: <input class="form-control" ng-model="buscarTextV" ></label>
-                                   <!-- <label for="Empresa">Orden de compra</label>
-                                    <div class="input">
-                                        <input CsClass="form-control" id="inputValidadas" type="text">
-                                    </div>-->
+
+                                <div class="form-group">                                    
+                                    
+                                    <label>Orden de compra: <input ng-model="buscarTextV" ></label>                                                                                                           
                                 </div>  
                             </td>
-                            <td align="center">
+                            <td  class="container">  
+                                                                 
                                 <div class="form-group">
                                     <label for="Empresa">Empresa</label>
                                     <div class="dropdown">
-                                        <button class="btn btn-default dropdown-toggle" type="button" id="DropdownEmpresas2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                        <button class="btn btn-default dropdown-toggle" type="button" id="DropdownEmpresas2" data-toggle="dropdown" aria-haspopup="true"  aria-expanded="true">
                                         {{OpcionDefaultEmpresaV}}{{ currentEmpresaV.emp_nombre }}<span class="caret"></span>
                                         </button>
                                         <ul class="dropdown-menu" aria-labelledby="DropdownEmpresa2">
                                              <li ng-repeat="tipo in listaEmpresasV"><a ng-click="getSucursalV(tipo)">{{ tipo.emp_nombre }}</a></li>
                                         </ul>
                                     </div>
-                                </div>                            
+                                </div>                           
     
                             </td>
-                            <td >
+                            <td class="container">
                                 <div class="form-group">
                                     <label for="Sucursal">Sucursal</label>
                                     <div class="dropdown">
@@ -178,11 +172,13 @@
                                     </div>
                                 </div>
                             </td>
-                            <td >
+                            <td class="container">
+
+                                
                                
                             </td>
 
-                         </tr> 
+                         </tr>
                      </table>  </br>
 
               </div>
@@ -250,145 +246,38 @@
              </div>
             </tab>
             <!-- PESTAÑA NUMERO 3-->
-            <tab select="alertMe()" heading=" *Programadas Para Pago ">   
-                 <div>
-                        <table align="center"  >                         
-                         </br>
-                         <tr align="center">
-                            <td >
-                                
-                                <div class="form-group">
-                                   <label>Orden de compra: <input class="form-control" ng-model="buscarTextPP" ></label>
-                                   <!-- <label for="Empresa">Orden de compra</label>
-                                    <div class="input">
-                                        <input CsClass="form-control" id="inputProgPago" type="text">
-                                    </div>-->
-                                </div>  
-                            </td>
-                            <td align="center">
-                                <div class="form-group">
-                                    <label for="Empresa">Empresa</label>
-                                    <div class="dropdown">
-                                        <button class="btn btn-default dropdown-toggle" type="button" id="DropdownEmpresas3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                        {{OpcionDefaultEmpresaPP}}{{ currentEmpresaPP.emp_nombre }}<span class="caret"></span>
-                                        </button>
-                                        <ul class="dropdown-menu" aria-labelledby="DropdownEmpresa3">
-                                             <li ng-repeat="tipo in listaEmpresasPP"><a ng-click="getSucursalPP(tipo)">{{ tipo.emp_nombre }}</a></li>
-                                        </ul>
-                                    </div>
-                                </div>                            
-    
-                            </td>
-                            <td >
-                                <div class="form-group">
-                                    <label for="Sucursal">Sucursal</label>
-                                    <div class="dropdown">
-                                        <button class="btn btn-default dropdown-toggle" type="button" id="DropdownSucursal3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                        {{OpcionDefaultSucursalPP}}{{ currentSucursalPP.suc_nombre }}<span class="caret"></span>
-                                        </button>
-                                        <ul class="dropdown-menu" aria-labelledby="DropdownSucursal3">
-                                            <li ng-repeat="tipo in listaSucursalesPP"><a ng-click="setSucursalPP(tipo)">{{ tipo.suc_nombre }}</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </td>
-                            <td >
-                                
-                            </td>
-
-                         </tr> 
-                     </table>  </br>
-
-              </div>            
-                <div>               
-                <table class="table table-striped table-bordered"> 
-                    <thead> 
-                        <tr> 
-                            <th>Orden De Compra</th> 
-                            <th>Detalle</th> 
-                            <th>Importe</th> 
-                            <th>Factura</th>    
-                            <th>Fecha Validacion</th>  
-                            <th>Fecha Factura</th>  
-                            <th>Recepción</th> 
-                            <th>Estatus</th>  
-                                                 
-                        </tr> 
-                    </thead> 
-                    <tbody> 
-                        <tr ng-repeat="progPago in listaProgPago | filter:buscarTextPP"> 
-                        <!--<tr ng-repeat="progPago in listaProgPago.slice(((currentPagePP-1)*itemsPerPagePP), ((currentPagePP)*itemsPerPagePP)) | filter:buscarTextPP"> -->
-                            <td >
-                                 <a href="" ng-click="verFactura(progPago)" > {{ progPago.ppro_nombrearchivo }}</a> </br> Empresa  {{ progPago.emp_nombre }} </br>
-                                 RFC {{ progPago.per_rfc }}
-                             </td> 
-                            <td >
-                                 {{ progPago.suc_nombre }} </br>
-                                 {{ progPago.dep_nombre }}
-                             </td> 
-                            <td >{{ progPago.oce_importetotal | currency:"$"}}</td> 
-                            <td >{{ progPago.factura }}</td> 
-                            <td >{{ progPago.fechaValidacion | date:'MM/dd/yyyy'}}</td>    
-                            <td >{{ progPago.fecha_factura | date:'MM/dd/yyyy'}}</td> 
-                            <td >{{ progPago.Recepcion }}</td>    
-                            <!--<td >{{ progPago.Estatus }}</td>--> 
-                            <td >{{ progPago.Estado }}</td>                                                           
-                                                      
-                        </tr> 
-                    </tbody> 
-                </table>
-                <!--<table align="center">
-                       <tr align="center">
-                           <td align="center">
-                               Ver <select ng-model="viewbyPP" ng-change="setItemsPerPagePP(viewbyPP)"><option>5</option><option>10</option><option>20</option><option>30</option><option>40</option><option>50</option></select> registros de {{totalProgPago}}
-                           </td>
-                           
-                       </tr>
-                       <tr>
-                           <td>
-                               <pagination total-items="totalItemsPP" ng-model="currentPagePP" max-size="maxSize" class="pagination-sm" boundary-links="true" rotate="false" num-pages="numPagesPP" items-per-page="itemsPerPagePP" align="center"></pagination>
-                               
-                           </td>
-                       </tr>
-                       <tr align="center">
-                           <td>
-                               Pagina: {{currentPagePP}} de {{numPagesPP}}
-                           </td>
-                       </tr>
-                   </table>-->
-             </div>
-            </tab>
+         
             <!--     CUARTA PESTAÑA 4 -->
             <tab select="alertMe()" heading=" *Pagadas " >
                   <div>
-                        <table align="center"  >                         
+                      
+                       <table align="center"  >                         
                          </br>
                          <tr align="center">
-                            <td >
+                            <td class="container">
                                 
-                                <div class="form-group">
-                                      <label>Orden de compra: <input class="form-control" ng-model="buscarTextP" ></label>
-                                    <!--<label for="Empresa">Orden de compra</label>
-                                    <div class="input">
-                                        <input CsClass="form-control" id="inputPagadas" type="text">
-                                    </div>-->
+
+                                <div class="form-group">                                    
+                                    
+                                    <label>Orden de compra: <input ng-model="buscarTextP" ></label>                                                                                                           
                                 </div>  
                             </td>
-                            <td align="center">
+                            <td  class="container">  
+                                                                 
                                 <div class="form-group">
                                     <label for="Empresa">Empresa</label>
                                     <div class="dropdown">
-                                        <button class="btn btn-default dropdown-toggle" type="button" id="DropdownEmpresas4" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                        <button class="btn btn-default dropdown-toggle" type="button" id="DropdownEmpresas4" data-toggle="dropdown" aria-haspopup="true"  aria-expanded="true">
                                         {{OpcionDefaultEmpresaP}}{{ currentEmpresaP.emp_nombre }}<span class="caret"></span>
                                         </button>
                                         <ul class="dropdown-menu" aria-labelledby="DropdownEmpresa4">
                                              <li ng-repeat="tipo in listaEmpresasP"><a ng-click="getSucursalP(tipo)">{{ tipo.emp_nombre }}</a></li>
                                         </ul>
                                     </div>
-                                </div>                            
+                                </div>                           
     
                             </td>
-                            <td >
+                            <td class="container">
                                 <div class="form-group">
                                     <label for="Sucursal">Sucursal</label>
                                     <div class="dropdown">
@@ -401,12 +290,14 @@
                                     </div>
                                 </div>
                             </td>
-                            <td >
+                            <td class="container">
+
                                 
+                               
                             </td>
 
-                         </tr> 
-                     </table>  </br>
+                         </tr>
+                     </table>  </br> 
 
               </div> 
                  <div>                         
