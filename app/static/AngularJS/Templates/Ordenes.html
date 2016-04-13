@@ -74,7 +74,7 @@
                                  <th>Adjuntar Factura</th>                             
                              </tr> 
                        </thead> 
-                        <tbody id="myTable"> 
+                        <tbody > 
                         <tr ng-repeat="Pendiente in listaPendiente | filter:listaPendiente.oce_folioorden"> 
                          <!--Paginacion <tr ng-repeat="Pendiente in listaPendiente.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage)) | filter:listaPendiente.oce_folioorden"> -->
                             <td> <a href="" ng-click="verFactura(Pendiente)" >{{tituloGrid}} {{ Pendiente.oce_folioorden }}</a> </br>
