@@ -91,21 +91,22 @@ $scope.init = function () {
 /////////////////////////////////////LLENA  LOS GRID Y EL COMBO DE EMPRESAS  AL CARGAR LA PAGINA /////////////////////////
 var getData = function(){
 
-  /*ordenRepository.getOrdenPendiente( $scope.proveedorId)
-  .success(getOrdenPendienteSuccessCallback)
-  .error(errorCallBack);*/
+  
 
 
       ordenRepository.getOrdenPendiente( $scope.proveedorId)
       .then(function successCallback(response) 
       {
+               
+              
               $rootScope.PendientesUno= response.data;
               $scope.listaPendiente = response.data;   
               $scope.totalItems = response.data.length;
               $scope.totalPendientes  = response.data.length;  
 
-               
-              $("#tablaPendientes").tablesorter();
+
+              setTimeout(function(){ $("#tablaPendientes").tablesorter(); }, 3000);
+             
              //  $("#tablaPendientes").tablesorter( {sortList: [[0,0], [1,0]]} ); 
               //alertFactory.success('Datos Obtenidos.');
 
