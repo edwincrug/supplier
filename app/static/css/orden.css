@@ -9,3 +9,17 @@
 #tablesorter-header { cursor: pointer; }
 
 #tablesorter-header-inner { position: relative; }
+
+#thCompra, #thDetalle, #thImporte, #thFactura, #thFValidacion, #thfFactura, #thRecepcion, #thRecepcion { cursor: pointer; }
+
+table { border-collapse: collapse; width: 100%; }
+
+th, td { text-align: left; padding: 8px; }
+
+th { background-color: #337ab7; border-color: #2e6da4; color: white; }
+
+.bloque { width: 100%; margin: 3% auto; }
+
+#tabs { width: 100%; margin: 0; padding: 0; list-style: none; }
+
+#tabs li { margin: 0 0.5em 0 0; background-image: linear-gradient(to bottom, #fff, #ddd); }

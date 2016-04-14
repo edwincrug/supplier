@@ -95,7 +95,7 @@ var getData = function(){
 
   
 
-
+       //Trae las ordenes pendientes
       ordenRepository.getOrdenPendiente( $scope.proveedorId)
       .then(function successCallback(response) 
       {
@@ -114,31 +114,53 @@ var getData = function(){
 
       }, function errorCallback(response) {
               //Seccion para atrapar el error;
-               alertFactory.error('Ocurrio un problema');
+               alertFactory.error('Ocurrió un problema');
       });
 
 
+          ordenRepository.getOrdenValidadas( $scope.proveedorId)
+          .then(function successCallback(response) 
+          {
+
+                $scope.listaValidadas = response.data;   
+                $scope.totalItemsV = response.data.length;
+                $scope.totalValidadas  = response.data.length;   
+                //alertFactory.success('Datos Obtenidos.');
+                setTimeout(function(){ $("#tablaValidadas").tablesorter(); }, 3000);
+
+          }, function errorCallback(response) {
+              //Seccion para atrapar el error;
+               alertFactory.error('Ocurrió un problema');
+            });
+
+  
 
 
 
 
 
-
-
-
-
-
-  ordenRepository.getOrdenValidadas( $scope.proveedorId)
-  .success(getOrdenValidadasSuccessCallback)
-  .error(errorCallBack);
-
-  /*ordenRepository.getOrdenProgPago( $scope.proveedorId)
-  .success(getProgPagoSuccessCallback)
+  /*ordenRepository.getOrdenPagadas( $scope.proveedorId)
+  .success(getPagadasSuccessCallback)
   .error(errorCallBack);*/
 
-  ordenRepository.getOrdenPagadas( $scope.proveedorId)
-  .success(getPagadasSuccessCallback)
-  .error(errorCallBack);
+
+
+                ordenRepository.getOrdenPagadas( $scope.proveedorId)
+                .then(function successCallback(response) 
+                {
+                    $scope.listaPagadas = response.data;   
+                    $scope.totalItemsP = response.data.length;
+                    $scope.totalPagadas  = response.data.length;  
+                    setTimeout(function(){ $("#tablaPagadas").tablesorter(); }, 3000); 
+                    //alertFactory.success('Datos Obtenidos.');
+
+                }, function errorCallback(response) {
+              //Seccion para atrapar el error;
+               alertFactory.error('Ocurrio un problema al validar estatus : ' + response.data);
+              });
+
+
+
 
          ordenRepository.getEmpresa($scope.proveedorId) 
          .success(getEmpresasSuccessCallback)
@@ -148,22 +170,22 @@ var getData = function(){
          
        }
 
-       var getOrdenPendienteSuccessCallback = function(data, status, headers, config){
+      /* var getOrdenPendienteSuccessCallback = function(data, status, headers, config){
         $rootScope.PendientesUno=data;
         $scope.listaPendiente = data;   
         $scope.totalItems = data.length;
         $scope.totalPendientes  =data.length;   
         alertFactory.success('Datos Obtenidos.');
         
-      };
+      };*/
 
-      var getOrdenValidadasSuccessCallback = function(data, status, headers, config){
+      /*var getOrdenValidadasSuccessCallback = function(data, status, headers, config){
         $scope.listaValidadas = data;   
         $scope.totalItemsV = data.length;
         $scope.totalValidadas  =data.length;   
         alertFactory.success('Datos Obtenidos.');
         
-      };
+      };*/
 
      /* var getProgPagoSuccessCallback = function(data, status, headers, config){
         $scope.listaProgPago = data;   
