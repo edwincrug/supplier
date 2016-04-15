@@ -64,6 +64,9 @@ $scope.init = function () {
                     document.getElementById('saludo').style.visibility="visible";
                     document.getElementById('login').style.visibility="hidden";
                     alertFactory.success('Acceso correcto.');
+
+                    document.cookie="idProveedor="+ response.data[0].per_idpersona;
+                    window.location.href = "/ordenes";
                 }
       
 

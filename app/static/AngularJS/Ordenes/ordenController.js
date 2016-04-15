@@ -76,6 +76,11 @@ registrationModule.controller("ordenController", function ($scope, $filter, $roo
 $scope.rutaDocumento=null;
 $rootScope.validaEstatus =null;
 $scope.init = function () {
+   
+   var res = document.cookie.split('=');
+
+   $rootScope.idProveedor=res[1];
+   $scope.proveedorId=$rootScope.idProveedor;
  
         if($rootScope.idProveedor==''||$rootScope.idProveedor==null||$rootScope.idProveedor==undefined)
         {
@@ -851,7 +856,33 @@ $scope.uploadFile = function() {
         $("#divDocumento").append($scope.documentoIni);
     };
 
-  
+  $scope.agregarInput = function(){
+       var MaxInputs     = 8;
+       var contenedor    = $("#contenedorInputs");
+       var AddButton     = $("#agregarCampo");
+
+       var x = $("#contenedorInputs div").length + 1;
+       var FieldCount = x-1;
+
+       $(AddButton).click(function (e)
+       {
+           if(x <= MaxInputs)
+           {
+             FieldCount++; 
+             $(contenedor).append('<div class="added"><span class="btn btn-primary btn-file">Elegir Archivo <input type="file" id="fileDoc" name="avatar"></span><a href="#" class="eliminar">X</a></div>');
+             x++;
+           }
+       return false;
+       });
+
+       $("body").on("click",".eliminar", function(e){
+           if( x > 1 ) {
+               $(this).parent('div').remove(); 
+               x--; 
+           }
+       return false;
+       });
+   }
 }); 
 
 

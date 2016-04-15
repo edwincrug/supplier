@@ -1,7 +1,0 @@
-Log:  04/04/2016 11:10:32 a. m. : System.IO.IOException: El nombre de usuario o la contraseña no son correctos.
-
-   en System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
-   en System.IO.Directory.InternalCreateDirectory(String fullPath, String path, Object dirSecurityObj, Boolean checkHost)
-   en System.IO.Directory.InternalCreateDirectoryHelper(String path, Boolean checkHost)
-   en System.IO.Directory.CreateDirectory(String path)
-   en ProveedorApi.LoadXml.GuardaXml.validaXML(String nombreXML, String rutaOrigenArchivos, String FolioOrden, String idProveedorr, String Folio) en C:\Proyectos\Portal_Providers\ProveedorApi\LoadXml\GuardaXml.cs:línea 212

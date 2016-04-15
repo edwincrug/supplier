@@ -73,12 +73,14 @@ var ExpressServer = function(config){
          res.sendfile('app/static/success.htm');
     });
 
-    this.expressServer.post('/profile', upload.single('avatar'), function (req, res, next) {
+    this.expressServer.post('/profile', upload.any(), function (req, res, next) {
       // req.file is the `avatar` file 
       // req.body will hold the text fields, if there were any 
       var x = req.file;
-      res.writeHead(301,{Location: '/success'});
-      res.end();
+      res.setHeader('Content-Type', 'application/json');
+      res.send(JSON.stringify({ a: 1 }));
+     // res.writeHead(301,{Location: '/success'});
+     // res.end();
     })
 
     //Servimos el archivo angular
