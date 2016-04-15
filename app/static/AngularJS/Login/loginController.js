@@ -23,20 +23,23 @@ $scope.init = function () {
 
  /////////////////////////////////////////////METODOS PARA EL LOGUIN///////////////////////////////////////////////////
  $scope.Entrar = function(login){  
-   
+   $('#btnBuscar').button('loading');
     if(login == undefined)
     {
        alertFactory.warning('Por favor ingrese su datos');
+       $('#btnBuscar').button('reset');
       return;
     }
     if(login.txtUsuario == '' || login.txtUsuario == undefined)
     {
        alertFactory.warning('Por favor ingrese su usuario');
+       $('#btnBuscar').button('reset');
       return;
     }
     if(login.txtContra == '' || login.txtContra == undefined)
     {
        alertFactory.warning('Por favor ingrese su contraseña');
+       $('#btnBuscar').button('reset');
       return;
     }
     $rootScope.rfc=login.txtUsuario; 
@@ -46,7 +49,7 @@ $scope.init = function () {
 
         loginRepository.getLogin( login.txtUsuario, login.txtContra)
         .then(function successCallback(response) 
-        {
+        {     $('#btnBuscar').button('reset');
 
               $rootScope.listaLogin = response.data;
               $rootScope.rfcEdit = login.txtUsuario;
@@ -72,6 +75,7 @@ $scope.init = function () {
 
         }, function errorCallback(response) {
               //Seccion para atrapar el error;
+              $('#btnBuscar').button('reset');
                alertFactory.error('Usuario o contraseña incorrectos');
         });
 
