@@ -23,3 +23,5 @@ th { background-color: #337ab7; border-color: #2e6da4; color: white; }
 #tabs { width: 100%; margin: 0; padding: 0; list-style: none; }
 
 #tabs li { margin: 0 0.5em 0 0; background-image: linear-gradient(to bottom, #fff, #ddd); }
+
+.modalOrden { width: 700px; height: 500px; }

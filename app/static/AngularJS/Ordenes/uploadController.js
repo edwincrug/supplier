@@ -1,5 +1,42 @@
 registrationModule.controller("uploadController", function ($scope, $filter, $rootScope, localStorageService, alertFactory, ordenRepository, consultaRepository, facturaRepository,ordenRepository) {
-   $rootScope.FolioOrden=null;
+  
+    $scope.proveedorId;
+
+    $scope.init = function () {
+   
+        var res = document.cookie.split('=');
+
+        $rootScope.idProveedor=res[1];
+        $scope.proveedorId=$rootScope.idProveedor;
+ 
+        if($rootScope.idProveedor==''||$rootScope.idProveedor==null||$rootScope.idProveedor==undefined)
+        {
+          
+            alertFactory.warning('Por favor inicie sesión .');
+            return;
+        }
+
+        $rootScope.idProveedorMenu=false;
+        //getData();
+        
+    };
+
+}); 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  /* $rootScope.FolioOrden=null;
    $rootScope.nombreXML=null;
  
     $scope.ShowCargar = function(doc) {
@@ -69,7 +106,7 @@ registrationModule.controller("uploadController", function ($scope, $filter, $ro
      var errorCallBack = function (data, status, headers, config) {
         getData();
         alertFactory.error('Ocurrio un problema: ' + data);
-     };      
-}); 
+     };     */ 
+
 
 

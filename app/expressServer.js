@@ -8,7 +8,7 @@ var env = process.env.NODE_ENV || 'production',
     var path = require('path');
     var storage = multer.diskStorage({
                       destination: function (req, file, cb) {
-                        cb(null, __dirname + '/uploads')
+                        cb(null, __dirname + '/uploads')                                            
                       },
                       filename: function (req, file, cb) {
                         cb(null, file.originalname)
@@ -17,7 +17,7 @@ var env = process.env.NODE_ENV || 'production',
 
     var upload = multer({ storage: storage })
 
-    
+   
     //Alta de opciones
     var done=false;
 
@@ -59,7 +59,8 @@ var ExpressServer = function(config){
 
     //Servimos el archivo angular
     this.expressServer.get('/upload', function(req, res){
-        res.write('Hola, Mundo!');
+        //res.write('Hola mundo...!!!');
+         res.sendfile('app/static/success.htm');
         res.end();
     });
 
@@ -77,10 +78,11 @@ var ExpressServer = function(config){
       // req.file is the `avatar` file 
       // req.body will hold the text fields, if there were any 
       var x = req.file;
-      res.setHeader('Content-Type', 'application/json');
-      res.send(JSON.stringify({ a: 1 }));
-     // res.writeHead(301,{Location: '/success'});
-     // res.end();
+      //res.setHeader('Content-Type', 'application/json');
+      //res.send(JSON.stringify({ a: 1 }));      
+      //res.writeHead(301,{Location: '/success'});  
+      res.writeHead(301,{Location: '/Upload.html?response=1'});    
+      res.end();
     })
 
     //Servimos el archivo angular

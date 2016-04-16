@@ -95,7 +95,7 @@
                                     <span class="glyphicon glyphicon-paperclip" ng-controller="uploadController" aria-hidden="true" ng-click="upFactura(Pendiente)">SubirArchivos</span>
                                 </button>-->
                                <button class="btn btn-primary" type="button" id="btnAdjuntarPendiente">
-                                    <span class="glyphicon glyphicon-paperclip" ng-controller="uploadController" aria-hidden="true" ng-click="toggleModal()">SubirArchivos</span>
+                                    <span class="glyphicon glyphicon-paperclip" ng-controller="uploadController" aria-hidden="true" ng-click="toggleModal(Pendiente)">SubirArchivos</span>
                                 </button>
                               <!--  <button class="btn btn-primary" type="button" id="btnAdjuntarPendiente">
                                     <span class="glyphicon glyphicon-paperclip" aria-hidden="true" ng-click="verFactura2(Pendiente)">SubirArchivos</span>
@@ -367,46 +367,14 @@
 
 <div class="modal fade" id="viewNewEscalamiento" >
   <div class="modal-dialog" >
-    <div class="modal-content" style="height:700px;">
+    <div class="modal-content modalOrden">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal"  aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title">Subir Documento</h4>
       </div>
-      <div class="modal-body">
-        <form 
- id        =  "uploadForm"
- enctype   =  "multipart/form-data"
- action    =  "/profile"
- method    =  "post">
- <div>
-     <input type="text" name="idTrabajo" value="idTrabajo" hidden="true" />
-     <input type="text" name="idCotizacion" value="idCotizacion" hidden="true" />
-     <!-- <span class="btn btn-primary btn-file">
-       Elegir Archivo <input type="file" id="fileDoc" name="avatar">
-     </span> -->
-     <div id="wrapper">
-     <!--<a id="agregarCampo" class="btn btn-info" ng-click="agregarInput()">+</a>-->
-     <div id="contenedorInputs">
-       <div class="added">
-          <label>Elegir XML: </label>
-         <span  class="btn btn-primary btn-file">
-            <input type="file" id="fileDoc" name="avatar">
-         </span>
-       </div>
-       </br>
-       <div class="added">
-         <span class="btn btn-primary btn-file">
-           Elegir Archivo <input type="file" id="fileDocPDF" name="avatar">
-         </span>
-       </div>
-     </div>
-   </div>
- </div> </br>
- <button class="btn btn-info" type="submit" onclick="IniciaCarga()">Cargar</button>
-</form>
-
-      </div>                                                                                 
-      
+          <div>
+               <iframe src="/Upload.html" frameborder="0" width="600px" height="300px"></iframe>  
+          </div>
     </div><!-- /.modal-content -->
   </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->  

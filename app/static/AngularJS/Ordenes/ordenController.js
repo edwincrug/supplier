@@ -2,45 +2,7 @@ registrationModule.controller("ordenController", function ($scope, $filter, $roo
 
  $scope.proveedorId=$rootScope.idProveedor;
  
-   /*//Begin Datos paginado Pendientes
-   $scope.viewby = 5;
-   $scope.totalItems; 
-   $scope.currentPage = 4;
-   $scope.itemsPerPage = $scope.viewby;
-   $scope.maxSize = 5; 
-   $scope.totalPendientes;
-*/
-  //End Datos paginado Pendientes
 
-  //Begin Datos paginado Pendientes
-
-  $scope.viewbyV = 5;
-  $scope.totalItemsV; 
-  $scope.currentPageV = 4;
-  $scope.itemsPerPageV = $scope.viewbyV;
-  $scope.maxSizeV = 5; 
-  $scope.totalValidadas;
-  $scope.var = 1;
-
-  //End Datos paginado Pendientes
-  //Begin Datos paginado Programadas para Pago
-  $scope.viewbyPP = 5;
-  $scope.totalItemsPP; 
-  $scope.currentPagePP = 4;
-  $scope.itemsPerPagePP = $scope.viewbyPP;
-  $scope.maxSizePP = 5; 
-  $scope.totalProgPago;
-
-  //End Datos paginado Pendientes
-  //Begin Datos paginado Pagadas
-  $scope.viewbyP = 5;
-  $scope.totalItemsP; 
-  $scope.currentPageP = 4;
-  $scope.itemsPerPageP = $scope.viewbyP;
-  $scope.maxSizeP = 5; 
-  $scope.totalPagadas;
-
-  //End Datos paginado Pendientes
   $scope.OpcionDefaultEmpresa='---Elije una opción---';
   $scope.OpcionDefaultSucursal = '---Elije una opción---';
   $scope.currentEmpresa;
@@ -71,16 +33,25 @@ registrationModule.controller("ordenController", function ($scope, $filter, $roo
   $scope.valSucursalPP=null;
   $scope.valEmpresaP=null;
   $scope.valSucursalP=null;
+  //Datos para guardar facturas
+  $rootScope.idEditar;
+  $rootScope.idXml;
+  $rootScope.idPdf;
+  $rootScope.idFol;
 //carga los tabs al entrar a la pagina
 
 $scope.rutaDocumento=null;
 $rootScope.validaEstatus =null;
+$rootScope.folioHp =null;
 $scope.init = function () {
    
-   var res = document.cookie.split('=');
+      GuardaFacturaBase()
+   
 
-   $rootScope.idProveedor=res[1];
+   //$rootScope.idProveedor=listaValores[1];
    $scope.proveedorId=$rootScope.idProveedor;
+   //ELIMINAS LA LINEA DE ABAJO DESPUES DE PROBAR
+   //$scope.proveedorId='4';
  
         if($rootScope.idProveedor==''||$rootScope.idProveedor==null||$rootScope.idProveedor==undefined)
         {
@@ -138,17 +109,6 @@ var getData = function(){
                alertFactory.error('Ocurrió un problema');
             });
 
-  
-
-
-
-
-
-  /*ordenRepository.getOrdenPagadas( $scope.proveedorId)
-  .success(getPagadasSuccessCallback)
-  .error(errorCallBack);*/
-
-
 
                 ordenRepository.getOrdenPagadas( $scope.proveedorId)
                 .then(function successCallback(response) 
@@ -165,55 +125,26 @@ var getData = function(){
               });
 
 
+                  ordenRepository.getEmpresa($scope.proveedorId) 
+                .then(function successCallback(response) 
+                {
+                    $scope.listaEmpresas = response.data;
+                    $scope.listaEmpresasV = response.data;
+                    $scope.listaEmpresasPP = response.data;
+                    $scope.listaEmpresasP = response.data;
+        
 
+                }, function errorCallback(response) {
+              //Seccion para atrapar el error;
+               alertFactory.error('Ocurrio un problema al cargar las empresas');
+              });
 
-         ordenRepository.getEmpresa($scope.proveedorId) 
-         .success(getEmpresasSuccessCallback)
-         .error(errorCallBack); 
+         
 
          
          
        }
 
-      /* var getOrdenPendienteSuccessCallback = function(data, status, headers, config){
-        $rootScope.PendientesUno=data;
-        $scope.listaPendiente = data;   
-        $scope.totalItems = data.length;
-        $scope.totalPendientes  =data.length;   
-        alertFactory.success('Datos Obtenidos.');
-        
-      };*/
-
-      /*var getOrdenValidadasSuccessCallback = function(data, status, headers, config){
-        $scope.listaValidadas = data;   
-        $scope.totalItemsV = data.length;
-        $scope.totalValidadas  =data.length;   
-        alertFactory.success('Datos Obtenidos.');
-        
-      };*/
-
-     /* var getProgPagoSuccessCallback = function(data, status, headers, config){
-        $scope.listaProgPago = data;   
-        $scope.totalItemsPP = data.length;
-        $scope.totalProgPago  =data.length;   
-        alertFactory.success('Datos Obtenidos.');
-        
-      };*/
-
-      var getPagadasSuccessCallback = function(data, status, headers, config){
-        $scope.listaPagadas = data;   
-        $scope.totalItemsP = data.length;
-        $scope.totalPagadas  =data.length;   
-        alertFactory.success('Datos Obtenidos.');
-        
-      };
-      var getEmpresasSuccessCallback = function(data, status, headers, config){
-        $scope.listaEmpresas = data;
-        $scope.listaEmpresasV = data;
-        $scope.listaEmpresasPP = data;
-        $scope.listaEmpresasP = data;
-        alertFactory.success('Datos de Empresas cargados.');
-      };
 //Mensajes en caso de error
 var errorCallBack = function (data, status, headers, config) {
   getData();
@@ -707,7 +638,11 @@ $scope.buscaPagadas= function() {
 
 
 
-$scope.toggleModal = function(){
+$scope.toggleModal = function(Pendiente){
+        document.cookie="idFolio=" + Pendiente.oce_folioorden;
+        document.cookie="ideditar= 0";
+        //$rootScope.folioHp = Pendiente.oce_folioorden;
+        //$rootScope.editarHp = '0';
         $('#viewNewEscalamiento').modal('show');
     };
 
@@ -856,6 +791,8 @@ $scope.uploadFile = function() {
         $("#divDocumento").append($scope.documentoIni);
     };
 
+/////////////////////////////////////////////////////////////////////////////7
+
   $scope.agregarInput = function(){
        var MaxInputs     = 8;
        var contenedor    = $("#contenedorInputs");
@@ -883,6 +820,68 @@ $scope.uploadFile = function() {
        return false;
        });
    }
+
+    var GuardaFacturaBase= function()
+    {
+      $rootScope.idProveedorMenu= true;
+        var listaValores = document.cookie.split(';');
+
+        for (i in listaValores) {
+             busca = listaValores[i].search("idProveedor");
+             if (busca > -1) 
+             {
+              var temp1;
+              temp1= listaValores[i];
+              var temp2 = temp1.split('=');
+              $rootScope.idProveedor=temp2[1]
+            }
+         }
+
+         for (i in listaValores) {
+             busca = listaValores[i].search("ideditar");
+             if (busca > -1) 
+             {
+              var edita1;
+              edita1= listaValores[i];
+              var edita2 = edita1.split('=');
+              $rootScope.idEditar=edita2[1]
+            }
+         }
+
+         for (i in listaValores) {
+             busca = listaValores[i].search("ArchivoXml");
+             if (busca > -1) 
+             {
+              var xml1;
+              xml1= listaValores[i];
+              var xml2 = xml1.split('=');
+              $rootScope.idXml=xml2[1]
+            }
+         }
+
+         for (i in listaValores) {
+             busca = listaValores[i].search("ArchivoPdf");
+             if (busca > -1) 
+             {
+              var pdf1;
+              pdf1= listaValores[i];
+              var pdf2 = pdf1.split('=');
+              $rootScope.idPdf=pdf2[1]
+            }
+         }
+
+         for (i in listaValores) {
+             busca = listaValores[i].search("idFolio");
+             if (busca > -1) 
+             {
+              var fol1;
+              fol1= listaValores[i];
+              var fol2 = fol1.split('=');
+              $rootScope.idFol=fol2[1]
+            }
+         }
+
+    }
 }); 
 
 

@@ -25,7 +25,7 @@ var registrationModule = angular.module("registrationModule", ["ngRoute", "ngGri
         controller: 'ordenController'
        //templateUrl: '/AngularJS/Templates/Login.html',
       //controller: 'loginController'
-    })
+    })    
     .when('/cuenta', {
         templateUrl: '/AngularJS/Templates/EditarRegistro.html',
         controller: 'loginController'

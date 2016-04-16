@@ -1,0 +1,98 @@
+<link href="../../css/bootstrap.css" rel="stylesheet" />
+<script src="js/jquery-2.1.4.min.js"></script>
+   
+       <form 
+            id        =  "uploadForm"
+            enctype   =  "multipart/form-data"
+            action    =  "/profile"
+            method    =  "post">
+            <div>
+                    <input type="text" name="idProveedor"  hidden="true" ng-model="proveedorId"></input>
+                    <input type="text" name="folio" ng-model="folioHp" hidden="true" />
+                    <input type="text" name="editar" ng-model="editarHp" hidden="true" />
+ 
+                  <div id="wrapper">
+     
+                        <div id="contenedorInputs">
+                                
+
+                                <div class="added" >
+                                      <label>Elegir XML: </label>
+                                      <span  class="btn btn-primary btn-file" >
+                                          <input type="file" id="fileDocXml" name="avatar" width="300px">
+                                      </span>
+                                </div>
+                                </br>
+                                <div class="added">
+                                      <label>Elegir PDF: </label>
+                                      <span class="btn btn-primary btn-file">
+                                            <input type="file" id="fileDocPdf" name="avatar">
+                                      </span>
+                                </div>
+                                </br>
+                                <div align="center">
+                                    <button class="btn btn-info" type="submit" onclick="IniciaCarga()">Cargar</button>
+                                </div>
+                        </div>
+                  </div>
+            </div> 
+ 
+    </form>
+    <script type="text/javascript">
+
+   /*function getParameterByName(name, url) {
+        if (!url) url = window.location.href;
+        name = name.replace(/[\[\]]/g, "\\$&");
+        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)", "i"),
+            results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, " "));
+    }*/
+    function getParameterByName( name ) //courtesy Artem
+    {
+        name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+        var regexS = "[\\?&]"+name+"=([^&#]*)";
+        var regex = new RegExp( regexS );
+        var results = regex.exec( window.location.href );
+        if( results == null )
+          return "";
+        else
+        return decodeURIComponent(results[1].replace(/\+/g, " "));
+    }
+    $(document).ready(function() {
+      if(getParameterByName('response')!=null)      
+      alert("window is loaded");
+      });
+
+  
+      $('#fileDocXml').change(function() {
+          var filename = $(this).val();
+          var lastIndex = filename.lastIndexOf("\\");
+          if (lastIndex >= 0) {
+               filename = filename.substring(lastIndex + 1);
+           }
+      $('#filename').val(filename);      
+      document.cookie="ArchivoXml="+ filename;
+
+    }); 
+      $('#fileDocPdf').change(function() {
+          var filename = $(this).val();
+          var lastIndex = filename.lastIndexOf("\\");
+          if (lastIndex >= 0) {
+               filename = filename.substring(lastIndex + 1);
+           }
+      $('#filename').val(filename);      
+      document.cookie="ArchivoPdf="+ filename;
+
+    }); 
+</script>
+
+                                          
+
+
+
+
+
+
+

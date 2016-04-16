@@ -18,13 +18,13 @@
                             <div align="center">
                                             <div class="form-group">
                                                 <label for="usuario" class="control-label">Usuario</label>
-                                                 <input type="text" id="txtUsuario" class="form-control" ng-model="registro.txtUsuario"  style="width:300px;"  placeholder="Usuario" required>
+                                                 <input type="text" id="txtUsuario" class="form-control" ng-model="registro.txtUsuario"  placeholder="Usuario" required>
                                            </div>
 
                                             <div class="form-group">
                                                     <label for="inputPassword" class="control-label">Contraseña</label> </br>
                                                          <!--<div class="form-group">-->
-                                                          <input type="password" class="form-control" style="width:300px"  id="txtContra" data-match="#inputPassword"  placeholder="Contraseña" ng-model="registro.txtContra" required>
+                                                          <input type="password" class="form-control"  id="txtContra" data-match="#inputPassword"  placeholder="Contraseña" ng-model="registro.txtContra" required>
                                                                 
                                                                 
                                             </div>
@@ -33,27 +33,23 @@
 
                                                 
                                                 <button type="summit" class="btn btn-primary" data-loading-text="Cargando..." id="btnBuscar" ng-click="Entrar(registro)">Iniciar sesion</button>
-                                     </div>        
+                                     </div> 
+
+                                     <div>
+                                         ¿No tiene una cuenta? </br>
+                                         <a href="" ng-click="CrearCuenta()" >Crear una cuenta</a>
+                                     </div>       
                             </div>
 
         </div>
-        <div id="saludo"  style="position:fixed;
-width:200px;
-height:200px;
-left:50%;
-top:40%;
-margin-left:-250px;
-margin-top:-100px;">
+        <div id="saludo">
          <div align="center">
-            <label for="saludo" style="font-size:90px;color:#333366;" class="control-label"> BIENVENIDO </label>
+            <label for="saludo" id="lblSaludo" class="control-label"> BIENVENIDO </label>
          </div>
      </div>
 </div>
 </div>
 
-<!--<div id="bienvenida">
-    HOLA
-</div>-->
    
 
 

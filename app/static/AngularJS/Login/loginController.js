@@ -67,8 +67,13 @@ $scope.init = function () {
                     document.getElementById('saludo').style.visibility="visible";
                     document.getElementById('login').style.visibility="hidden";
                     alertFactory.success('Acceso correcto.');
-
+///////--============================Guarda datos de inicio================================////////////
                     document.cookie="idProveedor="+ response.data[0].per_idpersona;
+                    document.cookie="ideditar= No";
+                    document.cookie="ArchivoXml= 0";
+                    document.cookie="ArchivoPdf= 0";
+                    document.cookie="idFolio= 0";
+///////--=================================================================================////////////
                     window.location.href = "/ordenes";
                 }
       
@@ -226,7 +231,10 @@ $scope.init = function () {
 
   };
 
+    $scope.CrearCuenta = function(){
 
+        window.location.href = "/registro";
+    }
 
 });
 
